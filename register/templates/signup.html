@@ -1,8 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registeration</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+    <link rel="stylesheet" href="../../static/assets/css/Pretty-Registration-Form.css">
+{% endblock %}
+
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+	<div class="row register-form">
+        <div class="col-md-8 col-md-offset-2">
+                <form class="form-horizontal custom-form" method="post">
+                <h1>Registeration Form</h1>
+                <hr>
+				    {% csrf_token %}
+                    {% for field in form %}
+                    {{ field.label_tag }} {{ field }}
+                    <br>
+                    <br>
+                    {% endfor %}
+
+                <button class="btn btn-default submit-button" type="button">Submit </button>
+            </form>
+        </div>
+    </div>
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+
 {% endblock %}

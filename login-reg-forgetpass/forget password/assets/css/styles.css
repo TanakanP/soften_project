@@ -1,0 +1,21 @@
+textarea{
+  margin:auto;
+}
+
+div.col-md-12{
+  margin:auto;
+  margin-bottom:0px;
+}
+
+.text-info, .text-info:hover{
+  color:black;
+}
+
+small{
+  color:grey;
+}
+
+button.btn.btn-primary.btn-block.btn-lg.btn-signin{
+  background-color:black;
+}
+
