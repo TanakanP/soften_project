@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'register',
 ]
 
 MIDDLEWARE = [
@@ -134,5 +135,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 try:
     from .settings_local import *
 except ImportError:
-    pass 
+    pass
 
+LOGIN_REDIRECT_URL = 'home'
