@@ -1,0 +1,40 @@
+@media (min-width:1400px) {
+  .container{
+    width:1300px;
+  }
+}
+
+@media (min-width:992px) {
+  .col-md-7{
+    width:45%;
+    margin-left:5%;
+  }
+}
+
+div#topsell{
+  text-align:center;
+}
+
+div.col-md-4{
+  text-align:left;
+}
+
+button#filter_dropdown.btn.btn-default.dropdown-toggle{
+  width:100%;
+  background-color:white;
+  color:black;
+}
+
+div#filterlist.col-md-2{
+  text-align:left;
+}
+
+div#catalog.container{
+  margin-top:70px;
+}
+
+button#logoutbtt.btn.btn-default.active.navbar-btn.navbar-right{
+  background-color:white;
+  color:black;
+}
+

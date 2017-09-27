@@ -4,23 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>sas sneakers shoes - Product</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+    <link rel="stylesheet" href="../../static/assets/css/productImg.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled-1.css">
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled-2.css">
 </head>
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header"><a href="/home" class="navbar-brand navbar-link">SSS Store</a>
+        <div class="navbar-header"><a href="../../home/" class="navbar-brand navbar-link">SSS Store</a>
             <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav">
-                <li role="presentation"><a href="#">Brand </a></li>
+                <li role="presentation"><a href="catalog.html">Catalog </a></li>
                 <li role="presentation"><a href="#">Sales </a></li>
                 <li role="presentation"><a href="#">News </a></li>
                 <li role="presentation"><a href="#">Forum </a></li>
@@ -35,12 +40,119 @@
         </div>
         </form>
     </div>
-            <button class="btn btn-default active navbar-btn navbar-right" type="button"><strong>SIGN UP</strong></button>
-            <button class="btn btn-default active navbar-btn navbar-right" type="button" id="loginbtt"><strong>LOG IN</strong></button>
+            <a href="/user/signup"><button class="btn btn-default active navbar-btn navbar-right" type="button" ><strong>SIGN UP</strong></button></a>
+            <a href="/user/login"><button class="btn btn-default active navbar-btn navbar-right" type="button" id="loginbtt"><strong>LOG IN</strong></button></a>
             <button class="btn btn-default navbar-btn navbar-right" type="button"><i class="fa fa-shopping-cart"></i></button>
         </div>
     </div>
 </nav>
+    <ol class="breadcrumb">
+        <li><a href="#"><span>Catalog </span></a></li>
+        <li><a href="#"><span>Men</span></a></li>
+        <li class="active"><span>Adidas </span></li>
+    </ol>
+    <div class="container">
+        <div class="row product">
+            <div class="col-md-7 col-md-offset-0 col-sm-offset-0">
+                
+ <div class='section'>
+    <div class='photos inline'>
+      <img class='main-photo active' id='lg-1' src='../../static/assets/img/NikeAirMax90Ultra2.0.jpg'>
+      <img class='main-photo' id='lg-2' src='../../static/assets/img/NikeAirMax90Ultra2.0_2.jpg'>
+      <img class='main-photo' id='lg-3' src='../../static/assets/img/NikeAirMax90Ultra2.0_3.jpg'>
+      <div class='small-photos'>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-1' src='../../static/assets/img/NikeAirMax90Ultra2.0.jpg'>
+        </div>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-2' src='../../static/assets/img/NikeAirMax90Ultra2.0_2.jpg'>
+        </div>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-3' src='../../static/assets/img/NikeAirMax90Ultra2.0_3.jpg'>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+    var photos = document.querySelectorAll(".sub-photo");
+var mainPhotos = document.querySelectorAll(".main-photo");
+
+var activePhoto = "";
+
+[].forEach.call(mainPhotos, function(photo) {
+  if (photo.className.indexOf("active")>-1) {
+    activePhoto = photo;
+  }
+});
+
+[].forEach.call(photos, function(photo) {
+  photo.addEventListener("mouseover", function() {
+     var clicked=photo.id;
+    clicked = "lg-" + clicked.split("-")[1];
+    activePhoto.classList.remove("active");
+    activePhoto = document.getElementById(clicked);
+    activePhoto.classList.add("active");
+  });
+});
+</script>
+            </div>
+            <div class="col-lg-offset-0 col-md-5 col-md-offset-1">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4"><img class="hidden-xs hidden-sm" src="../../static/assets/img/adidas-logo.jpg" width="100%"></div>
+                    <div class="col-md-8">
+                        <h2>Adidas NMD</h2>
+                        <p>asddfgdhfjnbvcxzdsfdghj,mnbvcxzcbvnb, </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="size">
+                        <h6>SIZE </h6>
+                        <select id="select">
+                            <option value="" selected="">Chose Your Size</option>
+                            <option value="48">48</option>
+                            <option value="47">47</option>
+                            <option value="46">46</option>
+                            <option value="45">45</option>
+                            <option value="44">44</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12" id="price">
+                        <h6>PRICE </h6>
+                        <h3>฿ 5990</h3></div>
+                </div>
+                <button class="btn btn-danger" type="button" id="addcart">Add to cart</button>
+                <h3>Product Details</h3>
+                <p>Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 footer-navigation">
+                <h3><a href="#">SAS Sneakers Shoes</a></h3>
+                <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">Faq</a><strong> · </strong><a href="#">Contact</a></p>
+                <p class="company-name">Company Name © 2017 </p>
+            </div>
+            <div class="col-md-4 col-sm-6 footer-contacts">
+                <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
+                    <p><span class="new-line-span">Kasetsart University</span> Bkk, Thailand</p>
+                </div>
+                <div><i class="fa fa-phone footer-contacts-icon"></i>
+                    <p class="footer-center-info email text-left"> +1 555 123456</p>
+                </div>
+                <div><i class="fa fa-envelope footer-contacts-icon"></i>
+                    <p> <a href="#" target="_blank">support@company.com</a></p>
+                </div>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-4 footer-about">
+                <h4>About the company</h4>
+                <p>Just a software engineering project ;)</p>
+                <div class="social-links social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>
+            </div>
+        </div>
+    </footer>
     <script src="../../static/assets/js/jquery.min.js"></script>
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

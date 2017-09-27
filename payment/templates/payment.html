@@ -1,3 +1,101 @@
-<h1>Show me the money!</h1>
-<!-- writes out the form tag automatically -->
-{{ form.render }}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+    <link rel="stylesheet" href="../../static/assets/css/Bootstrap-Payment-Form.css">
+</head>
+
+<body>
+
+
+    <fieldset></fieldset>
+    <fieldset></fieldset>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-nowrap text-uppercase text-center"><strong>Payment</strong> </h1></div>
+                    </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Your Cart</strong></h3></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4"><img class="img-thumbnail" src="../../static/assets/img/Vans-Walker-Pro-Black-Blue-Fog-Skate-Shoes-_275046-front-US.jpg"></div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6><strong>Product 1</strong></h6>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p>Quantity </p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <form>
+                                                    <input class="form-control input-sm" type="number" min="0">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-0">
+                                                <p>Cost </p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p>2999 </p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p>baht </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><strong>Total:</strong></h4></div>
+                            <div class="col-md-2">
+                                <h4>2999 </h4></div>
+                            <div class="col-md-1">
+                                <h4>baht </h4></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Shipping</strong> </h3></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                    <select class="form-control">
+                                        <option value="12" selected="">Normal Shipping (Free, 3-7 days)</option>
+                                        <option value="13">EMS Shipping (+50 baht, 2-3 days)</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="panel-title-text">Payment Details </span>{{ form.render }}
+                        </h3></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
