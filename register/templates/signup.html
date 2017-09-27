@@ -1,32 +1,32 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html>
 
-{% block header %}
+<head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registeration</title>
+    <title>Registeration</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Registration-Form.css">
-{% endblock %}
-
-{% block content %}
+</head>
+<body>
 	<div class="row register-form">
         <div class="col-md-8 col-md-offset-2">
-                <form class="form-horizontal custom-form" method="post">
+            <form class="form-horizontal custom-form">
                 <h1>Registeration Form</h1>
-                <hr>
-				    {% csrf_token %}
-                    {% for field in form %}
-                    {{ field.label_tag }} {{ field }}
-                    <br>
-                    <br>
-                    {% endfor %}
-
-                <button class="btn btn-default submit-button" type="button">Submit </button>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4 label-column">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <button class="btn btn-primary btn-block btn-lg btn-signin" type="button">Submit </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
     <script src="../../static/assets/js/jquery.min.js"></script>
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
 
-{% endblock %}

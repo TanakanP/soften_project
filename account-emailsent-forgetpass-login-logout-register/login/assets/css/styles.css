@@ -1,0 +1,33 @@
+textarea{
+  margin:auto;
+}
+
+div.col-md-12{
+  margin:auto;
+  margin-bottom:40px;
+}
+
+h1.text-center.text-info{
+  color:black;
+}
+
+button.btn.btn-primary.btn-block.btn-lg.btn-signin{
+  background-color:black;
+}
+
+a.forgot-password\{
+}
+
+a.forgot-password{
+  color:black;
+}
+
+t{
+}
+
+a.sign-up{
+  text-align:right;
+  margin-left:29%;
+  color:black;
+}
+

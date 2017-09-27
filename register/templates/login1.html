@@ -1,38 +1,38 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html>
 
-{% block header %}
-<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Registration-Form.css">
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Header.css">
     <link rel="stylesheet" href="../../static/assets/css/Google-Style-Login.css">
-{% endblock %}
+</head>
 
-
-{% block content %}
-	
+<body>	
     <div class="col-md-12">
         <h1 class="text-center text-info">Log in</h1></div>
-    <div class="login-card"><img src="../../static/assets/img/empty.jpg" class="profile-img-card">
+        <div class="login-card"><img src="../../static/assets/img/empty.jpg" class="profile-img-card">
         <p class="profile-name-card"> </p>
             <form class="form-signin" method="post">
-			    {% csrf_token %}
-			    {{ form.as_p }}
-            <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Login</button>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Login</button>
             </form>
             <div class="checkbox">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox">Remember me</label>
-                </div>
+                <label>
+                    <input type="checkbox">Remember me</label>
             </div>
             
             <a href="#" class="forgot-password">Forgot your password?</a>
+            </div>
     </div>
     <script src="../../static/assets/js/jquery.min.js"></script>
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
-{% endblock %}
+</body>
+</html>
