@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/', include('main.urls')),
     url(r'^user/', include('register.urls')),
+    url(r'^checkout/', include('payment.urls')),
+     url(r'^paypal/', include('paypal.standard.ipn.urls')),
 ]

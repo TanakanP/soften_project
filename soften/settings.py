@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'main',
     'register',
     'crispy_forms',
+    'paypal.standard.ipn',
+    'payment',
 ]
 
 MIDDLEWARE = [
