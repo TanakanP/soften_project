@@ -10,9 +10,6 @@ jumbotron{
   background-size:cover;
 }
 
-#promo{
-  text-align:center;
-}
 
 .navbar{
   min-height:50px;
@@ -72,6 +69,7 @@ div#topsell{
 div#topselltext.col-md-12{
   padding-top:50px;
   padding-bottom:20px;
+  text-align:center;
 }
 
 div.carousel-caption{
@@ -99,6 +97,8 @@ button#loginbtt.btn.btn-default.active.navbar-btn.navbar-right{
 h1#goshop{
   margin-top:50px;
   color:black;
+  text-align:center;
+  
 }
 
 a{

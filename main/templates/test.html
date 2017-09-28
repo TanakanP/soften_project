@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+	{% for home in product %}
+	{{ home.picture }}
+	<br>
+	{{ home.image }}
+	<img src='../static/assets/img/{{ home.picture }}' class="img-respon"/>
+	{% endfor %}
+
+</body>
+
+</html>
