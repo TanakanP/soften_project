@@ -19,7 +19,7 @@
         <h1 class="text-center text-info">Log in</h1></div>
         <div class="login-card"><img src="../../static/assets/img/empty.jpg" class="profile-img-card">
         <p class="profile-name-card"> </p>
-            <form class="form-signin" method="post">
+            <form action="{% url 'login' %}" class="form-signin" method="post">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Login</button>

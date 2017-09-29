@@ -34,8 +34,7 @@
 
 .section .sub img{
   opacity:0.5;
-  width:165px;
-  width:document.getElementById('lg-1').style.width;
+  width:125px;
 }
 
 .section .sub img:hover{
@@ -51,7 +50,7 @@
 }
 
 .section .photos .small-photos{
-  margin-top:350px;
+  margin-top:500px;
   display:flex;
   margin-bottom:10px;
 }

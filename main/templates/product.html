@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -47,62 +48,47 @@
     </div>
 </nav>
     <ol class="breadcrumb">
-        <li><a href="#"><span>Catalog </span></a></li>
-        <li><a href="#"><span>Men</span></a></li>
-        <li class="active"><span>Adidas </span></li>
+        <li><a href="#"><span>Catalog</span></a></li>
+        <li><a href="#"><span>{{product.1.gender}}</span></a></li>
+        <li class="active"><span>{{product.1.brand}}</span></li>
     </ol>
     <div class="container">
         <div class="row product">
             <div class="col-md-7 col-md-offset-0 col-sm-offset-0">
-                
- <div class='section'>
-    <div class='photos inline'>
-      <img class='main-photo active' id='lg-1' src='../../static/assets/img/NikeAirMax90Ultra2.0.jpg'>
-      <img class='main-photo' id='lg-2' src='../../static/assets/img/NikeAirMax90Ultra2.0_2.jpg'>
-      <img class='main-photo' id='lg-3' src='../../static/assets/img/NikeAirMax90Ultra2.0_3.jpg'>
-      <div class='small-photos'>
-        <div class='sub'>
-          <img class='sub-photo' id='sm-1' src='../../static/assets/img/NikeAirMax90Ultra2.0.jpg'>
-        </div>
-        <div class='sub'>
-          <img class='sub-photo' id='sm-2' src='../../static/assets/img/NikeAirMax90Ultra2.0_2.jpg'>
-        </div>
-        <div class='sub'>
-          <img class='sub-photo' id='sm-3' src='../../static/assets/img/NikeAirMax90Ultra2.0_3.jpg'>
-        </div>
-      </div>
-    </div>
-</div>
 
+{% include 'test.html' %}
+
+{% block content %}
+{% endblock %}
 <script>
     var photos = document.querySelectorAll(".sub-photo");
-var mainPhotos = document.querySelectorAll(".main-photo");
+    var mainPhotos = document.querySelectorAll(".main-photo");
 
-var activePhoto = "";
+    var activePhoto = "";
 
-[].forEach.call(mainPhotos, function(photo) {
-  if (photo.className.indexOf("active")>-1) {
-    activePhoto = photo;
-  }
-});
+    [].forEach.call(mainPhotos, function(photo) {
+      if (photo.className.indexOf("active")>-1) {
+        activePhoto = photo;
+      }
+    });
 
-[].forEach.call(photos, function(photo) {
-  photo.addEventListener("mouseover", function() {
-     var clicked=photo.id;
-    clicked = "lg-" + clicked.split("-")[1];
-    activePhoto.classList.remove("active");
-    activePhoto = document.getElementById(clicked);
-    activePhoto.classList.add("active");
-  });
-});
+    [].forEach.call(photos, function(photo) {
+      photo.addEventListener("mouseover", function() {
+         var clicked=photo.id;
+        clicked = "lg-" + clicked.split("-")[1];
+        activePhoto.classList.remove("active");
+        activePhoto = document.getElementById(clicked);
+        activePhoto.classList.add("active");
+      });
+    });
 </script>
             </div>
             <div class="col-lg-offset-0 col-md-5 col-md-offset-1">
                 <div class="row">
                     <div class="col-lg-4 col-md-4"><img class="hidden-xs hidden-sm" src="../../static/assets/img/adidas-logo.jpg" width="100%"></div>
                     <div class="col-md-8">
-                        <h2>Adidas NMD</h2>
-                        <p>asddfgdhfjnbvcxzdsfdghj,mnbvcxzcbvnb, </p>
+                        <h2>{{product.1.product_Name}}</h2>
+                        <p>{{product.1.product_Description}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -110,20 +96,31 @@ var activePhoto = "";
                         <h6>SIZE </h6>
                         <select id="select">
                             <option value="" selected="">Chose Your Size</option>
-                            <option value="48">48</option>
-                            <option value="47">47</option>
-                            <option value="46">46</option>
-                            <option value="45">45</option>
-                            <option value="44">44</option>
+                            <option value="6">Size 6 <p>remain {{product.1.size_06}}</p></option>
+                            <option value="6.5">Size 6.5 <p>remain {{product.1.size_06_5}}</p></option>
+                            <option value="7">Size 7 <p>remain {{product.1.size_07}}</p></option>
+                            <option value="7.5">7.5</option>
+                            <option value="8">8</option>
+                            <option value="8.5">8.5</option>
+                            <option value="9">9</option>
+                            <option value="9.5">9.5</option>
+                            <option value="10">10</option>
+                            <option value="10.5">10.5</option>
+                            <option value="11">11</option>
+                            <option value="11.5">11.5</option>
+                            <option value="12">12</option>
+                            <option value="12.5">12.5</option>
+                            <option value="13">13</option>
+                            <option value="13.5">13.5</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="price">
                         <h6>PRICE </h6>
-                        <h3>฿ 5990</h3></div>
+                        <h3>$ {{product.1.unit_Price}}</h3></div>
                 </div>
                 <button class="btn btn-danger" type="button" id="addcart">Add to cart</button>
                 <h3>Product Details</h3>
-                <p>Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
+                <p>{{product.1.product_Description}} </p>
             </div>
         </div>
     </div>

@@ -16,4 +16,6 @@ def product(request):
 	return render(request, 'product.html',{"product":product})
 
 def catalog(request):
-	return render(request, 'catalog.html')
+	catalog = Product.objects.all()
+	context = {"catalog" : catalog}
+	return render(request, 'catalog.html',context)

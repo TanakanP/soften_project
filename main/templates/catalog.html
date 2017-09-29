@@ -140,176 +140,19 @@
             </div>
             <div class="col-md-10">
                 	<div class="row category-child" style="margin-top:20px">
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://kudo.co.id/wp-pictures/product/example/woven_che_white.jpg" alt="">
+		
+        {% for i in catalog %}
+        <div class="col-lg-3 col-md-3 col-xs-6 thumb ">
+                <a class="thumbnail" href="product/{{i.pk}}">
+                    <img class="img-responsive" src="../static/assets/img{{i.pic1}}" alt="">
                     <div class="wrapper">
                         <div class="caption post-content">
-                            <span>Kebutuhan Ibu dan Anak</span>
+                            <span>{{i.product_Name}}</span>
                         </div>
                     </div>
                 </a>
         </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/fashion.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div> 
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/hijab.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/makanandaerah.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-
-	</div>
-                	<div class="row category-child" style="margin-top:20px">
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://kudo.co.id/wp-pictures/product/example/woven_che_white.jpg" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Kebutuhan Ibu dan Anak</span>
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/fashion.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div> 
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/hijab.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/makanandaerah.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-
-	</div>
-                	<div class="row category-child" style="margin-top:20px">
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://kudo.co.id/wp-pictures/product/example/woven_che_white.jpg" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Kebutuhan Ibu dan Anak</span>
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/fashion.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div> 
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/hijab.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/makanandaerah.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-
-	</div>
-                	<div class="row category-child" style="margin-top:20px">
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://kudo.co.id/wp-pictures/product/example/woven_che_white.jpg" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Kebutuhan Ibu dan Anak</span>
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/fashion.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div> 
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-                    <img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/hijab.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-		<div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="product.html">
-					<img class="img-responsive" src="http://image.kudo.co.id/wp-content/uploads/2015/10/makanandaerah.png" alt="">
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <span>Produk Pilihan</span>        
-                        </div>
-                    </div>
-                </a>
-        </div>
-
+        {% endfor %}
 	</div>
             </div>
         </div>

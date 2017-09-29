@@ -7,7 +7,7 @@ from main import views
 
 urlpatterns = [
     url(r'^home/',views.home , name='home'),
-    url(r'^product/',views.product , name='product'),
+    url(r'^catalog/product/',views.product , name='product'),
     url(r'^catalog/',views.catalog , name='catalog'),
 ]
 

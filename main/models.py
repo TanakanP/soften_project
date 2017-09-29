@@ -11,9 +11,7 @@ class Product(models.Model):
 	product_ID = models.CharField(max_length=45,default='')
 	product_Name = models.CharField(max_length=75,default='')
 	product_Description = models.CharField(max_length=200,default='')
-	gender = forms.ChoiceField(choices=[('Male','Male'),
-										('Female','Female'),
-										('All','All')])
+	gender = models.CharField(max_length=20,default='')
 	brand = models.CharField(max_length=45,default='')
 	color = models.CharField(max_length=45,default='')
 	unit_Price = models.IntegerField()

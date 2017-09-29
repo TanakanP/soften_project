@@ -1,18 +1,27 @@
-<!DOCTYPE html>
-<html>
+{% block content %}
 
-<head>
-</head>
-
-<body>
-
-	{% for home in product %}
-	{{ home.picture }}
-	<br>
-	{{ home.image }}
-	<img src='../static/assets/img/{{ home.picture }}' class="img-respon"/>
-	{% endfor %}
-
-</body>
-
-</html>
+{% if pk == 1 %}
+<div class='section'>
+    <div class='photos inline'>
+      <img class='main-photo active' id='lg-1' src='../../static/assets/img{{product.1.pic1}}'>
+      <img class='main-photo' id='lg-2' src='../../static/assets/img{{product.1.pic2}}'>
+      <img class='main-photo' id='lg-3' src='../../static/assets/img{{product.1.pic3}}'>
+      <img class='main-photo' id='lg-4' src='../../static/assets/img{{product.1.pic4}}'>
+      <div class='small-photos'>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-1' src='../../static/assets/img{{product.1.pic1}}'>
+        </div>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-2' src='../../static/assets/img{{product.1.pic2}}'>
+        </div>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-3' src='../../static/assets/img{{product.1.pic3}}'>
+        </div>
+        <div class='sub'>
+          <img class='sub-photo' id='sm-4' src='../../static/assets/img{{product.1.pic4}}'>
+        </div>
+      </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
