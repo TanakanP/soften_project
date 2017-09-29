@@ -11,9 +11,12 @@ def home(request):
 	product = Product.objects.all()
 	return render(request, 'home.html',{"product":product})
 
-def product(request):
+def product(request,product_id):
 	product = Product.objects.all()
-	return render(request, 'product.html',{"product":product})
+	number = Product.objects.get(pk=product_id)
+	context = {"product":product,
+				"number":number}
+	return render(request, 'product.html',context)
 
 def catalog(request):
 	catalog = Product.objects.all()

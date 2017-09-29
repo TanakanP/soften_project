@@ -1,0 +1,147 @@
+{% block barbar %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header"><a class="navbar-brand navbar-link" href="/home">SSS Store</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav">
+                <li role="presentation"><a href="/catalog">Catalog </a></li>
+                <li role="presentation"><a href="#">Sales </a></li>
+                <li role="presentation"><a href="#">News </a></li>
+                <li role="presentation"><a href="#">Forum </a></li>
+            
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <div style="width:421PX; height:490PX; background-color:white;" id="dropdownManu">
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="width:100%;">
+
+                                    <table id="myTable">
+                                      <tr class="header">
+                                        <th style="width:60%;">Name</th>
+                                        <th style="width:40%;">Country</th>
+                                      </tr>
+                                      <tr>
+                                        <td>Alfreds Futterkiste</td>
+                                        <td>Germany</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Berglunds snabbkop</td>
+                                        <td>Sweden</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Island Trading</td>
+                                        <td>UK</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Koniglich Essen</td>
+                                        <td>Germany</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Laughing Bacchus Winecellars</td>
+                                        <td>Canada</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Magazzini Alimentari Riuniti</td>
+                                        <td>Italy</td>
+                                      </tr>
+                                      <tr>
+                                        <td>North/South</td>
+                                        <td>UK</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Paris specialites</td>
+                                        <td>France</td>
+                                      </tr>
+                                    </table>
+                            </div>
+                        </ul>
+                    </li>
+            </ul>
+            <button class="btn btn-default active navbar-btn navbar-right" type="button" id="logoutbtt"><strong>LOGOUT</strong></button><a class="btn btn-link active navbar-btn navbar-right" role="button" href="/user/account" id="member"><i class="fa fa-user"></i> CHANON </a>
+        
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href=""><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">2</span></i>
+                    <ul role="menu" class="dropdown-menu">
+                        <div style="width:400px; background-color:white">
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <lable><h4>User</h4></lable>
+                                    <input type="username" class="form-control" id="username" required/>
+                                    <lable><h4>Password</h4></lable>
+                                    <input type="password" class="form-control" id="password" required/>
+                                    <a href="#" style="color:black; list-style:none; margin-top:50px;">Fogotten Password</a><input type="submit" class="btn btn-success" style="float:right; background-color:black; color:white;" id="login" value="Login">
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+{% endblock %}

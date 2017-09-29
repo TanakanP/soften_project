@@ -7,8 +7,8 @@ from main import views
 
 urlpatterns = [
     url(r'^home/',views.home , name='home'),
-    url(r'^catalog/product/',views.product , name='product'),
-    url(r'^catalog/',views.catalog , name='catalog'),
+    url(r'^product/(?P<product_id>[0-9]+)/$',views.product , name='product'),
+    url(r'^catalog/$',views.catalog , name='catalog'),
 ]
 
 if settings.DEBUG:
