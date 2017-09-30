@@ -20,5 +20,10 @@ def product(request,product_id):
 
 def catalog(request):
 	catalog = Product.objects.all()
-	context = {"catalog" : catalog}
+	product = Product.objects.all()
+	context = {"catalog" : catalog,
+				"product": product}
 	return render(request, 'catalog.html',context)
+
+def underconstruction(request):
+	return render(request, 'underConstruction.html')

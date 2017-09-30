@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from main import views
 
 urlpatterns = [
+    url(r'^underconstruction/',views.underconstruction , name='underconstruction'),
     url(r'^home/',views.home , name='home'),
     url(r'^product/(?P<product_id>[0-9]+)/$',views.product , name='product'),
     url(r'^catalog/$',views.catalog , name='catalog'),

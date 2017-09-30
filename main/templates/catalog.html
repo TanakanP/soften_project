@@ -2,9 +2,11 @@
 <html>
 
 <head>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sas sneakers shoes - Catalog</title>
+    <title>Catalog - Sas Sneakers Shoes</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
@@ -23,10 +25,11 @@
     {% block navbarlogin %}
     {% endblock %}
 {% else %}
-    {% include 'navbarlogout.html' %}
+    {% include 'navbarlogout2.html' %}
     {% block navbarlogout %}
     {% endblock %}
 {% endif %}
+
 
         <div class="container" id="catalog">
         <div class="row">
@@ -125,8 +128,9 @@
 		
         {% for i in catalog %}
         <div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail" href="../product/{{i.pk}}">
-                    <img class="img-responsive" src="../static/assets/img{{i.pic1}}" alt="">
+                <a class="thumbnail animated bounceInUp" href="../product/{{i.pk}}">
+                    <!-- class="animated infinite bounce" -->
+                    <img class="img-responsive " src="../static/assets/img{{i.pic1}}" alt="">
                     <div class="wrapper">
                         <div class="caption post-content">
                             <span>{{i.product_Name}}</span>
@@ -144,7 +148,7 @@
             <div class="col-md-4 col-sm-6 footer-navigation">
                 <h3><a href="#">SAS Sneakers Shoes</a></h3>
                 <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">Faq</a><strong> · </strong><a href="#">Contact</a></p>
-                <p class="company-name">Company Name © 2017 </p>
+                <p class="company-name">Sas Sneaker Shoes Company © 2017 </p>
             </div>
             <div class="col-md-4 col-sm-6 footer-contacts">
                 <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
