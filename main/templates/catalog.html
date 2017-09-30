@@ -18,7 +18,7 @@
 </head>
 
 <body>
-{% if login %}
+{% if request.user.is_authenticated %}
     {% include 'navbarlogin.html' %}
     {% block navbarlogin %}
     {% endblock %}

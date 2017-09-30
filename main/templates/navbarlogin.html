@@ -49,21 +49,21 @@
                                         <td>North/South</td>
                                         <td>UK</td>
                                       </tr>
-                                      <tr>
+                                      <!-- <tr>
                                         <td>Paris specialites</td>
                                         <td>France</td>
-                                      </tr>
+                                      </tr> -->
                                     </table>
                             </div>
                         </ul>
                     </li>
             </ul>
             <a href="../user/logout"><button class="btn btn-default active navbar-btn navbar-right" type="button" id="logoutbtt"><strong>LOGOUT</strong></button></a>
-            <a class="btn btn-link active navbar-btn navbar-right" role="button" href="/user/account" id="member"><i class="fa fa-user"></i> USERNAME </a>
+            <a class="btn btn-link active navbar-btn navbar-right" role="button" href="" id="member"><i class="fa fa-user"></i> {{user}} </a>
         
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href=""><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">2</span></i>
-                    <ul role="menu" class="dropdown-menu">
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href=""><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i>
+                    <!-- <ul role="menu" class="dropdown-menu">
                         <div style="width:400px; background-color:white">
                             <div class="panel panel-white">
                                 <div class="panel-heading">
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                    </ul>
+                    </ul> -->
                 </li>
             </ul>
         </div>
@@ -143,6 +143,6 @@ function myFunction() {
   }
 }
 </script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
 {% endblock %}

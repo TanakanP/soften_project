@@ -1,4 +1,5 @@
 {% block navbarlogout %}
+{% load crispy_forms_tags %}
     <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header"><a href="../../home" class="navbar-brand navbar-link">SSS Store</a>
@@ -13,7 +14,8 @@
                         
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
                         <ul role="menu" class="dropdown-menu">
-                            <div style="width:421PX; height:490PX; background-color:white;" id="dropdownManu">
+                            <div style="width:421PX;
+                            background-color:white;" id="dropdownManu">
                                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="width:100%;">
 
                                     <table id="myTable">
@@ -49,10 +51,10 @@
                                         <td>North/South</td>
                                         <td>UK</td>
                                       </tr>
-                                      <tr>
+                                      <!-- <tr>
                                         <td>Paris specialites</td>
                                         <td>France</td>
-                                      </tr>
+                                      </tr> -->
                                     </table>
                             </div>
                         </ul>
@@ -61,17 +63,17 @@
             <a href="../../user/signup"><button class="btn btn-default active navbar-btn navbar-right" type="button"><strong>SIGN UP</strong></button></a>
             <ul class="nav navbar-nav navbar-right">
             
-            <a href="../../user/login"><button class="btn btn-default active navbar-btn navbar-right" type="button"><strong>LOGIN</strong></button></a>
+            <a href="../../user/login"><button class="btn  active navbar-btn navbar-left" type="button"><strong>LOGIN</strong></button></a>
             <ul class="nav navbar-nav navbar-right">
 
-<!-- 
-            <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>LOGIN</strong></a>
+
+           <!--  <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>LOGIN</strong></a>
                     <ul role="menu" class="dropdown-menu">
                         <div style="width:350px; height:354px; background-color:white;">
                             <div class="login-card">
                                 <h3>Login</h3>
                                 <form class="form-signin"><span class="reauth-email"> </span>
-                                <input class="form-control" type="email" required placeholder="Username" autofocus id="inputEmail" />
+                                <input class="form-control" required placeholder="Username" autofocus />
                                 <input class="form-control" type="password" required placeholder="Password" id="inputPassword" />
                                 <div class="checkbox">
                                     <div class="checkbox">
@@ -95,7 +97,7 @@
 }
 
 #myInput {
-  background-image: url('/css/searchicon.png');
+  background-image: url('css/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
@@ -148,6 +150,6 @@ function myFunction() {
   }
 }
 </script>
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
 {% endblock %}

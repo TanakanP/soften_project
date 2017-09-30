@@ -38,3 +38,7 @@ button#logoutbtt.btn.btn-default.active.navbar-btn.navbar-right{
   color:black;
 }
 
+span#cartbadge.badge{
+  margin-left:5px;
+}
+
