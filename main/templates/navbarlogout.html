@@ -10,7 +10,7 @@
                 <li role="presentation"><a href="../../catalog">Catalog </a></li>
                 <li role="presentation"><a href="../../underconstruction">Sales </a></li>
                 <li role="presentation"><a href="../../underconstruction">News </a></li>
-                <li role="presentation"><a href="../../underconstruction">Forum </a></li>
+                <li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
                         
                 <li class="dropdown">
                 <a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle">
@@ -30,8 +30,8 @@
                                         <th style="width:40%;">Brand</th>
                                       </tr>
                                       {% for p in product %}
-                                      <tr onclick="window.document.location='../product/{{p.pk}}';">
-                                        <td><img class="img-responsive " src="../static/assets/img{{p.pic1}}" alt="" style="height: 100px"></td>
+                                      <tr onclick="window.document.location='../../product/{{p.pk}}';">
+                                        <td><img class="img-responsive " src="../../static/assets/img{{p.pic1}}" alt="" style="height: 100px"></td>
                                         <td>{{p.product_Name}}</td>
                                         <td>{{p.brand}}</td>
                                       </tr>
