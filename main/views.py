@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from .models import Product
-
+import random
 # Create your views here.
 
 app_name = 'main'
@@ -22,7 +22,8 @@ def catalog(request):
 	catalog = Product.objects.all()
 	product = Product.objects.all()
 	context = {"catalog" : catalog,
-				"product": product}
+				"product": product,}
+
 	return render(request, 'catalog.html',context)
 
 def underconstruction(request):

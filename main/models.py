@@ -5,8 +5,9 @@ from django.db import models
 from django.utils import timezone
 
 from django import forms
-
+import random
 # Create your models here.
+
 class Product(models.Model):
 	product_ID = models.CharField(max_length=45,default='')
 	product_Name = models.CharField(max_length=75,default='')

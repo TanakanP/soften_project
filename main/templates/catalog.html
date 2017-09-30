@@ -128,7 +128,7 @@
 		
         {% for i in catalog %}
         <div class="col-lg-3 col-md-3 col-xs-6 thumb ">
-                <a class="thumbnail animated bounceInUp" href="../product/{{i.pk}}">
+                <a class="{{i.product_ID}} thumbnail animated bounceInUp" href="../product/{{i.pk}}">
                     <!-- class="animated infinite bounce" -->
                     <img class="img-responsive " src="../static/assets/img{{i.pic1}}" alt="">
                     <div class="wrapper">
@@ -172,5 +172,41 @@
     <!-- <script src="../../static/assets/js/jquery.min.js"></script>
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script> -->
 </body>
+
+<style>
+
+{% for i in catalog %}
+
+    {% if i.pk == 1 or i.pk == 2 or i.pk == 3 or i.pk == 4%}
+    .{{i.product_ID}} { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s;}
+
+    {% elif i.pk == 5 or i.pk == 6 or i.pk == 7 or i.pk == 8%}
+    .{{i.product_ID}} { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s;}
+
+    {% elif i.pk == 9 or i.pk == 10 or i.pk == 11 or i.pk == 12%}
+    .{{i.product_ID}} { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s;}
+
+    {% elif i.pk == 13 or i.pk == 14 or i.pk == 15 or i.pk == 16%}
+    .{{i.product_ID}} { animation-delay:0.4s; -moz-animation-delay:0.4s; -webkit-animation-delay:0.4s;}
+
+    {% elif i.pk == 17 or i.pk == 18 or i.pk == 19 or i.pk == 20%}
+    .{{i.product_ID}} { animation-delay:0.5s; -moz-animation-delay:0.5s; -webkit-animation-delay:0.5s;}
+
+    {% elif i.pk == 21 or i.pk == 22 or i.pk == 23 or i.pk == 24%}
+    .{{i.product_ID}} { animation-delay:0.6s; -moz-animation-delay:0.6s; -webkit-animation-delay:0.6s;}
+
+    {% elif i.pk == 25 or i.pk == 26 or i.pk == 27 or i.pk == 28%}
+    .{{i.product_ID}} { animation-delay:0.7s; -moz-animation-delay:0.7s; -webkit-animation-delay:0.7s;}
+
+    {% elif i.pk == 29 or i.pk == 30 or i.pk == 31 or i.pk == 32%}
+    .{{i.product_ID}} { animation-delay:0.8s; -moz-animation-delay:0.8s; -webkit-animation-delay:0.8s;}
+
+    {% else %}
+    .{{i.product_ID}} { animation-delay:0.9s; -moz-animation-delay:0.9s; -webkit-animation-delay:0.9s;}
+    {% endif %}
+
+{% endfor %}
+
+</style>
 
 </html>
