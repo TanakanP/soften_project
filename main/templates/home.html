@@ -17,9 +17,16 @@
 </head>
 
 <body>
-{% include 'navbarlogin.html' %}
-{% block barbar %}
-{% endblock %}
+{% if login %}
+    {% include 'navbarlogin.html' %}
+    {% block navbarlogin %}
+    {% endblock %}
+{% else %}
+    {% include 'navbarlogout.html' %}
+    {% block navbarlogout %}
+    {% endblock %}
+{% endif %}
+
 
     <div>
         <div class="col-lg-offset-0 col-md-12" id="promo">

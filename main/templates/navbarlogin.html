@@ -1,4 +1,4 @@
-{% block barbar %}
+{% block navbarlogin %}
     <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header"><a class="navbar-brand navbar-link" href="/home">SSS Store</a>
@@ -58,7 +58,8 @@
                         </ul>
                     </li>
             </ul>
-            <button class="btn btn-default active navbar-btn navbar-right" type="button" id="logoutbtt"><strong>LOGOUT</strong></button><a class="btn btn-link active navbar-btn navbar-right" role="button" href="/user/account" id="member"><i class="fa fa-user"></i> CHANON </a>
+            <a href="../user/logout"><button class="btn btn-default active navbar-btn navbar-right" type="button" id="logoutbtt"><strong>LOGOUT</strong></button></a>
+            <a class="btn btn-link active navbar-btn navbar-right" role="button" href="/user/account" id="member"><i class="fa fa-user"></i> USERNAME </a>
         
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href=""><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">2</span></i>

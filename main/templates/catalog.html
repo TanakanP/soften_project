@@ -18,9 +18,16 @@
 </head>
 
 <body>
+{% if login %}
     {% include 'navbarlogin.html' %}
-    {% block barbar %}
+    {% block navbarlogin %}
     {% endblock %}
+{% else %}
+    {% include 'navbarlogout.html' %}
+    {% block navbarlogout %}
+    {% endblock %}
+{% endif %}
+
         <div class="container" id="catalog">
         <div class="row">
             <div class="col-md-2" id="filterlist">
