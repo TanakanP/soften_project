@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sas sneakers shoes - Product</title>
+    <title>sas sneakers shoes - {{ number.product_Name }}</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
@@ -100,7 +100,7 @@
                         <h6>PRICE </h6>
                         <h3>$ {{number.unit_Price}}</h3></div>
                 </div>
-                <button class="btn btn-danger" type="button" id="addcart">Add to cart</button>
+                <a href="../../checkout/{{number.pk}}"><button class="btn btn-danger" type="button" id="addcart">Add to cart</button></a>
                 <h3>Product Details</h3>
                 <p>{{number.product_Description}} </p>
             </div>

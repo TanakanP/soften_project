@@ -28,11 +28,11 @@
                         <h3 class="panel-title"><strong>Your Cart</strong></h3></div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4"><img class="img-thumbnail" src="../../static/assets/img/Vans-Walker-Pro-Black-Blue-Fog-Skate-Shoes-_275046-front-US.jpg"></div>
+                            <div class="col-md-4"><img class="img-thumbnail" src="../../static/assets/img{{number.pic1}}"></div>
                             <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h6><strong>Product 1</strong></h6>
+                                        <h6><strong>{{number.product_Name}}</strong></h6>
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <p>Quantity </p>
@@ -48,10 +48,10 @@
                                                 <p>Cost </p>
                                             </div>
                                             <div class="col-md-2">
-                                                <p>2999 </p>
+                                                <p>{{number.unit_Price}} </p>
                                             </div>
                                             <div class="col-md-2">
-                                                <p>baht </p>
+                                                <p>$ </p>
                                             </div>
                                         </div>
                                     </div>
@@ -62,9 +62,9 @@
                             <div class="col-md-2">
                                 <h4><strong>Total:</strong></h4></div>
                             <div class="col-md-2">
-                                <h4>2999 </h4></div>
+                                <h4>{{number.unit_Price}} </h4></div>
                             <div class="col-md-1">
-                                <h4>baht </h4></div>
+                                <h4>$ </h4></div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                                 <form>
                                     <select class="form-control">
                                         <option value="12" selected="">Normal Shipping (Free, 3-7 days)</option>
-                                        <option value="13">EMS Shipping (+50 baht, 2-3 days)</option>
+                                        <option value="13">EMS Shipping (+5 $, 2-3 days)</option>
                                     </select>
                                 </form>
                             </div>

@@ -5,7 +5,9 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 
-def checkout(request):
+from main.models import Product
+
+def checkout(request,product_id):
     # What you want the button to do.
     paypal_dict = {
         "business": "sassneaker@gmail.com",
@@ -20,5 +22,10 @@ def checkout(request):
 
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {"form": form}
+    # product = Product.get
+    product = Product.objects.all()
+    number = Product.objects.get(pk=product_id)
+    context = {"form": form,
+                "product": product,
+                "number": number}
     return render(request, "payment.html", context)
