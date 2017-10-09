@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ number.product_Name }} - Sas Sneakers Shoes</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+    <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+    <link rel="stylesheet" href="../../static/assets/css/productImg.css">
+
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled-2.css">
+	
+
+</head>
+
+<body>
+{% if request.user.is_authenticated %}
+    {% include 'navbarlogin.html' %}
+    {% block navbarlogin %}
+    {% endblock %}
+{% else %}
+    {% include 'navbarlogout.html' %}
+    {% block navbarlogout %}
+    {% endblock %}
+{% endif %}
+
+    <ol class="breadcrumb">
+        <li><a href="../../catalog"><span>Catalog</span></a></li>
+        <li><a href="#"><span>{{number.gender}}</span></a></li>
+        <li class="active"><span>{{number.brand}}</span></li>
+    </ol>
+    <div class="container">
+        <div class="row product">
+            <div class="col-md-7 col-md-offset-0 col-sm-offset-0">
+
+{% include 'test.html' %}
+
+{% block content %}
+{% endblock %}
+<script>
+    var photos = document.querySelectorAll(".sub-photo");
+    var mainPhotos = document.querySelectorAll(".main-photo");
+
+    var activePhoto = "";
+
+    [].forEach.call(mainPhotos, function(photo) {
+      if (photo.className.indexOf("active")>-1) {
+        activePhoto = photo;
+      }
+    });
+
+    [].forEach.call(photos, function(photo) {
+      photo.addEventListener("mouseover", function() {
+         var clicked=photo.id;
+        clicked = "lg-" + clicked.split("-")[1];
+        activePhoto.classList.remove("active");
+        activePhoto = document.getElementById(clicked);
+        activePhoto.classList.add("active");
+      });
+    });
+</script>
+            </div>
+            <div class="col-lg-offset-0 col-md-5 col-md-offset-1">
+                <div class="row">
+                    <!-- <div class="col-lg-4 col-md-4"><img class="hidden-xs hidden-sm" src="../../static/assets/img/adidas-logo.jpg" width="100%"></div> -->
+                    <div class="col-md-8">
+                        <h2>{{number.product_Name}}</h2>
+                        <p>{{number.product_Description}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="size">
+                        <h6>SIZE </h6>
+                        <select id="select">
+                            <option value="" selected="">Chose Your Size</option>
+                            <option value="6">Size 6 <p>remain{{number.size_06}}</p></option>
+                            <option value="6.5">Size 6.5 <p>remain {{number.size_06_5}}</p></option>
+                            <option value="7">Size 7 <p>remain {{number.size_07}}</p></option>
+                            <option value="7.5">Size 7.5 <p>remain {{number.size_07_5}}</p></option>
+                            <option value="8">Size 8 <p>remain {{number.size_08}}</p></option>
+                            <option value="8.5">Size 8.5 <p>remain {{number.size_08_5}}</p></option>
+                            <option value="9">Size 9 <p>remain {{number.size_09}}</p></option>
+                            <option value="9.5">Size 9.5 <p>remain {{number.size_09_5}}</p></option>
+                            <option value="10">Size 10 <p>remain {{number.size_10}}</p></option>
+                            <option value="10.5">Size 10.5 <p>remain {{number.size_10_5}}</p></option>
+                            <option value="11">Size 11 <p>remain {{number.size_11}}</p></option>
+                            <option value="11.5">Size 11.5 <p>remain {{number.size_11_5}}</p></option>
+                            <option value="12">Size 12 <p>remain {{number.size_12}}</p></option>
+                            <option value="12.5">Size 12.5 <p>remain {{number.size_12_5}}</p></option>
+                            <option value="13">Size 13 <p>remain {{number.size_13}}</p></option>
+                            <option value="13.5">Size 13.5 <p>remain {{number.size_13_5}}</p></option>
+                        </select>
+                    </div>
+                    <div class="col-md-12" id="price">
+                        <h6>PRICE </h6>
+                        <h3>$ {{number.unit_Price}}</h3></div>
+                </div>
+                {% if request.user.is_authenticated == False %}
+                <button class="btn" type="button" id="addcart" data-toggle="modal" data-target="#myModal">Add to cart</button>
+                <h3>Product Details</h3>
+                <p>{{number.product_Description}} </p>
+                
+                {% else %}
+
+                <a href="../../checkout/{{number.pk}}">
+                <button class="btn" type="button" id="addcart">Add to cart</button></a>
+                <h3>Product Details</h3>
+                <p>{{number.product_Description}} </p>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+	
+
+	
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content"">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal2">&times;</button>
+          <h2 class="modal-title" style="text-align: center;">Login require!</h2>
+        </div>
+        <div class="modal-body" style="text-align: center;">
+          <p>Please login before purchase item.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    {% include 'footer.html' %}
+    {% block footer %}
+    {% endblock %}
+	
+
+</body>
+
+</html>

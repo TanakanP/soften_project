@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../../static/assets/css/animate.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This page is not available</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+    <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+    <link rel="stylesheet" href="../../static/assets/css/productImg.css">
+    <link rel="stylesheet" href="../../static/assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+    <link rel="stylesheet" href="../../static/assets/css/Google-Style-Login.css">
+</head>
+
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid black;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    height: 100%; 
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+}
+}
+
+
+    
+
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+
+
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <img src="../../static/assets/img/philosopher.png"  height="500px" class="animated infinite bounce">
+
+          <h1 >This page is under construction</h1><br>
+          <p>Be ready, we are launching soon!</p><br>
+        <a class="btn btn-default" role="button" href="../../home">Go back HOME</a>
+    </div>
+<script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

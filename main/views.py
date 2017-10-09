@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from django.db.models import Q
+from django.shortcuts import render
+from .models import Product
+import random
+# Create your views here.
+
+app_name = 'main'
+def home(request):
+	product = Product.objects.all()
+	return render(request, 'home.html',{"product":product})
+
+def product(request,product_id):
+	product = Product.objects.all()
+	number = Product.objects.get(pk=product_id)
+	context = {"product":product,
+				"number":number}
+	return render(request, 'product.html',context)
+
+def catalog(request,gender="",product_brand = ""):
+	catalog = Product.objects.all()
+	product = Product.objects.all()
+
+	brandlist = []
+	brandlist_Object = []
+	for i in catalog:
+		if not(i.brand in brandlist):
+			brandlist.append(i.brand)
+			brandlist_Object.append(i)
+
+	if product_brand != "":
+		catalog = catalog.filter(brand = product_brand)
+
+	context = {"catalog" : catalog,
+				"product": product,
+				"brandlist" : brandlist_Object}
+
+	return render(request, 'catalog.html',context)
+
+
+def underconstruction(request):
+	return render(request, 'underConstruction.html')
+
+def contact(request):
+	return render(request, 'contact.html')

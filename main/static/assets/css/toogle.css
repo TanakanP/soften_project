@@ -1,0 +1,30 @@
+</style>
+
+<style type="text/css" id="et-builder-advanced-style">
+	
+</style>
+<style type="text/css" id="et-builder-page-custom-style">
+	.toggle_custom_3.et_pb_toggle {
+		border: none;
+		transition: 0.4s
+	}
+
+	.toggle_custom_3 .et_pb_toggle_title:before { 
+
+		font-size: 50px !important ;  
+		-webkit-transition: 0.3s; 
+		transition: 0.3s; 
+	}
+	.toggle_custom_3.et_pb_toggle_open .et_pb_toggle_title:before { 
+		color: #72c15f; 
+		-ms-transform: rotate(180deg); 
+		-webkit-transform: rotate(180deg); 
+		transform: rotate(180deg); 
+	}
+	
+	.et_pb_toggle_close {
+    padding: 20px;
+    background-color: white;
+	padding-bottom: 20px;
+}
+</style>
