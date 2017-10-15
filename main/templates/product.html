@@ -78,23 +78,85 @@
                         <select id="select" onchange="changeSize()">
                             <option value="" selected="">Chose Your Size</option>
 							{% if number.size_06 == 0 %}
-								<option value="6">Size 6 <p>remain{{number.size_06}}</p></option>
-							{% else  %}
-								<option value="6.5">Size 6.5 <p>remain {{number.size_06_5}}</p></option>
-								<option value="7">Size 7 <p>remain {{number.size_07}}</p></option>
-								<option value="7.5">Size 7.5 <p>remain {{number.size_07_5}}</p></option>
-								<option value="8">Size 8 <p>remain {{number.size_08}}</p></option>
-								<option value="8.5">Size 8.5 <p>remain {{number.size_08_5}}</p></option>
-								<option value="9">Size 9 <p>remain {{number.size_09}}</p></option>
-								<option value="9.5">Size 9.5 <p>remain {{number.size_09_5}}</p></option>
-								<option value="10">Size 10 <p>remain {{number.size_10}}</p></option>
-								<option value="10.5">Size 10.5 <p>remain {{number.size_10_5}}</p></option>
-								<option value="11">Size 11 <p>remain {{number.size_11}}</p></option>
-								<option value="11.5">Size 11.5 <p>remain {{number.size_11_5}}</p></option>
-								<option value="12">Size 12 <p>remain {{number.size_12}}</p></option>
-								<option value="12.5">Size 12.5 <p>remain {{number.size_12_5}}</p></option>
-								<option value="13">Size 13 <p>remain {{number.size_13}}</p></option>
-								<option value="13.5">Size 13.5 <p>remain {{number.size_13_5}}</p></option>
+								<option value="6" disabled >Size 6 </option>
+							{% elif number.size_06 != 0  %}
+								<option value="6">Size 6 </p></option>
+							{% endif  %}
+							{% if number.size_06_5 == 0 %}
+								<option value="6.5" disabled>Size 6.5 </option>
+							{% elif number.size_06_5 != 0  %}
+								<option value="6.5">Size 6.5 </option>
+							{% endif  %}
+							{% if number.size_07 == 0 %}
+								<option value="7" disabled >Size 7 </option>
+							{% elif number.size_07 != 0  %}
+								<option value="7">Size 7 </option>
+							{% endif  %}
+							{% if number.size_07_5 == 0 %}
+								<option value="7.5" disabled>Size 7.5 </option>
+							{% elif number.size_07_5 != 0  %}
+								<option value="7.5">Size 7.5 </option>
+							{% endif  %}
+							{% if number.size_08 == 0 %}
+								<option value="8" disabled >Size 8 </option>
+							{% elif number.size_08 != 0  %}
+								<option value="8">Size 8 </option>
+							{% endif  %}
+							{% if number.size_08_5 == 0 %}
+								<option value="8.5" disabled>Size 8.5 </option>
+							{% elif number.size_08_5 != 0  %}
+								<option value="8.5">Size 8.5 </option>
+							{% endif  %}
+							{% if number.size_09 == 0 %}
+								<option value="9" disabled>Size 9 </option>
+							{% elif number.size_09 != 0  %}
+								<option value="9">Size 9 </option>
+							{% endif  %}
+							{% if number.size_09_5 == 0 %}
+								<option value="9.5" disabled>Size 9.5 </option>
+							{% elif number.size_09_5 != 0  %}
+								<option value="9.5">Size 9.5 </option>
+							{% endif  %}
+							{% if number.size_10 == 0 %}
+								<option value="10" disabled>Size 10 </option>
+							{% elif number.size_10 != 0  %}
+								<option value="10">Size 10 </option>
+							{% endif  %}
+							{% if number.size_10_5 == 0 %}
+								<option value="10.5" disabled>Size 10.5 </option>
+							{% elif number.size_10_5 != 0  %}
+								<option value="10.5">Size 10.5 </option>
+							{% endif  %}
+							{% if number.size_11 == 0 %}
+								<option value="11" disabled>Size 11 </option>
+							{% elif number.size_11 != 0  %}
+								<option value="11">Size 11 </option>
+							{% endif  %}
+							{% if number.size_11_5 == 0 %}
+								<option value="11.5" disabled>Size 11.5 </option>
+							{% elif number.size_11_5 != 0  %}
+								<option value="11.5">Size 11.5 </option>
+							{% endif  %}
+							{% if number.size_12 == 0 %}
+								<option value="12" disabled>Size 12 </option>
+							{% elif number.size_12 != 0  %}
+								<option value="12">Size 12 </option>
+							{% endif  %}
+							{% if number.size_12_5 == 0 %}
+								<option value="12.5" disabled>Size 12.5 </option>
+							{% elif number.size_12_5 != 0  %}
+								<option value="12.5">Size 12.5 </option>
+							{% endif  %}
+							{% if number.size_13 == 0 %}
+								<option value="13" disabled>Size 13 </option>
+							{% elif number.size_13 != 0  %}
+								<option value="13">Size 13 </option>
+							{% endif  %}
+							{% if number.size_13_5 == 0 %}
+								<option value="13.5" disabled>Size 13.5 </option>
+							{% elif number.size_13_5 != 0  %}
+								<option value="13.5">Size 13.5 </option>
+							{% endif  %}
                         </select>
                     </div>
                     <div class="col-md-12" id="price">
