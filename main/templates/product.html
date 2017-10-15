@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="../../static/assets/css/untitled.css">
     <link rel="stylesheet" href="../../static/assets/css/catalog.css">
     <link rel="stylesheet" href="../../static/assets/css/productImg.css">
-
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
-    <link rel="stylesheet" href="../../static/assets/css/untitled-2.css">
 	
 
 </head>
@@ -75,26 +73,28 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12" id="size">
+                    <div class="col-md-12">
                         <h6>SIZE </h6>
-                        <select id="select">
+                        <select id="select" onchange="changeSize()">
                             <option value="" selected="">Chose Your Size</option>
-                            <option value="6">Size 6 <p>remain{{number.size_06}}</p></option>
-                            <option value="6.5">Size 6.5 <p>remain {{number.size_06_5}}</p></option>
-                            <option value="7">Size 7 <p>remain {{number.size_07}}</p></option>
-                            <option value="7.5">Size 7.5 <p>remain {{number.size_07_5}}</p></option>
-                            <option value="8">Size 8 <p>remain {{number.size_08}}</p></option>
-                            <option value="8.5">Size 8.5 <p>remain {{number.size_08_5}}</p></option>
-                            <option value="9">Size 9 <p>remain {{number.size_09}}</p></option>
-                            <option value="9.5">Size 9.5 <p>remain {{number.size_09_5}}</p></option>
-                            <option value="10">Size 10 <p>remain {{number.size_10}}</p></option>
-                            <option value="10.5">Size 10.5 <p>remain {{number.size_10_5}}</p></option>
-                            <option value="11">Size 11 <p>remain {{number.size_11}}</p></option>
-                            <option value="11.5">Size 11.5 <p>remain {{number.size_11_5}}</p></option>
-                            <option value="12">Size 12 <p>remain {{number.size_12}}</p></option>
-                            <option value="12.5">Size 12.5 <p>remain {{number.size_12_5}}</p></option>
-                            <option value="13">Size 13 <p>remain {{number.size_13}}</p></option>
-                            <option value="13.5">Size 13.5 <p>remain {{number.size_13_5}}</p></option>
+							{% if number.size_06 == 0 %}
+								<option value="6">Size 6 <p>remain{{number.size_06}}</p></option>
+							{% else  %}
+								<option value="6.5">Size 6.5 <p>remain {{number.size_06_5}}</p></option>
+								<option value="7">Size 7 <p>remain {{number.size_07}}</p></option>
+								<option value="7.5">Size 7.5 <p>remain {{number.size_07_5}}</p></option>
+								<option value="8">Size 8 <p>remain {{number.size_08}}</p></option>
+								<option value="8.5">Size 8.5 <p>remain {{number.size_08_5}}</p></option>
+								<option value="9">Size 9 <p>remain {{number.size_09}}</p></option>
+								<option value="9.5">Size 9.5 <p>remain {{number.size_09_5}}</p></option>
+								<option value="10">Size 10 <p>remain {{number.size_10}}</p></option>
+								<option value="10.5">Size 10.5 <p>remain {{number.size_10_5}}</p></option>
+								<option value="11">Size 11 <p>remain {{number.size_11}}</p></option>
+								<option value="11.5">Size 11.5 <p>remain {{number.size_11_5}}</p></option>
+								<option value="12">Size 12 <p>remain {{number.size_12}}</p></option>
+								<option value="12.5">Size 12.5 <p>remain {{number.size_12_5}}</p></option>
+								<option value="13">Size 13 <p>remain {{number.size_13}}</p></option>
+								<option value="13.5">Size 13.5 <p>remain {{number.size_13_5}}</p></option>
                         </select>
                     </div>
                     <div class="col-md-12" id="price">
@@ -107,11 +107,17 @@
                 <p>{{number.product_Description}} </p>
                 
                 {% else %}
+				<form class="addcartform" action="addtocart" id="cartform" method="get">
+					<input id="customer_ID" type="hidden" name="customer_ID" value="{{user}}">
+					<input id="product_ID" type="hidden" name="product_ID" value="{{number.product_ID}}">
+					<input id="size" type="hidden" name="size" >
+					<input id="unit" type="hidden" name="unit" value="1">
 
-                <a href="../../checkout/{{number.pk}}">
-                <button class="btn" type="button" id="addcart">Add to cart</button></a>
-                <h3>Product Details</h3>
-                <p>{{number.product_Description}} </p>
+					<a href="../../checkout/{{number.pk}}">
+					<button class="btn" type="button" id="addcart">Add to cart</button></a>
+					<h3>Product Details</h3>
+					<p>{{number.product_Description}} </p>
+				</form >
                 {% endif %}
                 
             </div>
@@ -145,5 +151,13 @@
 	
 
 </body>
+
+<script>
+function changeSize() {
+	var x = document.getElementById("select").value;
+	document.getElementById("size").value= x;
+  
+}
+</script>
 
 </html>

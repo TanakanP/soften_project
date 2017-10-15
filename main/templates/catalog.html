@@ -30,7 +30,8 @@
 
     <div class="container" id="catalog" style="margin-top:100px;">
         <div class="row">
-            <div class="col-md-2" id="filterlist">
+           <div class="col-md-2" id="myScrollspy" >
+			<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset="15">
 				<style scoped>
 					@import "../../static/assets/css/Divistyle.css";
 				</style>
@@ -91,13 +92,15 @@
 						</div> <!-- .et_pb_toggle -->
 					</div>
                 </div>
-            </div>
-            <div class="col-md-10" style="min-height:700px;" >
+			
+            </ul>
+			</div>
+            <div class="col-md-10" style="min-height:700px; " >
                 	<div class="row category-child" style="margin-top:20px">
 
 							{% for i in catalog %}
 							<div class="filterDiv {{i.brand}} {{i.gender}} col-lg-3 col-md-3 col-xs-6 thumb ">
-									<a class="{{i.product_ID}} thumbnail " href="../product/{{i.pk}}">
+									<a class="{{i.product_ID}} thumbnail animated bounceInUp" href="../product/{{i.pk}}">
 										<!-- class="animated infinite bounce" -->
 										<img class="img-responsive " src="../static/assets/img{{i.pic1}}" alt="">
 										<div class="wrapper">
@@ -258,6 +261,10 @@ div.col-md-10 {
     
 }
 
+.affix {
+    position: fixed;
+    width: 10%;
+}
 
 
 </style>
