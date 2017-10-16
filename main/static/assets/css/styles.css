@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-=======
 
 html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
->>>>>>> chanon
 .jumbotron{
   padding-top:30px;
   padding-bottom:300px;
@@ -17,11 +14,7 @@ html, body {
 }
 
 .navbar{
-<<<<<<< HEAD
-  min-height:50px;
-=======
   min-height:65px;
->>>>>>> chanon
   margin-bottom:21px;
   border:1px solid transparent;
 }
@@ -35,21 +28,11 @@ i.fa.fa-shopping-cart{
   font-size:20px;
 }
 
-<<<<<<< HEAD
-promo{
-  padding-top:50px;
-}
-
-div#promo.col-md-12{
-  padding-top:50px;
-}
-=======
 #promo{
     max-width: 1903px;
 	width:99.99999%
 }
 
->>>>>>> chanon
 
 h1#hot_item{
   margin-top:15px;
@@ -67,27 +50,15 @@ img#slide{
   width:100%;
 }
 
-<<<<<<< HEAD
-div#carousel-1.carousel.slide{
-  max-width:1200px;
-}
-
-div#topselltext.col-md-12{
-  padding-top:50px;
-=======
 
 
 div#topselltext.col-md-12{
   padding-top:20px;
->>>>>>> chanon
   padding-bottom:20px;
 }
 
 div.carousel-caption{
-<<<<<<< HEAD
-=======
 	margin-top:50%;
->>>>>>> chanon
   margin-bottom:auto;
 }
 
@@ -134,13 +105,8 @@ div#row1.row{
 .slide{
   animation-name:slide;
   -webkit-animation-name:slide;
-<<<<<<< HEAD
-  animation-duration:1s;
-  -webkit-animation-duration:1s;
-=======
   animation-duration:0.3s;
   -webkit-animation-duration:0.3s;
->>>>>>> chanon
   visibility:visible;
 }
 
@@ -151,19 +117,11 @@ div#row1.row{
   background-color:#f5f5f5;
   border-radius:0;
   text-align:center;
-<<<<<<< HEAD
-  margin-top:50px;
-}
-
-button#addcart.btn.btn-danger{
-  background-color:black;
-=======
   margin-top:65px;
 }
 
 button#addcart{
 
->>>>>>> chanon
   width:100%;
 }
 
@@ -201,8 +159,6 @@ div#topselltext.col-md-12{
 div.col-lg-offset-0.col-md-12{
 }
 
-<<<<<<< HEAD
-=======
 .box
 {
 	display: inline-block;
@@ -262,4 +218,3 @@ div.col-lg-offset-0.col-md-12{
     color: black;
 }
 
->>>>>>> chanon
