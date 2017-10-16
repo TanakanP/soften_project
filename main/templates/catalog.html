@@ -40,7 +40,7 @@
                         <h1>Filter </h1>
                         <div class="checkbox">
                             <label>
-                                <input  name="radio-set-1" type="radio" onclick="filterSelection('all')" checked>All</label>
+                                <input  name="radio-set-1" type="radio" onclick='window.location.assign("/catalog/")' checked>All</label>
                         </div>
                     </div>
                 </div>
@@ -319,7 +319,7 @@ div.col-md-10 {
 </script>
 
 <script>
-filterSelection("all")
+filterSelection("{{def}}")
 function filterSelection(c) {
   var x, i;
   x = document.getElementsByClassName("filterDiv");

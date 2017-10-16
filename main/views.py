@@ -12,12 +12,15 @@ def home(request):
 	product = Product.objects.all()
 	return render(request, 'home.html',{"product":product})
 
+
 def product(request,product_id):
 	product = Product.objects.all()
 	number = Product.objects.get(pk=product_id)
 	context = {"product":product,
-				"number":number}
+				"number":number
+				}
 	return render(request, 'product.html',context)
+
 
 def catalog(request,gender="",product_brand = ""):
 	catalog = Product.objects.all()
@@ -33,15 +36,21 @@ def catalog(request,gender="",product_brand = ""):
 	if product_brand != "":
 		catalog = catalog.filter(brand = product_brand)
 
-	context = {"catalog" : catalog,
+	if product_brand == "":
+		product_brand = "all"
+
+	context = { "catalog" : catalog,
 				"product": product,
-				"brandlist" : brandlist_Object}
+				"brandlist" : brandlist_Object,
+				"def": product_brand
+				}
 
 	return render(request, 'catalog.html',context)
 
 
 def underconstruction(request):
 	return render(request, 'underConstruction.html')
+
 
 def contact(request):
 	return render(request, 'contact.html')
