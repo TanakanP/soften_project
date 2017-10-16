@@ -2,12 +2,17 @@
 <html>
 
 <head>
+<<<<<<< HEAD
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+=======
+    <link rel="stylesheet" href="../../static/assets/css/animate.min.css">
+>>>>>>> chanon
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalog - Sas Sneakers Shoes</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="../../static/assets/css/untitled.css">
@@ -17,6 +22,15 @@
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Footer.css">
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
     <link rel="stylesheet" href="../../static/assets/css/untitled-2.css">
+=======
+	<link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">   <!-- max weight -->
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+	<link rel="stylesheet" href="../static/assets/css/styles.css">
+	<script type='text/javascript' src='../../static/assets/js/jqueryasd.js'></script>
+	
+>>>>>>> chanon
 </head>
 
 <body>
@@ -31,14 +45,26 @@
 {% endif %}
 
 
+<<<<<<< HEAD
         <div class="container" id="catalog">
         <div class="row">
             <div class="col-md-2" id="filterlist">
                 <div class="row">
+=======
+    <div class="container" id="catalog" style="margin-top:100px;">
+        <div class="row">
+           <div class="col-md-2" id="myScrollspy" >
+			<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset="15">
+				<style scoped>
+					@import "../../static/assets/css/Divistyle.css";
+				</style>
+                <div class="row menu">
+>>>>>>> chanon
                     <div class="col-md-12">
                         <h1>Filter </h1>
                         <div class="checkbox">
                             <label>
+<<<<<<< HEAD
                                 <input type="checkbox">All</label>
                         </div>
                     </div>
@@ -171,6 +197,90 @@
     </footer>
     <!-- <script src="../../static/assets/js/jquery.min.js"></script>
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script> -->
+=======
+                                <input  name="radio-set-1" type="radio" onclick="filterSelection('all')" checked>All</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row menu">
+					<div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
+						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
+							<h5 class="et_pb_toggle_title">Gender</h5>
+							<div class="et_pb_toggle_content clearfix">
+								<div class="checkbox">
+									<label>
+										<input  name="radio-set-1" type="radio" onclick="filterSelection('M')">Male</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input  name="radio-set-1" type="radio" onclick="filterSelection('F')">Female</label>
+								</div>
+							</div> <!-- .et_pb_toggle_content -->
+						</div> <!-- .et_pb_toggle -->
+					</div>
+                </div>
+                <div class="row menu">
+					<div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
+						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
+							<h5 class="et_pb_toggle_title">Brands</h5>
+							<div class="et_pb_toggle_content clearfix">
+								{% for i in brandlist %}
+									<div class="checkbox">
+										<label>
+											<input  name="radio-set-1" type="radio" value="{{i.brand}}" onclick="filterSelection('{{i.brand}}')" />{{i.brand}}
+										</label>
+									</div>
+								{% endfor %}
+							</div> <!-- .et_pb_toggle_content -->
+						</div> <!-- .et_pb_toggle -->
+					</div>
+                </div>
+                <div class="row menu">
+					<div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
+						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
+							<h5 class="et_pb_toggle_title">Price</h5>
+							<div class="et_pb_toggle_content clearfix">
+								<p>Price Range</p>
+								<section class="range-slider">
+								  <span class="rangeValues"></span>
+								  <input value="100" min="100" max="200" step="10" type="range">
+								  <input value="200" min="100" max="200" step="10" type="range">
+								</section>
+							</div> <!-- .et_pb_toggle_content -->
+						</div> <!-- .et_pb_toggle -->
+					</div>
+                </div>
+			
+            </ul>
+			</div>
+            <div class="col-md-10" style="min-height:700px; " >
+                	<div class="row category-child" style="margin-top:20px">
+
+							{% for i in catalog %}
+							<div class="filterDiv {{i.brand}} {{i.gender}} col-lg-3 col-md-3 col-xs-6 thumb ">
+									<a class="{{i.product_ID}} thumbnail animated bounceInUp" href="../product/{{i.pk}}">
+										<!-- class="animated infinite bounce" -->
+										<img class="img-responsive " src="../static/assets/img{{i.pic1}}" alt="">
+										<div class="wrapper">
+											<div class="caption post-content">
+												<span>{{i.product_Name}}</span>
+											</div>
+										</div>
+									</a> 
+							</div>
+							{% endfor %}
+
+					</div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+    {% block footer %}
+    {% endblock %}
+	
+
+
+>>>>>>> chanon
 </body>
 
 <style>
@@ -207,6 +317,242 @@
 
 {% endfor %}
 
+<<<<<<< HEAD
 </style>
 
 </html>
+=======
+.filterDiv {
+     display: none; /* Hidden by default */
+}
+
+.show {
+    display: block;
+}
+
+@mixin range-slider($width, $height, $input-top, $input-bg-color, $input-thumb-color, $float:none, $input-height:20px, $input-border-radius:14px) {
+  position: relative;
+  width: $width;
+  height: $height;
+  float: $float;
+  text-align: center;
+    
+  input[type="range"] {
+    pointer-events: none;
+    position: absolute;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
+    border: none;
+    border-radius: $input-border-radius;
+    background: $input-bg-color;
+    box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+    -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+    overflow: hidden;
+    left: 0;
+    top: $input-top;
+    width: $width;
+    outline: none;
+    height: $input-height;
+    margin: 0;
+    padding: 0;
+  }  
+  
+  input[type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    outline: 0;    
+    -webkit-appearance: none;
+    width: $input-height;
+    height: $input-height;
+    border: none;
+    border-radius: $input-border-radius;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($input-thumb-color,60%)), color-stop(100%, $input-thumb-color)); /* android <= 2.2 */
+    background-image: -webkit-linear-gradient(top , lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* older mobile safari and android > 2.2 */;
+    background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -moz-appearance: none;
+    width: $input-height;
+    height: $input-height;
+    border: none;
+    border-radius: $input-border-radius;
+    background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+  }
+
+  input[type="range"]::-ms-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -ms-appearance: none;
+    width: $input-height;
+    height: $input-height;
+    border-radius: $input-border-radius;
+    border: 0;
+    background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+  }
+  
+  input[type=range]::-moz-range-track {
+    position: relative;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 1);
+    border: 0;
+  }
+  
+  input[type=range]:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+  } 
+  
+  input[type=range]::-moz-focus-outer {
+    border: 0;
+  }
+}
+
+section.range-slider {
+  @include range-slider(300px, 300px, 50px, #F1EFEF, #413F41, left);
+}
+
+
+
+div.col-md-10 {
+	border-left: 1px solid #bfbfbf;
+    
+}
+
+.affix {
+    position: fixed;
+    width: 10%;
+}
+
+
+</style>
+
+<style type="text/css" id="et-builder-advanced-style">
+	
+</style>
+<style type="text/css" id="et-builder-page-custom-style">
+	.toggle_custom_3.et_pb_toggle {
+		
+		transition: 0.4s
+	}
+
+	.toggle_custom_3 .et_pb_toggle_title:before { 
+
+		font-size: 50px !important ;  
+		-webkit-transition: 0.3s; 
+		transition: 0.3s; 
+	}
+	.toggle_custom_3.et_pb_toggle_open .et_pb_toggle_title:before { 
+		color: #72c15f; 
+		-ms-transform: rotate(180deg); 
+		-webkit-transform: rotate(180deg); 
+		transform: rotate(180deg); 
+	}
+	
+	.et_pb_toggle_close {
+    padding: 20px;
+
+	padding-bottom: 20px;
+}
+</style>
+<script type='text/javascript' src='../../static/assets/js/frontend-builder-global-functions.js'></script>
+
+
+<script type='text/javascript' src='../../static/assets/js/smoothscroll.js'></script>
+<script type='text/javascript' src='../../static/assets/js/jquery.fitvids.js'></script>
+<script type='text/javascript' src='../../static/assets/js/waypoints.min.js'></script>
+<script type='text/javascript' src='../../static/assets/js/jquery.magnific-popup.js'></script>
+<script type='text/javascript'>
+	/* <![CDATA[ */
+	var et_pb_custom = {"ajaxurl":"https:\/\/creativechildthemes.com\/divi-lab\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/creativechildthemes.com\/divi-lab\/wp-content\/themes\/Divi\/images","builder_images_uri":"https:\/\/creativechildthemes.com\/divi-lab\/wp-content\/themes\/Divi\/includes\/builder\/images","et_frontend_nonce":"1e4bf99f26","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","et_ab_log_nonce":"08821c8610","fill_message":"Please, fill in the following fields:","contact_error_message":"Please, fix the following errors:","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"Previous","next":"Next","wrong_captcha":"You entered the wrong number in captcha.","is_builder_plugin_used":"","ignore_waypoints":"no","is_divi_theme_used":"1","widget_search_selector":".widget_search","is_ab_testing_active":"","page_id":"13021","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"no","is_shortcode_tracking":"off"};
+	/* ]]> */
+</script>
+<script type='text/javascript' src='../../static/assets/js/frontend-builder-scripts.js'></script>
+
+
+<script>
+	jQuery( document ).ready(function() {
+	jQuery('.single .et_post_meta_wrapper').insertBefore('.global-footer');
+	});
+</script>
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+	if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+	
+  
+}
+
+
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+function getVals(){
+  // Get slider values
+  var parent = this.parentNode;
+  var slides = parent.getElementsByTagName("input");
+    var slide1 = parseFloat( slides[0].value );
+    var slide2 = parseFloat( slides[1].value );
+  // Neither slider will clip the other, so make sure we determine which is larger
+  if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+  
+  var displayElement = parent.getElementsByClassName("rangeValues")[0];
+      displayElement.innerHTML = "$ " + slide1 + " - $" + slide2;
+}
+
+window.onload = function(){
+  // Initialize Sliders
+  var sliderSections = document.getElementsByClassName("range-slider");
+      for( var x = 0; x < sliderSections.length; x++ ){
+        var sliders = sliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+}
+
+</script>
+
+<script type="text/javascript">  
+$('input').popup(); 
+</script>
+
+</html>
+>>>>>>> chanon

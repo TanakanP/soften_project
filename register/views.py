@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from .forms import SignUpForm
 
 def signup(request):
@@ -16,9 +17,8 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            next = request.POST.get('next', '/')
+            return HttpResponseRedirect(next)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
-

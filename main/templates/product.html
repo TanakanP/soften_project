@@ -7,15 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ number.product_Name }} - Sas Sneakers Shoes</title>
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+=======
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+>>>>>>> chanon
     <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="../../static/assets/css/untitled.css">
     <link rel="stylesheet" href="../../static/assets/css/catalog.css">
     <link rel="stylesheet" href="../../static/assets/css/productImg.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="../../static/assets/css/untitled-1.css">
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Footer.css">
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
     <link rel="stylesheet" href="../../static/assets/css/untitled-2.css">
+=======
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+	
+
+>>>>>>> chanon
 </head>
 
 <body>
@@ -74,6 +84,7 @@
                     </div>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                     <div class="col-md-12" id="size">
                         <h6>SIZE </h6>
                         <select id="select">
@@ -94,6 +105,92 @@
                             <option value="12.5">Size 12.5 <p>remain {{number.size_12_5}}</p></option>
                             <option value="13">Size 13 <p>remain {{number.size_13}}</p></option>
                             <option value="13.5">Size 13.5 <p>remain {{number.size_13_5}}</p></option>
+=======
+                    <div class="col-md-12">
+                        <h6>SIZE </h6>
+                        <select id="select" onchange="changeSize()">
+                            <option value="" selected="">Chose Your Size</option>
+							{% if number.size_06 == 0 %}
+								<option value="6" disabled >Size 6 </option>
+							{% elif number.size_06 != 0  %}
+								<option value="6">Size 6 </p></option>
+							{% endif  %}
+							{% if number.size_06_5 == 0 %}
+								<option value="6.5" disabled>Size 6.5 </option>
+							{% elif number.size_06_5 != 0  %}
+								<option value="6.5">Size 6.5 </option>
+							{% endif  %}
+							{% if number.size_07 == 0 %}
+								<option value="7" disabled >Size 7 </option>
+							{% elif number.size_07 != 0  %}
+								<option value="7">Size 7 </option>
+							{% endif  %}
+							{% if number.size_07_5 == 0 %}
+								<option value="7.5" disabled>Size 7.5 </option>
+							{% elif number.size_07_5 != 0  %}
+								<option value="7.5">Size 7.5 </option>
+							{% endif  %}
+							{% if number.size_08 == 0 %}
+								<option value="8" disabled >Size 8 </option>
+							{% elif number.size_08 != 0  %}
+								<option value="8">Size 8 </option>
+							{% endif  %}
+							{% if number.size_08_5 == 0 %}
+								<option value="8.5" disabled>Size 8.5 </option>
+							{% elif number.size_08_5 != 0  %}
+								<option value="8.5">Size 8.5 </option>
+							{% endif  %}
+							{% if number.size_09 == 0 %}
+								<option value="9" disabled>Size 9 </option>
+							{% elif number.size_09 != 0  %}
+								<option value="9">Size 9 </option>
+							{% endif  %}
+							{% if number.size_09_5 == 0 %}
+								<option value="9.5" disabled>Size 9.5 </option>
+							{% elif number.size_09_5 != 0  %}
+								<option value="9.5">Size 9.5 </option>
+							{% endif  %}
+							{% if number.size_10 == 0 %}
+								<option value="10" disabled>Size 10 </option>
+							{% elif number.size_10 != 0  %}
+								<option value="10">Size 10 </option>
+							{% endif  %}
+							{% if number.size_10_5 == 0 %}
+								<option value="10.5" disabled>Size 10.5 </option>
+							{% elif number.size_10_5 != 0  %}
+								<option value="10.5">Size 10.5 </option>
+							{% endif  %}
+							{% if number.size_11 == 0 %}
+								<option value="11" disabled>Size 11 </option>
+							{% elif number.size_11 != 0  %}
+								<option value="11">Size 11 </option>
+							{% endif  %}
+							{% if number.size_11_5 == 0 %}
+								<option value="11.5" disabled>Size 11.5 </option>
+							{% elif number.size_11_5 != 0  %}
+								<option value="11.5">Size 11.5 </option>
+							{% endif  %}
+							{% if number.size_12 == 0 %}
+								<option value="12" disabled>Size 12 </option>
+							{% elif number.size_12 != 0  %}
+								<option value="12">Size 12 </option>
+							{% endif  %}
+							{% if number.size_12_5 == 0 %}
+								<option value="12.5" disabled>Size 12.5 </option>
+							{% elif number.size_12_5 != 0  %}
+								<option value="12.5">Size 12.5 </option>
+							{% endif  %}
+							{% if number.size_13 == 0 %}
+								<option value="13" disabled>Size 13 </option>
+							{% elif number.size_13 != 0  %}
+								<option value="13">Size 13 </option>
+							{% endif  %}
+							{% if number.size_13_5 == 0 %}
+								<option value="13.5" disabled>Size 13.5 </option>
+							{% elif number.size_13_5 != 0  %}
+								<option value="13.5">Size 13.5 </option>
+							{% endif  %}
+>>>>>>> chanon
                         </select>
                     </div>
                     <div class="col-md-12" id="price">
@@ -101,27 +198,57 @@
                         <h3>$ {{number.unit_Price}}</h3></div>
                 </div>
                 {% if request.user.is_authenticated == False %}
+<<<<<<< HEAD
                 <button class="btn btn-danger" type="button" id="addcart" data-toggle="modal" data-target="#myModal">Add to cart</button>
+=======
+                <button class="btn" type="button" id="addcart" data-toggle="modal" data-target="#myModal">Add to cart</button>
+>>>>>>> chanon
                 <h3>Product Details</h3>
                 <p>{{number.product_Description}} </p>
                 
                 {% else %}
+<<<<<<< HEAD
                 <a href="../../checkout/{{number.pk}}">
                 <button class="btn btn-danger" type="button" id="addcart">Add to cart</button></a>
                 <h3>Product Details</h3>
                 <p>{{number.product_Description}} </p>
+=======
+				<form class="addcartform" action="addtocart" id="cartform" method="get">
+					<input id="customer_ID" type="hidden" name="customer_ID" value="{{user}}">
+					<input id="product_ID" type="hidden" name="product_ID" value="{{number.product_ID}}">
+					<input id="size" type="hidden" name="size" >
+					<input id="unit" type="hidden" name="unit" value="1">
+
+					<a href="../../checkout/{{number.pk}}">
+					<button class="btn" type="button" id="addcart">Add to cart</button></a>
+					<h3>Product Details</h3>
+					<p>{{number.product_Description}} </p>
+				</form >
+>>>>>>> chanon
                 {% endif %}
                 
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+	
+
+	
+>>>>>>> chanon
     <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
+<<<<<<< HEAD
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
+=======
+      <div class="modal-content"">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal2">&times;</button>
+>>>>>>> chanon
           <h2 class="modal-title" style="text-align: center;">Login require!</h2>
         </div>
         <div class="modal-body" style="text-align: center;">
@@ -134,6 +261,7 @@
       
     </div>
   </div>
+<<<<<<< HEAD
     <footer>
         <div class="row">
             <div class="col-md-4 col-sm-6 footer-navigation">
@@ -164,4 +292,21 @@
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script> -->
 </body>
 
+=======
+    {% include 'footer.html' %}
+    {% block footer %}
+    {% endblock %}
+	
+
+</body>
+
+<script>
+function changeSize() {
+	var x = document.getElementById("select").value;
+	document.getElementById("size").value= x;
+  
+}
+</script>
+
+>>>>>>> chanon
 </html>

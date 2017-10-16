@@ -15,8 +15,12 @@
 }
 
 .thumb img{
+<<<<<<< HEAD
   width:200px;
   height:150px;
+=======
+  width:100%;
+>>>>>>> chanon
 }
 
 .post-content span{
@@ -24,4 +28,7 @@
   position:relative;
   top:-10px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> chanon

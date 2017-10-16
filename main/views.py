@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.db.models import Q
 from django.shortcuts import render
 from .models import Product
 import random
@@ -18,13 +19,29 @@ def product(request,product_id):
 				"number":number}
 	return render(request, 'product.html',context)
 
-def catalog(request):
+def catalog(request,gender="",product_brand = ""):
 	catalog = Product.objects.all()
 	product = Product.objects.all()
+
+	brandlist = []
+	brandlist_Object = []
+	for i in catalog:
+		if not(i.brand in brandlist):
+			brandlist.append(i.brand)
+			brandlist_Object.append(i)
+
+	if product_brand != "":
+		catalog = catalog.filter(brand = product_brand)
+
 	context = {"catalog" : catalog,
-				"product": product,}
+				"product": product,
+				"brandlist" : brandlist_Object}
 
 	return render(request, 'catalog.html',context)
 
+
 def underconstruction(request):
 	return render(request, 'underConstruction.html')
+
+def contact(request):
+	return render(request, 'contact.html')
