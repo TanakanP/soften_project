@@ -12,7 +12,7 @@
 					<li role="presentation"><a href="../../underconstruction">Sales </a></li>
 					<li role="presentation"><a href="../../underconstruction">News </a></li>
 					<li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
-				
+
 					<li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
 							<ul role="menu" class="dropdown-menu">
 								<div style="width:421PX; height:490PX; overflow: auto; background-color:white;" id="dropdownManu">
@@ -42,7 +42,7 @@
 				</ul>
 				<input type="hidden" name="next" value="{{ request.path }}">
 				<a class="btn btn-default navbar-btn navbar-right" href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
-				<a class="btn btn-link active navbar-btn navbar-right" role="button" href="../../underconstruction" id="member"><i class="fa fa-user"></i> {{user}} </a>
+				<a class="btn btn-link active navbar-btn navbar-right" role="button" href="../account/{{ user.pk }}" id="member"><i class="fa fa-user"></i> {{user}} </a>
 
 				 <ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="../../underconstruction"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i></a>
@@ -107,7 +107,7 @@
 						  <li><a class="text-center" href="../../checkout/{{number.pk}}">Checkout</a></li>
 						</ul>
 					</li>
-				</ul> 
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -182,7 +182,7 @@ ul.dropdown-cart li .item-left span.item-info{
     float:left;
 }
 ul.dropdown-cart li .item-left span.item-info{
-    margin-left:10px;   
+    margin-left:10px;
 }
 ul.dropdown-cart li .item-left span.item-info span{
     display:block;
@@ -213,7 +213,7 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 </script>

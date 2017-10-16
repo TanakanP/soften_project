@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../../static/assets/css/animate.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - Sas Sneakers Shoes</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+
+
+</head>
+
+<body>
+{% if request.user.is_authenticated %}
+    {% include 'navbarlogin.html' %}
+    {% block navbarlogin %}
+    {% endblock %}
+{% else %}
+    {% include 'navbarlogout.html' %}
+    {% block navbarlogout %}
+    {% endblock %}
+{% endif %}
+
+{% if request.user.is_authenticated %}
+{% if legit %}
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal custom-form">
+            <div class="image-container"><img src="assets/img/22054549_1628592840544934_1953357369_n.png"></div>
+            <h1>Account Information</h1>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label class="control-label" for="name-input-field">User name </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <textarea class="form-control">{{ users }}</textarea>
+                </div>
+                <div class="col-sm-6 input-column" id="editButton">
+                    <button class="btn btn-default" type="button">Edit </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label class="control-label" for="name-input-field">First name</label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <textarea class="form-control">{{ users.user.first_name }}</textarea>
+                </div>
+                <div class="col-sm-6 input-column" id="editButton">
+                    <button class="btn btn-default" type="button">Edit </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label class="control-label" for="name-input-field">Last name</label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <textarea class="form-control">{{ users.user.last_name }}</textarea>
+                </div>
+                <div class="col-sm-6 input-column" id="editButton">
+                    <button class="btn btn-default" type="button">Edit </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label class="control-label" for="name-input-field">Address </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <textarea class="form-control">{{ users.address }}</textarea>
+                </div>
+                <div class="col-sm-6 input-column" id="editButton">
+                    <button class="btn btn-default" type="button">Edit </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 label-column">
+                    <label class="control-label" for="email-input-field">Email </label>
+                </div>
+                <div class="col-sm-6 input-column">
+                    <textarea class="form-control">{{ users.user.email }}</textarea>
+                </div>
+                <div class="col-sm-6 input-column" id="editButton">
+                    <button class="btn btn-default" type="button">Edit </button>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="col-sm-4 label-column">
+                        <label class="control-label" for="email-input-field">Products bought</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 input-column">
+                        <textarea class="form-control" id="Product"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-default submit-button" type="button">back to home</button>
+            </div>
+        </form>
+    </div>
+  {% endif %}
+  {% endif %}
+<footer>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 footer-navigation">
+                <h3><a href="#">SAS Sneakers Shoes</a></h3>
+                <p class="links"><a href="#">Home</a><strong> · </strong><a href="https://a6364.wordpress.com/">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">F&Q</a><strong> · </strong><a href="#">Contact</a></p>
+                <p class="company-name">Sas Sneaker Shoes Company © 2017 </p>
+            </div>
+            <div class="col-md-4 col-sm-6 footer-contacts">
+                <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
+                    <p><span class="new-line-span">Kasetsart University</span> Bkk, Thailand</p>
+                </div>
+                <div><i class="fa fa-phone footer-contacts-icon"></i>
+                    <p class="footer-center-info email text-left"> +1 555 123456</p>
+                </div>
+                <div><i class="fa fa-envelope footer-contacts-icon"></i>
+                    <p> <a href="#" target="_blank">support@company.com</a></p>
+                </div>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-4 footer-about">
+                <h4>About the company</h4>
+                <p>Just a software engineering project ;)</p>
+                <div class="social-links social-icons"><a href="https://www.facebook.com/StrPhilosopher/"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="https://github.com/Thebreak35/soften_project"><i class="fa fa-github"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

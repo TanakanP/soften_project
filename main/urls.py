@@ -10,8 +10,11 @@ urlpatterns = [
     url(r'^contact/',views.contact , name='contact'),
     url(r'^home/',views.home , name='home'),
     url(r'^product/(?P<product_id>[0-9]+)/$',views.product , name='product'),
+    url(r'^account/(?P<user_id>[0-9]+)/$',views.account , name='account'),
+    url(r'^account/(?P<user_id>[0-9]+)/edit$',views.edit , name='edit'),
     url(r'^catalog/$',views.catalog , name='catalog'),
     url(r'^catalog-(?P<product_brand>[A-z ]*)/$',views.catalog , name='catalog'),
+    url(r'^catalog-(?P<product_gender>[A-z ]*)/$',views.catalog , name='catalog')
 ]
 
 if settings.DEBUG:
