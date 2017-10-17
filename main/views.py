@@ -24,19 +24,6 @@ def product(request,product_id):
 				"number":number}
 	return render(request, 'product.html',context)
 
-
-def account(request,user_id):
-	legit = False
-	users = Profile.objects.get(pk=user_id)
-	if(users.user.username == request.user.username):
-		legit = True
-
-	context = {"users":users,
-	"legit":legit}
-
-	return render(request, 'account.html',context)
-
-
 def catalog(request,gender="",product_brand = ""):
 	catalog = Product.objects.all()
 	product = Product.objects.all()
@@ -67,7 +54,10 @@ def contact(request):
 	return render(request, 'contact.html')
 
 
-def edit(request,user_id):
+
+
+
+def account(request,user_id):
 	legit = False
 	u = User.objects.get(pk=user_id)
 	p = Profile.objects.get(pk=user_id)
@@ -88,5 +78,5 @@ def edit(request,user_id):
 		form = EditForm(instance = u)
 
 	context = {'form': form ,
-				"legit": legit, }
-	return render(request, 'edit.html', context)
+				"legit": legit, "users":p}
+	return render(request, 'account.html', context)

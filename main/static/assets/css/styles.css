@@ -213,8 +213,136 @@ div.col-lg-offset-0.col-md-12{
     border: 2px solid #555555;
 }
 
+.btn_save {
+    background-color: #77dd91;
+    color: white;
+    border: 2px solid #77dd91;
+	text-align: center;
+	transition: all 0.5s;
+	cursor: pointer;
+}
+
+.btn_save:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn_save span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn_save span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn_save:hover {
+  border: 2px solid #77dd91;
+}
+
+.btn_save:hover span {
+  padding-right: 25px;
+}
+
+.btn_save:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.btn_cancle {
+    background-color: #ff6181;
+    color: white;
+    border: 2px solid #ff6181;
+	text-align: center;
+	transition: all 0.5s;
+	cursor: pointer;
+}
+
+.btn_cancle:hover {
+    background-color: white;
+    color: black;
+}
+
+
+.btn_cancle span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn_cancle span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn_cancle:hover {
+  border: 2px solid #ff6181;
+}
+
+.btn_cancle:hover span {
+  padding-right: 25px;
+}
+
+.btn_cancle:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 .btn:hover {
     background-color: white;
     color: black;
 }
+
+.btn_edit {
+  border-radius: 4px;
+  background-color: #555555;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn_edit span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn_edit span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn_edit:hover {
+  border: 2px solid #555555;
+}
+
+.btn_edit:hover span {
+  padding-right: 25px;
+}
+
+.btn_edit:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
 

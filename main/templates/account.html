@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html>{% load crispy_forms_tags %}
 
 <head>
     <link rel="stylesheet" href="../../static/assets/css/animate.min.css">
@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
-
-
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">   <!-- max weight -->
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+	<link rel="stylesheet" href="../../static/assets/css/styles.css">
+	<script type='text/javascript' src='../../static/assets/js/jqueryasd.js'></script>
+	
 </head>
 
 <body>
@@ -23,115 +26,85 @@
     {% block navbarlogout %}
     {% endblock %}
 {% endif %}
+<div class="container" style="padding-top:80px;">
+	
+	<div class="row">
+		<div class="col-md-7 col-md-offset-0 col-sm-offset-0">
+			<img class='accountImg' id='accImg' src='../../../static/assets/img/logo.png' >
+		</div>
+		<div class="col-lg-offset-0 col-md-5 col-md-offset-1">
+			<form method="post"> {% csrf_token %}
+<input type="hidden" name="next" value="{{ request.path }}">
 
-{% if request.user.is_authenticated %}
-{% if legit %}
-    <div class="col-md-8 col-md-offset-2">
-        <form class="form-horizontal custom-form">
-            <div class="image-container"><img src="../../static/assets/img/22054549_1628592840544934_1953357369_n.png"></div>
-            <h1>Account Information</h1>
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">User name </label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <textarea class="form-control">{{ users }}</textarea>
-                </div>
-                <div class="col-sm-6 input-column" id="editButton">
-                    <button class="btn btn-default" type="button">Edit </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">First name</label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <textarea class="form-control">{{ users.user.first_name }}</textarea>
-                </div>
-                <div class="col-sm-6 input-column" id="editButton">
-                    <button class="btn btn-default" type="button">Edit </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Last name</label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <textarea class="form-control">{{ users.user.last_name }}</textarea>
-                </div>
-                <div class="col-sm-6 input-column" id="editButton">
-                    <button class="btn btn-default" type="button">Edit </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Address </label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <textarea class="form-control">{{ users.address }}</textarea>
-                </div>
-                <div class="col-sm-6 input-column" id="editButton">
-                    <button class="btn btn-default" type="button">Edit </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="email-input-field">Email </label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <textarea class="form-control">{{ users.user.email }}</textarea>
-                </div>
-                <div class="col-sm-6 input-column" id="editButton">
-                    <button class="btn btn-default" type="button">Edit </button>
-                </div>
-            </div>
-            <div>
-                <div class="form-group">
-                    <div class="col-sm-4 label-column">
-                        <label class="control-label" for="email-input-field">Products bought</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6 input-column">
-                        <textarea class="form-control" id="Product"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="btn btn-default submit-button" type="button">back to home</button>
-            </div>
-        </form>
-    </div>
-  {% endif %}
-  {% endif %}
-<footer>
-        <div class="row">
-            <div class="col-md-4 col-sm-6 footer-navigation">
-                <h3><a href="#">SAS Sneakers Shoes</a></h3>
-                <p class="links"><a href="#">Home</a><strong> · </strong><a href="https://a6364.wordpress.com/">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">F&Q</a><strong> · </strong><a href="#">Contact</a></p>
-                <p class="company-name">Sas Sneaker Shoes Company © 2017 </p>
-            </div>
-            <div class="col-md-4 col-sm-6 footer-contacts">
-                <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
-                    <p><span class="new-line-span">Kasetsart University</span> Bkk, Thailand</p>
-                </div>
-                <div><i class="fa fa-phone footer-contacts-icon"></i>
-                    <p class="footer-center-info email text-left"> +1 555 123456</p>
-                </div>
-                <div><i class="fa fa-envelope footer-contacts-icon"></i>
-                    <p> <a href="#" target="_blank">support@company.com</a></p>
-                </div>
-            </div>
-            <div class="clearfix visible-sm-block"></div>
-            <div class="col-md-4 footer-about">
-                <h4>About the company</h4>
-                <p>Just a software engineering project ;)</p>
-                <div class="social-links social-icons"><a href="https://www.facebook.com/StrPhilosopher/"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="https://github.com/Thebreak35/soften_project"><i class="fa fa-github"></i></a></div>
-            </div>
-        </div>
-    </footer>
-    <script src="../../static/assets/js/jquery.min.js"></script>
-    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+                        
+
+<div class="row form-group" id="div_id_username">
+					<h3>USER</h3>
+					<input type="text" name="username" id="id_username" class="form-control" value="{{user}}" disabled="true">
+				</div>
+				<div class="row form-group" >
+					<div class="col-md-6" style="padding-left:0px;" id="div_id_first_name">
+						<h3>FIRSTNAME</h3>
+						<input type="text" name="first_name" id="id_first_name" class="form-control" value="{{ users.user.first_name }}" disabled="true">
+					</div>
+					<div class="col-md-6" style="padding-right:0px;" id="div_id_last_name">
+						<h3>LASTNAME</h3>
+						<input type="text" name="last_name" id="id_last_name" class="form-control" value="{{ users.user.last_name }}" disabled="true">
+					</div>
+				</div>
+				<div class="row form-group" id="div_id_address">
+					<h3>ADDRESS</h3>
+					<textarea rows="4" cols="50" type="text" name="address" id="id_address" class="form-control" value="{{ users.address }}" disabled="true"></textarea>
+				</div>
+				<div class="row form-group" id="div_id_email">
+					<h3>EMAIL</h3>
+					<input type="text" name="email" id="id_email" class="form-control" value="{{ users.user.email }}" disabled="true">
+				</div>
+				<div class="row form-group" >
+					<h3>PHONE</h3>
+					<input type="text" name="phone" id="id_phone" class="form-control" value="{{users.user.phone}}" disabled="true">
+				</div>
+
+				<div class="row form-group" style="text-align:right; padding-top: 10px;">
+					<button class="btn btn_edit" type="button" id="edit" onclick="editProfile()" style="border-radius: 12px;"><span>Edit Profile</span></button>
+					<div class="btn-group form-group"  >
+						<button class="btn	btn_save" type="submit" id="save" style="border-top-left-radius:12px; border-bottom-left-radius:12px; display: none;" ><span>Save</span></button>
+						<button class="btn btn_cancle" type="button" id="cancle" onclick="window.location.reload()" style="border-top-right-radius:12px; border-bottom-right-radius:12px; display: none;" ><span>Cancle</span></button>
+					</div>
+				</div>
+
+     
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+	
+	{% include 'footer.html' %}
+    {% block footer %}
+    {% endblock %}
+
 </body>
+
+<script type="text/javascript">
+      function editProfile()
+      {
+
+        $("#id_username").prop( "disabled", false );
+		$("#id_first_name").prop( "disabled", false );
+		$("#id_last_name").prop( "disabled", false );
+		$("#id_address").prop( "disabled", false );
+		$("#id_email").prop( "disabled", false );
+		$("#id_phone").prop( "disabled", false );
+		
+		$("#save").show();
+		$("#cancle").show();
+		$("#edit").hide();
+
+      }
+</script>
+
 
 </html>
