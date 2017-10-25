@@ -1,222 +1,230 @@
 {% block navbarlogin %}
-    <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<img src="../../static/assets/img/logo.png" style="height: 40px; margin-top: 10px; float: left;">
-		<div class="container-fluid" style="margin-top:5px">
-			<div class="navbar-header"><a class="navbar-brand navbar-link" href="/home">SSS Store</a>
-				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-			</div>
-			<div class="collapse navbar-collapse" id="navcol-1">
-				<ul class="nav navbar-nav">
-					<li role="presentation"><a href="../../catalog">Catalog </a></li>
-					<li role="presentation"><a href="../../underconstruction">Sales </a></li>
-					<li role="presentation"><a href="../../underconstruction">News </a></li>
-					<li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <img src="../../static/assets/img/logo.png" style="height: 40px; margin-top: 10px; float: left;">
+    <div class="container-fluid" style="margin-top:5px">
+      <div class="navbar-header"><a class="navbar-brand navbar-link" href="/home">SSS Store</a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      </div>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav">
+          <li role="presentation"><a href="../../catalog">Catalog </a></li>
+          <li role="presentation"><a href="../../underconstruction">Sales </a></li>
+          <li role="presentation"><a href="../../underconstruction">News </a></li>
+          <li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
 
-					<li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
-							<ul role="menu" class="dropdown-menu">
-								<div style="width:421PX; height:490PX; overflow: auto; background-color:white;" id="dropdownManu">
-									<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="width:100%;">
+          <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
+            <ul role="menu" class="dropdown-menu">
+              <div style="width:421PX; height:490PX; overflow: auto; background-color:white;" id="dropdownManu">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="width:100%;">
 
-										<table id="myTable">
-										  <tr class="header">
-											<th style="width:50%; text-align: center;">Picture</th>
-											<th style="width:60%; text-align: center;">Name</th>
-											<th style="width:40%;">Brand</th>
-										  </tr>
-										  {% for p in product %}
-										  <tr onclick="window.document.location='../../product/{{p.pk}}';">
-											<td><img class="img-responsive " src="../../static/assets/img{{p.pic1}}" alt="" style="height: 100px"></td>
-											<td>{{p.product_Name}}</td>
-											<td>{{p.brand}}</td>
-										  </tr>
-										  {% endfor %}
-											<!-- <tr>
+                <table id="myTable">
+                  <tr class="header">
+                    <th style="width:50%; text-align: center;">Picture</th>
+                    <th style="width:60%; text-align: center;">Name</th>
+                    <th style="width:40%;">Brand</th>
+                  </tr>
+                  {% for p in product %}
+                  <tr onclick="window.document.location='../../product/{{p.pk}}';">
+                    <td><img class="img-responsive " src="../../static/assets/img{{p.pic1}}" alt="" style="height: 100px"></td>
+                    <td>{{p.product_Name}}</td>
+                    <td>{{p.brand}}</td>
+                  </tr>
+                  {% endfor %}
+                  <!-- <tr>
 											<td>Paris specialites</td>
 											<td>France</td>
 										  </tr> -->
-										</table>
-								</div>
-							</ul>
-					</li>
-				</ul>
-				<input type="hidden" name="next" value="{{ request.path }}">
-				<a class="btn btn-default navbar-btn navbar-right" href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
-				<a class="btn btn-link active navbar-btn navbar-right" role="button" href="../../account/{{ user.pk }}" id="member"><i class="fa fa-user"></i> {{user}} </a>
+                </table>
+              </div>
+            </ul>
+          </li>
+        </ul>
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <a class="btn btn-default navbar-btn navbar-right" href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
+        <a class="btn btn-link active navbar-btn navbar-right" role="button" href="../../account/{{ user }}" id="member"><i class="fa fa-user"></i> {{user}} </a>
 
-				 <ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="../../underconstruction"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i></a>
-						<ul class="dropdown-menu dropdown-cart" role="menu" style="right:auto; left: auto;">
-						  <li>
-							  <span class="item">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="../../underconstruction"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i></a>
+            <ul class="dropdown-menu dropdown-cart" role="menu" style="right:auto; left: auto;">
+              <li>
+                <span class="item">
 								<span class="item-left">
 									<img src="http://lorempixel.com/50/50/" alt="" />
 									<span class="item-info">
 										<span>Item name</span>
-										<span>23$</span>
-									</span>
-								</span>
-								<span class="item-right">
+                <span>23$</span>
+                </span>
+                </span>
+                <span class="item-right">
 									<button class="btn btn-xs btn-danger pull-right">x</button>
 								</span>
-							</span>
-						  </li>
-						  <li>
-							  <span class="item">
+                </span>
+              </li>
+              <li>
+                <span class="item">
 								<span class="item-left">
 									<img src="http://lorempixel.com/50/50/" alt="" />
 									<span class="item-info">
 										<span>Item name</span>
-										<span>23$</span>
-									</span>
-								</span>
-								<span class="item-right">
+                <span>23$</span>
+                </span>
+                </span>
+                <span class="item-right">
 									<button class="btn btn-xs btn-danger pull-right">x</button>
 								</span>
-							</span>
-						  </li>
-						  <li>
-							  <span class="item">
+                </span>
+              </li>
+              <li>
+                <span class="item">
 								<span class="item-left">
 									<img src="http://lorempixel.com/50/50/" alt="" />
 									<span class="item-info">
 										<span>Item name</span>
-										<span>23$</span>
-									</span>
-								</span>
-								<span class="item-right">
+                <span>23$</span>
+                </span>
+                </span>
+                <span class="item-right">
 									<button class="btn btn-xs btn-danger pull-right">x</button>
 								</span>
-							</span>
-						  </li>
-						  <li>
-							  <span class="item">
+                </span>
+              </li>
+              <li>
+                <span class="item">
 								<span class="item-left">
 									<img src="http://lorempixel.com/50/50/" alt="" />
 									<span class="item-info">
 										<span>Item name</span>
-										<span>23$</span>
-									</span>
-								</span>
-								<span class="item-right">
+                <span>23$</span>
+                </span>
+                </span>
+                <span class="item-right">
 									<button class="btn btn-xs btn-danger pull-right">x</button>
 								</span>
-							</span>
-						  </li>
-						  <li class="divider"></li>
-						  <li><a class="text-center" href="../../checkout/{{number.pk}}">Checkout</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+                </span>
+              </li>
+              <li class="divider"></li>
+              <li><a class="text-center" href="../../checkout/{{number.pk}}">Checkout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </nav>
 
 
 
 <style>
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
+  #myInput {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
 
 
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-}
+  #myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
 
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-}
+  #myTable th,
+  #myTable td {
+    text-align: left;
+    padding: 12px;
+  }
 
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
+  #myTable tr {
+    border-bottom: 1px solid #ddd;
+  }
 
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
-}
-<<<<<<< HEAD
-=======
+  #myTable tr.header,
+  #myTable tr:hover {
+    background-color: #f1f1f1;
+  }
 
-ul.dropdown-cart{
-    min-width:300px;
-}
-ul.dropdown-cart li .item{
-    display:block;
-    padding:3px 10px;
+  <<<<<<< HEAD=======ul.dropdown-cart {
+    min-width: 300px;
+  }
+
+  ul.dropdown-cart li .item {
+    display: block;
+    padding: 3px 10px;
     margin: 3px 0;
-}
-ul.dropdown-cart li .item:hover{
-    background-color:#f3f3f3;
-}
-ul.dropdown-cart li .item:after{
+  }
+
+  ul.dropdown-cart li .item:hover {
+    background-color: #f3f3f3;
+  }
+
+  ul.dropdown-cart li .item:after {
     visibility: hidden;
     display: block;
     font-size: 0;
     content: " ";
     clear: both;
     height: 0;
-}
+  }
 
-ul.dropdown-cart li .item-left{
-    float:left;
-}
-ul.dropdown-cart li .item-left img,
-ul.dropdown-cart li .item-left span.item-info{
-    float:left;
-}
-ul.dropdown-cart li .item-left span.item-info{
-    margin-left:10px;
-}
-ul.dropdown-cart li .item-left span.item-info span{
-    display:block;
-}
-ul.dropdown-cart li .item-right{
-    float:right;
-}
-ul.dropdown-cart li .item-right button{
-    margin-top:14px;
-}
->>>>>>> chanon
+  ul.dropdown-cart li .item-left {
+    float: left;
+  }
+
+  ul.dropdown-cart li .item-left img,
+  ul.dropdown-cart li .item-left span.item-info {
+    float: left;
+  }
+
+  ul.dropdown-cart li .item-left span.item-info {
+    margin-left: 10px;
+  }
+
+  ul.dropdown-cart li .item-left span.item-info span {
+    display: block;
+  }
+
+  ul.dropdown-cart li .item-right {
+    float: right;
+  }
+
+  ul.dropdown-cart li .item-right button {
+    margin-top: 14px;
+  }
+
 </style>
 
 
 
 <script>
-function myFunction() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
+  function myFunction() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
       }
     }
   }
-}
 </script>
-    <script src="../../static/assets/js/jquery.min.js"></script>
-    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../static/assets/js/jquery.min.js"></script>
+<script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
 {% endblock %}

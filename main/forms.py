@@ -15,10 +15,14 @@ class SignUpForm(UserCreationForm):
 
 class EditForm(UserChangeForm):
     address = forms.CharField(max_length=30, required=False)
+    phone = forms.CharField(max_length=30, required=False)
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'address',)
-        exclude = ('password',)
+        fields = ( 'email', 'first_name', 'last_name', 'address', 'phone')
+        exclude = ('username','password',)
 
     def clean_password(self):
         return ""
+
+class ImageUploadForm(forms.Form):
+    image = forms.ImageField()

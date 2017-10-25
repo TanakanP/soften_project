@@ -1,8 +1,10 @@
 .mh-menu{
-	height: 385px;
-	width: 600px;
+	height: 570px;
+	width: 1000px;
 	margin: 20px auto;
 	position: relative;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .mh-menu li{
 	width: 350px;

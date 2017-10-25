@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="../../static/assets/css/untitled.css">   <!-- max weight -->
     <link rel="stylesheet" href="../../static/assets/css/catalog.css">
 	<link rel="stylesheet" href="../../static/assets/css/styles.css">
+	<link rel="stylesheet" href="../../static/assets/css/profilestyle.css">
 	<script type='text/javascript' src='../../static/assets/js/jqueryasd.js'></script>
-	
+
 </head>
 
 <body>
@@ -26,20 +27,26 @@
     {% block navbarlogout %}
     {% endblock %}
 {% endif %}
+
+{% if request.user.is_authenticated %}
+{% if legit %}
 <div class="container" style="padding-top:80px;">
-	
-	<div class="row">
-		<div class="col-md-7 col-md-offset-0 col-sm-offset-0">
-			<img class='accountImg' id='accImg' src='../../../static/assets/img/logo.png' >
-		</div>
-		<div class="col-lg-offset-0 col-md-5 col-md-offset-1">
-			<form method="post"> {% csrf_token %}
-<input type="hidden" name="next" value="{{ request.path }}">
 
-                        
-
-<div class="row form-group" id="div_id_username">
-					<h3>USER</h3>
+	<div class="row editcontainer">
+		<form method="post"> {% csrf_token %}
+			<div id="effect-6" class="effects clearfix col-md-7 col-md-offset-0 col-sm-offset-0">
+					<div class="imgProfile">
+						<img src="../../../static/assets/img/logo.png" alt="">
+						<div class="overlay">
+							<a href="#" class="expand">+</a>
+						</div>
+					</div>
+					<h3 style="padding-top:5px;">Hover Img to upload your profile picture</h3>
+			</div> <!--edit path img in database -->
+			<div class="col-lg-offset-0 col-md-5 col-md-offset-1">
+				<input type="hidden" name="next" value="{{ request.path }}">
+				<div class="row form-group" id="div_id_username">
+					<h3>USERNAME</h3>
 					<input type="text" name="username" id="id_username" class="form-control" value="{{user}}" disabled="true">
 				</div>
 				<div class="row form-group" >
@@ -54,7 +61,7 @@
 				</div>
 				<div class="row form-group" id="div_id_address">
 					<h3>ADDRESS</h3>
-					<textarea rows="4" cols="50" type="text" name="address" id="id_address" class="form-control" value="{{ users.address }}" disabled="true"></textarea>
+					<textarea rows="4" cols="50" name="address" id="id_address" class="form-control" disabled="true">{{ users.address }}</textarea> <!--edit path address in database -->
 				</div>
 				<div class="row form-group" id="div_id_email">
 					<h3>EMAIL</h3>
@@ -62,7 +69,7 @@
 				</div>
 				<div class="row form-group" >
 					<h3>PHONE</h3>
-					<input type="text" name="phone" id="id_phone" class="form-control" value="{{users.user.phone}}" disabled="true">
+					<input type="text" name="phone" id="id_phone" class="form-control" value="{{users.phone}}" disabled="true"> <!--edit path phone in database -->
 				</div>
 
 				<div class="row form-group" style="text-align:right; padding-top: 10px;">
@@ -72,16 +79,18 @@
 						<button class="btn btn_cancle" type="button" id="cancle" onclick="window.location.reload()" style="border-top-right-radius:12px; border-bottom-right-radius:12px; display: none;" ><span>Cancle</span></button>
 					</div>
 				</div>
-
-     
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 </div>
+	{% else %}
+		<script>
+			window.location.href = '../../account/{{user}}';
+		</script>
+  {% endif %}
+  {% endif %}
 
 
-
-	
 	{% include 'footer.html' %}
     {% block footer %}
     {% endblock %}
@@ -92,18 +101,51 @@
       function editProfile()
       {
 
-        $("#id_username").prop( "disabled", false );
+
 		$("#id_first_name").prop( "disabled", false );
 		$("#id_last_name").prop( "disabled", false );
 		$("#id_address").prop( "disabled", false );
 		$("#id_email").prop( "disabled", false );
 		$("#id_phone").prop( "disabled", false );
-		
+
 		$("#save").show();
 		$("#cancle").show();
 		$("#edit").hide();
 
       }
+</script>
+<script src="../../static/assets/js/modernizr.js"></script>
+
+<script>
+    $(document).ready(function(){
+        if (Modernizr.touch) {
+            // show the close overlay button
+            $(".close-overlay").removeClass("hidden");
+            // handle the adding of hover class when clicked
+            $(".imgProfile").click(function(e){
+                if (!$(this).hasClass("hover")) {
+                    $(this).addClass("hover");
+                }
+            });
+            // handle the closing of the overlay
+            $(".close-overlay").click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                if ($(this).closest(".imgProfile").hasClass("hover")) {
+                    $(this).closest(".imgProfile").removeClass("hover");
+                }
+            });
+        } else {
+            // handle the mouseenter functionality
+            $(".imgProfile").mouseenter(function(){
+                $(this).addClass("hover");
+            })
+            // handle the mouseleave functionality
+            .mouseleave(function(){
+                $(this).removeClass("hover");
+            });
+        }
+    });
 </script>
 
 
