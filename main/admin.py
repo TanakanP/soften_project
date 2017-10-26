@@ -8,8 +8,10 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Product)
-admin.site.register(Supplier)
+admin.site.register(ProdSize)
+admin.site.register(Prod4)
+admin.site.register(Prod360)
 admin.site.register(OrderBy)
 admin.site.register(OrderList)
-admin.site.register(Customer)
-admin.site.register(OrderTemp)
+admin.site.register(Supplier)
+admin.site.register(NewS)

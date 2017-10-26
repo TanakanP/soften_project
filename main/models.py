@@ -8,85 +8,112 @@ from django import forms
 import random
 # Create your models here.
 
+
 class Product(models.Model):
-	product_ID = models.CharField(max_length=45,default='')
-	product_Name = models.CharField(max_length=75,default='')
-	product_Description = models.CharField(max_length=200,default='')
-	gender = models.CharField(max_length=20,default='')
-	brand = models.CharField(max_length=45,default='')
-	color = models.CharField(max_length=45,default='')
-	unit_Price = models.IntegerField()
-	pic1 = models.FileField(null=True, blank=True)
-	pic2 = models.FileField(null=True, blank=True)
-	pic3 = models.FileField(null=True, blank=True)
-	pic4 = models.FileField(null=True, blank=True)
-	size_06 = models.IntegerField(default=0)
-	size_06_5 = models.IntegerField(default=0)
-	size_07 = models.IntegerField(default=0)
-	size_07_5 = models.IntegerField(default=0)
-	size_08 = models.IntegerField(default=0)
-	size_08_5 = models.IntegerField(default=0)
-	size_09 = models.IntegerField(default=0)
-	size_09_5 = models.IntegerField(default=0)
-	size_10 = models.IntegerField(default=0)
-	size_10_5 = models.IntegerField(default=0)
-	size_11 = models.IntegerField(default=0)
-	size_11_5 = models.IntegerField(default=0)
-	size_12 = models.IntegerField(default=0)
-	size_12_5 = models.IntegerField(default=0)
-	size_13 = models.IntegerField(default=0)
-	size_13_5 = models.IntegerField(default=0)
+    product_ID = models.CharField(max_length=45, default='')
+    product_Name = models.CharField(max_length=75, default='')
+    product_Description = models.CharField(max_length=200, default='')
+    gender = models.CharField(max_length=20, default='')
+    brand = models.CharField(max_length=45, default='')
+    unit_Price = models.IntegerField()
+    promotion = models.IntegerField(default=0)
+    pic_Format = models.CharField(max_length=3, default='')
 
-	def __str__(self):
-		return self.product_ID
+    def __str__(self):
+        return self.product_ID
 
-class Supplier(models.Model):
-	brand = models.CharField(max_length=45)
-	email = models.CharField(max_length=45)
-	phone = models.CharField(max_length=45)
-	logo = models.CharField(max_length=200)
 
-	def __str__(self):
-		return self.brand
+class ProdSize(models.Model):
+    product_ID = models.ForeignKey('Product')
+    size = models.DecimalField(max_digits=3, decimal_places=1)
+    unit = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.product_ID
+
+
+class Prod4(models.Model):
+    product_ID = models.ForeignKey('Product')
+    pic1 = models.FileField(null=True, blank=True)
+    pic2 = models.FileField(null=True, blank=True)
+    pic3 = models.FileField(null=True, blank=True)
+    pic4 = models.FileField(null=True, blank=True)
+
+    def __str__(self):
+        return self.product_ID
+
+
+class Prod360(models.Model):
+    product_ID = models.ForeignKey('Product')
+    pic1 = models.FileField(null=True, blank=True)
+    pic2 = models.FileField(null=True, blank=True)
+    pic3 = models.FileField(null=True, blank=True)
+    pic4 = models.FileField(null=True, blank=True)
+    pic5 = models.FileField(null=True, blank=True)
+    pic6 = models.FileField(null=True, blank=True)
+    pic7 = models.FileField(null=True, blank=True)
+    pic8 = models.FileField(null=True, blank=True)
+    pic9 = models.FileField(null=True, blank=True)
+    pic10 = models.FileField(null=True, blank=True)
+    pic11 = models.FileField(null=True, blank=True)
+    pic12 = models.FileField(null=True, blank=True)
+    pic13 = models.FileField(null=True, blank=True)
+    pic14 = models.FileField(null=True, blank=True)
+    pic15 = models.FileField(null=True, blank=True)
+    pic16 = models.FileField(null=True, blank=True)
+    pic17 = models.FileField(null=True, blank=True)
+    pic18 = models.FileField(null=True, blank=True)
+    pic19 = models.FileField(null=True, blank=True)
+    pic20 = models.FileField(null=True, blank=True)
+    pic21 = models.FileField(null=True, blank=True)
+    pic22 = models.FileField(null=True, blank=True)
+    pic23 = models.FileField(null=True, blank=True)
+    pic24 = models.FileField(null=True, blank=True)
+    pic25 = models.FileField(null=True, blank=True)
+    pic26 = models.FileField(null=True, blank=True)
+
+    def __str__(self):
+        return self.product_ID
+
 
 class OrderBy(models.Model):
-	order_ID = models.CharField(max_length=45)
-	customer_ID = models.ForeignKey('Customer')
-	order_Date = models.DateTimeField('date ordered')
-	address_to_send = models.CharField(max_length=200)
-	paid = models.BooleanField()
-	date_send = models.DateTimeField('date delivered')
+    order_ID = models.CharField(max_length=45)
+    user_ID = models.ForeignKey('register.Profile', default='')
+    order_Date = models.DateTimeField('date ordered')
+    address_to_send = models.CharField(max_length=200)
+    date_send = models.DateTimeField('date delivered')
 
-	def __str__(self):
-		return self.order_ID
+    def __str__(self):
+        return self.order_ID
+
 
 class OrderList(models.Model):
-	order_ID = models.ForeignKey('OrderBy')
-	product_ID = models.ForeignKey('Product')
-	size = models.IntegerField()
-	unit = models.IntegerField()
+    order_ID = models.ForeignKey('OrderBy')
+    product_ID = models.ForeignKey('Product')
+    size = models.IntegerField()
+    unit = models.IntegerField()
 
-	def __str__(self):
-		return str(self.order_ID)
+    def __str__(self):
+        return str(self.order_ID)
 
-class Customer(models.Model):
-	customer_ID = models.CharField(max_length=45)
-	First_Name = models.CharField(max_length=45)
-	Last_Name = models.CharField(max_length=45)
-	Address = models.CharField(max_length=45)
-	Password = models.CharField(max_length=45)
-	email = models.CharField(max_length=45)
-	stripe_key = models.CharField(max_length=45)
 
-	def __str__(self):
-		return self.customer_ID
+class Supplier(models.Model):
+    brand = models.CharField(max_length=45)
+    email = models.CharField(max_length=45)
+    phone = models.CharField(max_length=45)
+    logo = models.CharField(max_length=200)
 
-class OrderTemp(models.Model):
-	customer_ID = models.ForeignKey('Customer')
-	order_ID = models.ForeignKey('OrderBy')
-	product_ID = models.ForeignKey('Product')
-	size = models.IntegerField()
-	unit = models.IntegerField()
+    def __str__(self):
+        return self.brand
 
-	def __str__(self):
-		return str(self.customer_ID)
+
+class NewS(models.Model):
+    news_ID = models.CharField(max_length=45, default='')
+    date = models.DateTimeField()
+    topic = models.CharField(max_length=200, default='')
+    description = models.CharField(max_length=2000, default='')
+    pic = models.FileField(null=True, blank=True)
+    source = models.CharField(max_length=500, default='')
+
+    def __str__(self):
+        return self.news_ID
