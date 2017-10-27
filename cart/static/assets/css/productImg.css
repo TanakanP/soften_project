@@ -1,0 +1,46 @@
+*{
+  transition:0.4s ease all;
+  box-sizing:border-box;
+}
+
+.background.image{
+  background-size:cover;
+}
+
+.section{
+  position:relative;
+}
+
+.section img.main-photo{
+  width:500px;
+  opacity:0;
+  visibility:hidden;
+  position:absolute;
+  top:0;
+}
+
+.section img.main-photo.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.section .sub img{
+  opacity:0.5;
+  width:125px;
+}
+
+.section .sub img:hover{
+  opacity:1;
+}
+
+.section .inline{
+  display:inline-block;
+  vertical-align:top;
+}
+
+.section .photos .small-photos{
+  margin-top:500px;
+  display:flex;
+  margin-bottom:10px;
+}
+

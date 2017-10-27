@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from register.models import Profile
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from cart.forms import CartAddProductForm
+
 
 import random
 # Create your views here.
@@ -24,8 +26,10 @@ def home(request):
 def product(request, product_id):
     product = Product.objects.all()
     number = Product.objects.get(pk=product_id)
+    cart_product_form = CartAddProductForm()
     context = {"product": product,
-               "number": number}
+               "number": number,
+               "cart_product_form":cart_product_form,}
     return render(request, 'product.html', context)
 
 

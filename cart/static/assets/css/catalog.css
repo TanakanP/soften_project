@@ -1,0 +1,25 @@
+.category-child .post-content span{
+  color:#fff;
+}
+
+.category-child .post-content{
+  background-color:rgba(7, 7, 7, 0.65);
+  color:#fff;
+  margin-top:-30px;
+  position:relative;
+  text-align:center;
+  width:100%;
+  z-index:1;
+  height:30px;
+  overflow:hidden;
+}
+
+.thumb img{
+  width:100%;
+}
+
+.post-content span{
+  line-height:30px;
+  position:relative;
+  top:-10px;
+}
