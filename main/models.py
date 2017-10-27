@@ -10,7 +10,7 @@ import random
 
 
 class Product(models.Model):
-    product_ID = models.CharField(max_length=45, default='')
+    product_ID = models.CharField(max_length=45, default='', primary_key=True)
     product_Name = models.CharField(max_length=75, default='')
     product_Description = models.CharField(max_length=200, default='')
     gender = models.CharField(max_length=20, default='')
@@ -20,7 +20,7 @@ class Product(models.Model):
     pic_Format = models.CharField(max_length=3, default='')
 
     def __str__(self):
-        return self.product_ID
+        return str(self.product_ID)
 
 
 class ProdSize(models.Model):
@@ -29,7 +29,7 @@ class ProdSize(models.Model):
     unit = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.product_ID
+        return str(self.product_ID)
 
 
 class Prod4(models.Model):
@@ -40,7 +40,7 @@ class Prod4(models.Model):
     pic4 = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return self.product_ID
+        return str(self.product_ID)
 
 
 class Prod360(models.Model):
@@ -73,7 +73,7 @@ class Prod360(models.Model):
     pic26 = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return self.product_ID
+        return str(self.product_ID)
 
 
 class OrderBy(models.Model):
@@ -84,7 +84,7 @@ class OrderBy(models.Model):
     date_send = models.DateTimeField('date delivered')
 
     def __str__(self):
-        return self.order_ID
+        return str(self.order_ID)
 
 
 class OrderList(models.Model):
@@ -104,7 +104,7 @@ class Supplier(models.Model):
     logo = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.brand
+        return str(self.brand)
 
 
 class NewS(models.Model):
@@ -116,4 +116,4 @@ class NewS(models.Model):
     source = models.CharField(max_length=500, default='')
 
     def __str__(self):
-        return self.news_ID
+        return str(self.news_ID)
