@@ -19,12 +19,14 @@
 
 <body>
   {% for i in order %}
-    {{i.product_ID}}
+    {{i.product_ID.product_Name}}
+    {{i.product_ID.unit_Price}}
     {{i.size}}
     {{i.unit}}
+    <br>
   {% endfor %}
 
-  {{orderd.order_Date}}
+  {{orderd.order_Date}}<br>
   {{orderd.address_to_send}}
 	{% include 'footer.html' %}
     {% block footer %}
