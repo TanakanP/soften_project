@@ -101,9 +101,8 @@
 							{% for i in catalog %}
 							<div class="filterDiv {{i.brand}} {{i.gender}} col-lg-3 col-md-3 col-xs-6 thumb ">
 									<a class="{{i.product_ID}} thumbnail animated bounceInUp" href="../product/{{i.pk}}">
-										<!-- class="animated infinite bounce" -->
-										<img class="img-responsive " src="../static/assets/img{{i.pic1}}" alt="">
-										<div class="wrapper">
+                    <img class="img-responsive " src="../static/assets/img{{path4.pic1}}" alt="">
+                      <div class="wrapper">
 											<div class="caption post-content">
 												<span>{{i.product_Name}}</span>
 											</div>

@@ -22,6 +22,9 @@ class Product(models.Model):
     def __str__(self):
         return str(self.product_ID)
 
+    def format(self):
+        return int(self.pic_Format)
+
 
 class ProdSize(models.Model):
     product_ID = models.ForeignKey('Product')
@@ -38,10 +41,11 @@ class Prod4(models.Model):
     pic2 = models.FileField(null=True, blank=True)
     pic3 = models.FileField(null=True, blank=True)
     pic4 = models.FileField(null=True, blank=True)
-
+    
     def __str__(self):
         return str(self.product_ID)
 
+    
 
 class Prod360(models.Model):
     product_ID = models.ForeignKey('Product')
