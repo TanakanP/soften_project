@@ -77,7 +77,7 @@ class Prod360(models.Model):
 
 
 class OrderBy(models.Model):
-    order_ID = models.CharField(max_length=45)
+    order_ID = models.AutoField(primary_key=True)
     user_ID = models.ForeignKey('register.Profile', default='')
     order_Date = models.DateTimeField('date ordered')
     address_to_send = models.CharField(max_length=200)
@@ -90,7 +90,7 @@ class OrderBy(models.Model):
 class OrderList(models.Model):
     order_ID = models.ForeignKey('OrderBy')
     product_ID = models.ForeignKey('Product')
-    size = models.IntegerField()
+    size = models.DecimalField(max_digits=3, decimal_places=1)
     unit = models.IntegerField()
 
     def __str__(self):

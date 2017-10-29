@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>{% load crispy_forms_tags %}
+
+<head>
+    <link rel="stylesheet" href="../../static/assets/css/animate.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - Sas Sneakers Shoes</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">   <!-- max weight -->
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+	<link rel="stylesheet" href="../../static/assets/css/styles.css">
+	<link rel="stylesheet" href="../../static/assets/css/profilestyle.css">
+	<script type='text/javascript' src='../../static/assets/js/jqueryasd.js'></script>
+
+</head>
+
+<body>
+  {% for i in order %}
+      <a href="/history/{{i.order_ID}}">{{i.order_ID}}</a>
+  {% endfor %}
+
+	{% include 'footer.html' %}
+    {% block footer %}
+    {% endblock %}
+
+</body>
+
+
+</html>

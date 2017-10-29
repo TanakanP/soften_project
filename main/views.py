@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import EditForm, ImageUploadForm
-from .models import Product
+from .models import Product, OrderBy, OrderList
 from django.contrib.auth.models import User
 from register.models import Profile
 from django.http import HttpResponseRedirect
@@ -115,3 +115,16 @@ def upload_pic(request):
             u.save()
             return HttpResponse('image upload success')
     return render(request, 'uploadpic.html', {})
+
+def history(request):
+    order = OrderBy.objects.filter(user_ID = request.user.profile)
+
+    context = { 'order': order}
+    return render(request, 'history.html', context)
+
+def orderdetail(request, order_id):
+    order = OrderList.objects.filter(order_ID = order_id)
+    orderd = OrderBy.objects.get(order_ID = order_id)
+    context = { 'order': order,
+    'orderd': orderd, }
+    return render(request, 'orderdetail.html', context)
