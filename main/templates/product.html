@@ -165,27 +165,27 @@
                 <button class="btn" type="button" id="addcart" data-toggle="modal" data-target="#myModal">Add to cart</button>
                 <h3>Product Details</h3>
                 <p>{{number.product_Description}} </p>
-                
-                {% else %}
-				<form class="addcartform" action="addtocart" id="cartform" method="get">
-					<input id="customer_ID" type="hidden" name="customer_ID" value="{{user}}">
-					<input id="product_ID" type="hidden" name="product_ID" value="{{number.product_ID}}">
-					<input id="size" type="hidden" name="size" >
-					<input id="unit" type="hidden" name="unit" value="1">
 
-					<a href="../../checkout/{{number.pk}}">
-					<button class="btn" type="button" id="addcart">Add to cart</button></a>
-					<h3>Product Details</h3>
-					<p>{{number.product_Description}} </p>
-				</form >
+                {% else %}
+
+        <form class="addcartform" action="../../cart/add/{{number.pk}}" id="cartform" method="post">
+
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input id="addtocart" type="submit" value="Add to cart" >
+            <button class="btn" type="button" id="addcart" onclick="document.getElementById(addtocart).click()">Add to cart</button></a>
+            <h3>Product Details</h3>
+            <p>{{number.product_Description}} </p>
+          </form >
+        </form>
                 {% endif %}
-                
+
             </div>
         </div>
     </div>
     <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content"">
         <div class="modal-header">
@@ -199,13 +199,13 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
     {% include 'footer.html' %}
     {% block footer %}
     {% endblock %}
-	
+
 
 </body>
 
@@ -213,7 +213,7 @@
 function changeSize() {
 	var x = document.getElementById("select").value;
 	document.getElementById("size").value= x;
-  
+
 }
 </script>
 

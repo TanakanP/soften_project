@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../../static/assets/css/animate.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Sas Sneakers Shoes</title>
+    <link rel="stylesheet" href="../../static/assets/bootstrap/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/assets/css/googlecss.css">
+    <link rel="stylesheet" href="../../static/assets/css/untitled.css">
+    <link rel="stylesheet" href="../../static/assets/css/catalog.css">
+    <link rel="stylesheet" href="../../static/assets/css/productImg.css">
+    <link rel="stylesheet" href="../../static/assets/css/styles.css">
+
+
+</head>
+<body>
+  {% if request.user.is_authenticated %}
+      {% include 'navbarlogin.html' %}
+      {% block navbarlogin %}
+      {% endblock %}
+  {% else %}
+      {% include 'navbarlogout.html' %}
+      {% block navbarlogout %}
+      {% endblock %}
+  {% endif %}
+<!-- line 54 ตั้งแต่ Quantity คือตรงบวกลบ อิอิควย -->
+    <div class="container carthead" id="checkout" style="margin-top:100px;">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-nowrap text-uppercase text-center" style="font-size:400%"><strong>Cart</strong> </h1></div>
+                    </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size:200%"><strong>Your Product</strong></h3></div>
+                    <div class="panel-body" id="cartbody">
+                      {% for item in cart %}
+                        <div class="row" name="{{item.p}}price" style="display:block">
+                            <div class="col-md-2"><img class="img-thumbnail" src="../static/assets/img{{item.pic}}" style="width:180px;height:180px;"></div>
+                            <div class="col-md-10" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                          <div class="col-md-8">
+                                            <p style="font-size:150%">{{item.name}}</p>
+                                            <p>Size {{item.size}}</p>
+                                            <p style="font-size:110%">{{item.description}}</p>
+                                          </div>
+                                          <div class="col-md-3">
+                                            <p style="font-size:150%">Quantity  {{item.quantity}}</p>
+                                            <form action="./sub/{{item.pk}}" method="post" style="display:none">
+                                                <span style="display:none">
+                                                  {{item.update_quantity_form.quantity}}
+                                                  {{item.update_quantity_form.update}}
+                                                  {{item.update_quantity_form.size}}
+                                                  {{ cart_product_form }}
+                                                </span>
+                                                <!--Minus Button-->
+                                                <input type='submit' id="{{item.p}}-" value='-' style="background-color: #ff6181; border: none;width: 40px; height:40px;font-size:130%;" />
+                                                <!--Quantity Number-->
+                                                <!--Plus Button-->
+                                                {% csrf_token %}
+                                            </form>
+                                            <form action="./add/{{item.pk}}" method="post" style="display:none">
+                                              <span style="display:none">
+                                                {{item.update_quantity_form.quantity}}
+                                                {{item.update_quantity_form.update}}
+                                                {{item.update_quantity_form.size}}
+                                                {{ cart_product_form }}
+                                              </span>
+                                              {% csrf_token %}
+                                              <input type='submit' id="{{item.p}}+" value='+' style="background-color: #77dd91; border: none; width: 40px; height:40px;font-size:130%;"/>
+                                            </form>
+                                            <input type='button' id='{{item.p}}pricedwn' class='priceminus' field='{{item.p}}price' style="display:none" onclick="document.getElementById('{{item.p}}-').click()"/>
+                                            <input type='button' class='qtyminus' field='{{item.p}}' value='-' style="background-color: #ff6181; border: none;width: 40px; height:40px;font-size:130%;" onclick="document.getElementById('{{item.p}}pricedwn').click()"/>
+                                            <input type='text' name='{{item.p}}' value='{{item.quantity}}' class='qty text-center' style='width: 40px; height:40px;font-size:130%;' readonly />
+                                            <input type='button' class='qtyplus' field='{{item.p}}' value='+' style="background-color: #77dd91; border: none; width: 40px; height:40px;font-size:130%;" onclick="document.getElementById('{{item.p}}priceup').click()"/>
+                                            <input type='button' id='{{item.p}}priceup' class='priceplus' field='{{item.p}}price' style="display:none" onclick="document.getElementById('{{item.p}}+').click()"/>
+                                            <!-- test value from database -->
+                                            <p style="font-size:130%"><strong>Cost</strong>
+                                                <input type='text' id='{{item.p}}price' value='{{item.price}}' style="display:none"></a>
+                                                <input type='text' name='{{item.p}}price' value='{{item.total_price}}' class='text-left' style='outline: 0; border: none; background: transparent; width:43px;' readonly />$
+                                            </p>
+                                          </div>
+                                          <div class="col-md-1">
+                                            <a role="button" id="{{item.pk}}remove" style="display:none" href="remove/{{item.p}}"></a>
+                                            <a role="button" class="removeP" field='{{item.p}}price' style="outline: 0; border: none; color: transparent; background: transparent;" onclick="document.getElementById('{{item.pk}}remove').click()">
+                                              <img class="img-circle" id="Xbutton" src="../../static/assets/img/buttoncancel.png" style="width:32px;height:32px; display:block">
+                                            </a>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-md-offset-8" style="font-size:120%">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="row">
+                            <div class="col-md-1 col-md-offset-9" style="font-size:250%">
+                              <p><strong>Total</strong>: </p>
+                            </div>
+                            <div class="col-md-2" style="font-size:250%" align="right">
+                              <input type='text' id='totalprice' value='{{cart.get_total_price}}' class='text-left' style='outline: 0; border: none; background: transparent; width:100px;' readonly />$
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-2 col-md-offset-8">
+                        <a role="button" class="btn" href="../../catalog" style="background-color: #303F9F; border: none; padding:14px 32px; border-radius:3px;">Continue Shopping</a>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="button" class="checkout" value="1" style="background-color: #64DD17; border: none; padding:14px 54px; border-radius:3px;">Checkout</button>
+                      </div>
+                      <p><br/><br class="scrollshow"/><br/></p>
+                    </div>
+                </div>
+                <div class="panel panel-default" id="shipping" style="display:none">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size:200%"><strong>Shipping</strong></h3></div>
+                    <div class="panel-body" style="font-size:135%">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                  <div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
+                        						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
+                        							<div class="et_pb_toggle_content clearfix">
+                        								<div class="checkbox">
+                        									<label>
+                        										<input name="radio-set-1" type="radio" checked> Normal Shipping (Free, 3-7 days)</label>
+                        								</div>
+                        								<div class="checkbox">
+                        									<label>
+                        										<input name="radio-set-1" type="radio"> EMS Shipping (+5$, 2-3 days)</label>
+                        								</div>
+                        							</div> <!-- .et_pb_toggle_content -->
+                        					</div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+                <div class="panel panel-default" id="shippingaddress" style="display:none">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size:200%"><strong>Information</strong></h3></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <form>
+                                  <select class="form-control" id="addresstype"  style="font-size:125%" onchange="myCustomAddr()">
+                                        <option value="0" id="valid1" >Default Information</option>
+                                        <option value="1" id="valid2" >Custom Information</option>
+                                  </select>
+                                </form>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-md-6" id="CustomAddr">
+                                <div class="row form-group" >
+                                  <div class="col-md-6" style="padding-left:0px;" id="div_id_first_name">
+                                    <h3>FIRSTNAME</h3>
+                                    <input type="text" name="first_name" id="id_first_name" class="form-control" value="{{ users.user.first_name }}" disabled>
+                                  </div>
+                                  <div class="col-md-6" style="padding-right:0px;" id="div_id_last_name">
+                                    <h3>LASTNAME</h3>
+                                    <input type="text" name="last_name" id="id_last_name" class="form-control" value="{{ users.user.last_name }}" disabled>
+                                  </div>
+                                </div>
+                                <div class="row form-group" id="div_id_address">
+                                  <h3>ADDRESS</h3>
+                                  <textarea rows="4" cols="50" type="text" name="address" id="id_address" class="form-control" value="{{ users.address }}" disabled></textarea>
+                                </div>
+                                <div class="row form-group" id="div_id_email">
+                                  <h3>EMAIL</h3>
+                                  <input type="text" name="email" id="id_email" class="form-control" value="{{ users.user.email }}" disabled>
+                                </div>
+                                <div class="row form-group" >
+                                  <h3>PHONE</h3>
+                                  <input type="text" name="phone" id="id_phone" class="form-control" value="{{users.user.phone}}" disabled>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default credit-card-box" id="cardpaypal" style="display:none">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="panel-title-text" style="font-size:200%" ><strong>Payment</strong></span>
+                          <a style="text-align: right;">{{ form.render }}</a>
+                        </h3></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
+    {% include 'footer.html' %}
+    {% block footer %}
+    {% endblock %}
+</body>
+<script>
+//test function (leave this be like this)
+//function myPlus(){
+  //document.getElementById("quantity")++;
+//}
+
+function myCustomAddr() {
+    if (document.getElementById("id_first_name").disabled == true) {
+        document.getElementById("id_first_name").disabled = false;
+        document.getElementById("id_last_name").disabled = false;
+        document.getElementById("id_address").disabled = false;
+        document.getElementById("id_email").disabled = false;
+        document.getElementById("id_phone").disabled = false;
+    } else {
+      document.getElementById("id_first_name").disabled = true;
+      document.getElementById("id_last_name").disabled = true;
+      document.getElementById("id_address").disabled = true;
+      document.getElementById("id_email").disabled = true;
+      document.getElementById("id_phone").disabled = true;
+    }
+}
+
+jQuery(document).ready(function(){
+    // This button will increment the value
+    $('.qtyplus').click(function(e){
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        fieldName = $(this).attr('field');
+        // Get its current value
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        // If is not undefined
+        if (!isNaN(currentVal)) {
+            // Increment
+            currentVal++;
+            $('input[name='+fieldName+']').val(currentVal);
+
+        } else {
+            // Otherwise put a 0 there
+            $('input[name='+fieldName+']').val$(0);
+        }
+    });
+    // This button will decrement the value till 0
+    $(".qtyminus").click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        fieldName = $(this).attr('field');
+        // Get its current value
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        // If it isn't undefined or its greater than 0
+        if (!isNaN(currentVal) && currentVal > 1) {
+            // Decrement one
+            $('input[name='+fieldName+']').val(currentVal - 1);
+        } else {
+            // Otherwise put a 0 there
+            $('input[name='+fieldName+']').val(1);
+        }
+    });
+
+    $(".priceminus").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        var changeVal = parseInt($('input[id='+fieldName+']').val());
+        var TotalVal = parseInt($('input[id=totalprice]').val());
+        if(currentVal-changeVal > 0){
+          $('input[name='+fieldName+']').val(currentVal-changeVal);
+          $('input[id=totalprice]').val(TotalVal-changeVal);
+        }
+    });
+
+    $(".priceplus").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        var changeVal = parseInt($('input[id='+fieldName+']').val());
+        var TotalVal = parseInt($('input[id=totalprice]').val());
+        $('input[name='+fieldName+']').val(currentVal+changeVal);
+        $('input[id=totalprice]').val(TotalVal+changeVal);
+    });
+
+    $(".removeP").click(function(e)
+    {
+      e.preventDefault();
+      fieldName = $(this).attr('field');
+      $('div[name='+fieldName+']').hide();
+      var currentVal = parseInt($('input[name='+fieldName+']').val());
+      var TotalVal = parseInt($('input[id=totalprice]').val());
+      $('input[id=totalprice]').val(TotalVal-currentVal);
+    });
+
+    $(".checkout").click(function()
+    {
+      if($(this).val() ==1){
+        $("#cartbody :input").attr("disabled",true);
+        $("#shippingaddress").fadeIn("5000");
+        $("#shipping").fadeIn("5000");
+        $("#cardpaypal").fadeIn("5000");
+        $(this).val(0);
+        $('html,body').animate({
+          scrollTop: $(".scrollshow").offset().top
+        },'slow');
+      } else {
+        $("#cartbody :input").attr("disabled",false);
+        $("#shippingaddress").fadeOut(500);
+        $("#shipping").fadeOut(500);
+        $("#cardpaypal").fadeOut(500);
+        $(this).val(1);
+        $('html,body').animate({
+          scrollTop: 0 },'slow');
+      }
+    });
+
+
+
+});
+
+</script>
+
+</html>
