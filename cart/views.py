@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from main.models import Product
+from main.models import Product, OrderBy, OrderList, ProdSize
 from .cart import Cart
 from .forms import CartAddProductForm
 from django.core.urlresolvers import reverse
@@ -8,6 +8,7 @@ from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 from django.http import HttpResponse
 from django.conf import settings
+import datetime
 
 @require_POST
 def cart_add(request, product_id):
@@ -58,9 +59,9 @@ def cart_detail(request):
         "business": "sassneaker@gmail.com",
         "amount": cart.get_total_price(),
         "item_name": "cart",
-        "invoice": "unique-invoice-id",
+        "invoice": request.user.id + cart.get_total_price(),
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return_url": request.build_absolute_uri(reverse('home')),
+        "return_url": request.build_absolute_uri('order'),
         "cancel_return": request.build_absolute_uri(reverse('home')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }
@@ -70,3 +71,18 @@ def cart_detail(request):
 
     return render(request,'detail.html', context)
 # Create your views here.
+
+def order(request):
+    cart = Cart(request)
+    orde = OrderBy.objects.create(user_ID = request.user.profile, order_Date = datetime.datetime.now(), address_to_send = request.user.profile.address, date_send = datetime.datetime.now())
+    for i in cart:
+        p = Product.objects.get(pk=i['pk'])
+        prod = ProdSize.objects.get(product_ID=i['pk'], size=float(i['size']))
+        print(prod.product_ID)
+        print(prod.size)
+        print(prod.unit)
+        prod.unit -= i['quantity']
+        prod.save()
+        print(prod.unit)
+        OrderList.objects.create(order_ID = orde, product_ID = p, size = float(i['size']), unit = i['quantity'])
+    return render(request,'detail.html')

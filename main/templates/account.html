@@ -71,6 +71,10 @@
 					<h3>PHONE</h3>
 					<input type="text" name="phone" id="id_phone" class="form-control" value="{{users.phone}}" disabled="true"> <!--edit path phone in database -->
 				</div>
+        {% for i in order %}
+            <a href="/history/{{i.order_ID}}">{{i.order_ID}}</a><br>
+            <iframe src="/history/{{i.order_ID}}" width="400" height="100"></iframe><br>
+        {% endfor %}
 
 				<div class="row form-group" style="text-align:right; padding-top: 10px;">
 					<button class="btn btn_edit" type="button" id="edit" onclick="editProfile()" style="border-radius: 12px;"><span>Edit Profile</span></button>
