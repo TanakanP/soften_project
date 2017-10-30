@@ -46,6 +46,11 @@ def productnull(request):
 
 
 def catalog(request, gender="", product_brand=""):
+    brandcheck = []
+    gendercheck = []
+    brandcheck = request.POST.getlist("radio-set-2")
+    gendercheck = request.POST.getlist("radio-set-1")
+    tick = request.POST.getlist("radio-set-3")
     catalog = Product.objects.all()
     product = Product.objects.all()
     pic_type_4 = Prod4.objects.all()
@@ -58,14 +63,30 @@ def catalog(request, gender="", product_brand=""):
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
             brandlist_Object.append(i)
+    trueCatalog = {}
+    if not brandcheck and not gendercheck:
+        tick = 'all'
+    else:
+        tick = []
+    if not brandcheck or tick:
+        brandcheck = brandlist
 
-    if product_brand != "":
-        catalog = catalog.filter(brand=product_brand)
-    context = {"catalog": catalog,
+    if not gendercheck or tick:
+        gendercheck = ["M","F"]
+
+    if brandcheck != brandlist or gendercheck != ["M","F"]:
+        tick = []
+
+    trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck))
+
+    context = {"catalog": trueCatalog,
                "product": product,
                "brandlist": brandlist_Object,
                "path4": pic_type_4,
-               "path360": pic_type_360}
+               "path360": pic_type_360,
+               "brandcheck": brandcheck,
+               "gendercheck" : gendercheck,
+               "tick" : tick}
 
     return render(request, 'catalog.html', context)
 
