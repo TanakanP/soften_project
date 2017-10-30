@@ -74,7 +74,7 @@ def cart_detail(request):
 
 def order(request):
     cart = Cart(request)
-    orde = OrderBy.objects.create(user_ID = request.user.profile, order_Date = datetime.datetime.now(), address_to_send = request.user.profile.address, date_send = datetime.datetime.now())
+    orde = OrderBy.objects.create(user_ID = request.user.profile, order_Date = datetime.datetime.now(), address_to_send = request.user.profile.address, date_send = None)
     for i in cart:
         p = Product.objects.get(pk=i['pk'])
         prod = ProdSize.objects.get(product_ID=i['pk'], size=float(i['size']))

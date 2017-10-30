@@ -41,11 +41,11 @@ class Prod4(models.Model):
     pic2 = models.FileField(null=True, blank=True)
     pic3 = models.FileField(null=True, blank=True)
     pic4 = models.FileField(null=True, blank=True)
-    
+
     def __str__(self):
         return str(self.product_ID)
 
-    
+
 
 class Prod360(models.Model):
     product_ID = models.ForeignKey('Product')
@@ -85,7 +85,7 @@ class OrderBy(models.Model):
     user_ID = models.ForeignKey('register.Profile', default='')
     order_Date = models.DateTimeField('date ordered')
     address_to_send = models.CharField(max_length=200)
-    date_send = models.DateTimeField('date delivered')
+    date_send = models.DateTimeField('date delivered',default='',null=True,blank=True)
 
     def __str__(self):
         return str(self.order_ID)
