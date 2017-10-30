@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import EditForm, ImageUploadForm
-from .models import Product, Prod4, Prod360
+from .models import Product, Prod4, Prod360, Supplier
 from django.contrib.auth.models import User
 from register.models import Profile
 from django.http import HttpResponseRedirect
@@ -28,15 +28,22 @@ def product(request, product_id):
     number = Product.objects.get(pk=product_id)
     cart_product_form = CartAddProductForm()
     pic_format = Product.format(number)
+    logo = Product.get_brand(number)
+    print("logo = ",logo)
+    logo_path = Supplier.objects.all()
+
     if pic_format == 4:
         path = Prod4.objects.all()
     else :
         path = Prod360.objects.all()
+
     context = {"product": product,
                "number": number,
                "path": path,
                "pic_format": pic_format,
-               "cart_product_form":cart_product_form,}
+               "cart_product_form":cart_product_form,
+               "logo_path": logo_path,
+               "logo": logo,}
     return render(request, 'product.html', context)
 
 
@@ -52,8 +59,8 @@ def catalog(request, gender="", product_brand=""):
     pic_type_360 = Prod360.objects.all()
 
     brandlist = []
-    brandlist_Object = []
-    
+    brandlist_Object = [] 
+
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)

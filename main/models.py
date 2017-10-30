@@ -25,6 +25,9 @@ class Product(models.Model):
     def format(self):
         return int(self.pic_Format)
 
+    def get_brand(self):
+        return str(self.brand)
+
 
 class ProdSize(models.Model):
     product_ID = models.ForeignKey('Product')
