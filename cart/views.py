@@ -8,6 +8,7 @@ from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 from django.http import HttpResponse
 from django.conf import settings
+from random import randint
 import datetime
 
 @require_POST
@@ -59,7 +60,7 @@ def cart_detail(request):
         "business": "sassneaker@gmail.com",
         "amount": cart.get_total_price(),
         "item_name": "cart",
-        "invoice": request.user.id + cart.get_total_price(),
+        "invoice": request.user.id + cart.get_total_price() + randint(100, 999),
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
         "return_url": request.build_absolute_uri('order'),
         "cancel_return": request.build_absolute_uri(reverse('home')),
