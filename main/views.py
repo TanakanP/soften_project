@@ -69,6 +69,7 @@ def contact(request):
 
 def account(request, username):
     legit = False
+    order = OrderBy.objects.filter(user_ID = request.user.profile)
     print(username)
     try:
         u = User.objects.get(username=username)
@@ -94,7 +95,7 @@ def account(request, username):
         else:
             form = EditForm(instance=u)
         context = {'form': form,
-                   "legit": legit, "users": p}
+                   "legit": legit, "users": p, 'order': order, }
         return render(request, 'account.html', context)
     except:
         next = request.POST.get('next', '/home')
