@@ -29,7 +29,6 @@ def product(request, product_id):
     cart_product_form = CartAddProductForm()
     pic_format = Product.format(number)
     logo = Product.get_brand(number)
-    print("logo = ",logo)
     logo_path = Supplier.objects.all()
 
     if pic_format == 4:
@@ -61,6 +60,7 @@ def catalog(request, gender="", product_brand=""):
     brandlist = []
     brandlist_Object = [] 
 
+    
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
@@ -68,11 +68,12 @@ def catalog(request, gender="", product_brand=""):
 
     if product_brand != "":
         catalog = catalog.filter(brand=product_brand)
-    context = {"catalog": catalog,
-               "product": product,
-               "brandlist": brandlist_Object,
-               "path4": pic_type_4,
-               "path360": pic_type_360}
+    context = { "catalog": catalog,
+                "product": product,
+                "brandlist": brandlist_Object,
+                "path4": pic_type_4,
+                "path360": pic_type_360,
+                }
 
     return render(request, 'catalog.html', context)
 

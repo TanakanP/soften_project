@@ -18,7 +18,7 @@ class Product(models.Model):
     unit_Price = models.IntegerField()
     promotion = models.IntegerField(default=0)
     pic_Format = models.CharField(max_length=3, default='')
-
+    thumbnail = models.FileField(null=True, blank=True)
     def __str__(self):
         return str(self.product_ID)
 
