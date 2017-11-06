@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../static/assets/css/catalog.css">
 	<link rel="stylesheet" href="../static/assets/css/styles.css">
 	<script type='text/javascript' src='../../static/assets/js/jqueryasd.js'></script>
-	
+
 </head>
 
 <body>
@@ -35,12 +35,19 @@
 				<style scoped>
 					@import "../../static/assets/css/Divistyle.css";
 				</style>
+                <form action = "../../catalog/" method = "post">
                 <div class="row menu">
                     <div class="col-md-12">
                         <h1>Filter </h1>
                         <div class="checkbox">
                             <label>
-                                <input  name="radio-set-1" type="radio" onclick="filterSelection('all')" checked>All</label>
+                              {% if "all" in tick %}
+                                <input name="radio-set-3" type="checkbox" onclick="this.form.submit();" value = "all" checked>All
+                              {% else %}
+                                  <input name="radio-set-3" type="checkbox" onclick="this.form.submit();" value = "all" >All
+                              {% endif %}
+
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -49,13 +56,23 @@
 						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
 							<h5 class="et_pb_toggle_title">Gender</h5>
 							<div class="et_pb_toggle_content clearfix">
-								<div class="checkbox">
+
+                {% csrf_token %}
+                <div class="checkbox">
 									<label>
-										<input  name="radio-set-1" type="radio" onclick="filterSelection('M')">Male</label>
+                    {% if "M" in gendercheck %}
+                      <input  name="radio-set-1" type="checkbox" value="M" onclick="this.form.submit();" checked="" />Male
+                    {% else %}
+                      <input  name="radio-set-1" type="checkbox" value="M" onclick="this.form.submit();" />Male
+                    {% endif %}
 								</div>
 								<div class="checkbox">
 									<label>
-										<input  name="radio-set-1" type="radio" onclick="filterSelection('F')">Female</label>
+                    {% if "F" in gendercheck %}
+                      <input  name="radio-set-1" type="checkbox" value="F" onclick="this.form.submit();" checked="" />Female
+                    {% else %}
+                      <input  name="radio-set-1" type="checkbox" value="F" onclick="this.form.submit();" />Female
+                    {% endif %}
 								</div>
 							</div> <!-- .et_pb_toggle_content -->
 						</div> <!-- .et_pb_toggle -->
@@ -69,14 +86,21 @@
 								{% for i in brandlist %}
 									<div class="checkbox">
 										<label>
-											<input  name="radio-set-1" type="radio" value="{{i.brand}}" onclick="filterSelection('{{i.brand}}')" />{{i.brand}}
-										</label>
+                      {% if i.brand in brandcheck %}
+                        <input  name="radio-set-2" type="checkbox" value="{{i.brand}}" onclick="this.form.submit();" checked="" />{{i.brand}}
+                      {% else %}
+                        <input  name="radio-set-2" type="checkbox" value="{{i.brand}}" onclick="this.form.submit();" />{{i.brand}}
+                      {% endif %}
+                    </label>
+
 									</div>
+                  <!-- {{catalogform}} -->
 								{% endfor %}
 							</div> <!-- .et_pb_toggle_content -->
 						</div> <!-- .et_pb_toggle -->
 					</div>
                 </div>
+          </form>
                 <div class="row menu">
 					<div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
 						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
@@ -92,22 +116,22 @@
 						</div> <!-- .et_pb_toggle -->
 					</div>
                 </div>
-			
+
             </ul>
 			</div>
             <div class="col-md-10" style="min-height:700px; " >
                 	<div class="row category-child" style="margin-top:20px">
-
 							{% for i in catalog %}
-              <div class="filterDiv {{i.brand}} {{i.gender}} col-lg-3 col-md-3 col-xs-6 thumb ">
+              <div class="col-lg-3 col-md-3 col-xs-6">
 									<a class="{{i.product_ID}} thumbnail animated bounceInUp" href="../product/{{i.pk}}">
                     <img class="img-responsive " src="../static/assets/img{{path4.pic1}}" alt="">
                       <div class="wrapper">
 											<div class="caption post-content">
 												<span>{{i.product_Name}}</span>
+                        {{kuy}}
 											</div>
 										</div>
-									</a> 
+									</a>
 							</div>
 							{% endfor %}
 
@@ -118,7 +142,7 @@
     {% include 'footer.html' %}
     {% block footer %}
     {% endblock %}
-	
+
 
 
 </body>
@@ -171,12 +195,12 @@
   height: $height;
   float: $float;
   text-align: center;
-    
+
   input[type="range"] {
     pointer-events: none;
     position: absolute;
     -webkit-appearance: none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     border: none;
     border-radius: $input-border-radius;
     background: $input-bg-color;
@@ -190,13 +214,13 @@
     height: $input-height;
     margin: 0;
     padding: 0;
-  }  
-  
+  }
+
   input[type="range"]::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
     z-index: 1;
-    outline: 0;    
+    outline: 0;
     -webkit-appearance: none;
     width: $input-height;
     height: $input-height;
@@ -206,7 +230,7 @@
     background-image: -webkit-linear-gradient(top , lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* older mobile safari and android > 2.2 */;
     background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
   }
-  
+
   input[type="range"]::-moz-range-thumb {
     pointer-events: all;
     position: relative;
@@ -230,20 +254,20 @@
     border: 0;
     background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
   }
-  
+
   input[type=range]::-moz-range-track {
     position: relative;
     z-index: -1;
     background-color: rgba(0, 0, 0, 1);
     border: 0;
   }
-  
+
   input[type=range]:last-of-type::-moz-range-track {
     -moz-appearance: none;
     background: none transparent;
     border: 0;
-  } 
-  
+  }
+
   input[type=range]::-moz-focus-outer {
     border: 0;
   }
@@ -257,7 +281,7 @@ section.range-slider {
 
 div.col-md-10 {
 	border-left: 1px solid #bfbfbf;
-    
+
 }
 
 .affix {
@@ -269,27 +293,27 @@ div.col-md-10 {
 </style>
 
 <style type="text/css" id="et-builder-advanced-style">
-	
+
 </style>
 <style type="text/css" id="et-builder-page-custom-style">
 	.toggle_custom_3.et_pb_toggle {
-		
+
 		transition: 0.4s
 	}
 
-	.toggle_custom_3 .et_pb_toggle_title:before { 
+	.toggle_custom_3 .et_pb_toggle_title:before {
 
-		font-size: 50px !important ;  
-		-webkit-transition: 0.3s; 
-		transition: 0.3s; 
+		font-size: 50px !important ;
+		-webkit-transition: 0.3s;
+		transition: 0.3s;
 	}
-	.toggle_custom_3.et_pb_toggle_open .et_pb_toggle_title:before { 
-		color: #72c15f; 
-		-ms-transform: rotate(180deg); 
-		-webkit-transform: rotate(180deg); 
-		transform: rotate(180deg); 
+	.toggle_custom_3.et_pb_toggle_open .et_pb_toggle_title:before {
+		color: #72c15f;
+		-ms-transform: rotate(180deg);
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
 	}
-	
+
 	.et_pb_toggle_close {
     padding: 20px;
 
@@ -318,42 +342,42 @@ div.col-md-10 {
 </script>
 
 <script>
-filterSelection("all")
-function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("filterDiv");
-  if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-	if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-	
-  
-}
+// filterSelection("all")
+// function filterSelection(c) {
+//   var x, i;
+//   x = document.getElementsByClassName("filterDiv");
+//   if (c == "all") c = "";
+//   for (i = 0; i < x.length; i++) {
+//     w3RemoveClass(x[i], "show");
+// 	if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+//   }
+//
+//
+// }
 
 
-
-function w3AddClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-  }
-}
-
-
-function w3RemoveClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
-    }
-  }
-  element.className = arr1.join(" ");
-}
+//
+// function w3AddClass(element, name) {
+//   var i, arr1, arr2;
+//   arr1 = element.className.split(" ");
+//   arr2 = name.split(" ");
+//   for (i = 0; i < arr2.length; i++) {
+//     if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+//   }
+// }
+//
+//
+// function w3RemoveClass(element, name) {
+//   var i, arr1, arr2;
+//   arr1 = element.className.split(" ");
+//   arr2 = name.split(" ");
+//   for (i = 0; i < arr2.length; i++) {
+//     while (arr1.indexOf(arr2[i]) > -1) {
+//       arr1.splice(arr1.indexOf(arr2[i]), 1);
+//     }
+//   }
+//   element.className = arr1.join(" ");
+// }
 
 function getVals(){
   // Get slider values
@@ -363,7 +387,7 @@ function getVals(){
     var slide2 = parseFloat( slides[1].value );
   // Neither slider will clip the other, so make sure we determine which is larger
   if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
-  
+
   var displayElement = parent.getElementsByClassName("rangeValues")[0];
       displayElement.innerHTML = "$ " + slide1 + " - $" + slide2;
 }
@@ -385,8 +409,8 @@ window.onload = function(){
 
 </script>
 
-<script type="text/javascript">  
-$('input').popup(); 
+<script type="text/javascript">
+$('input').popup();
 </script>
 
 </html>

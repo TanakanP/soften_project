@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^account/upload/$',views.upload_pic , name='upload_pic'),
     url(r'^account/(?P<username>[-\w]+)/$', views.account, name='account'),
     url(r'^account/$', views.accountnull, name='accountnull'),
+    # url(r'^history/(?P<order_id>[-\w]+)/$', views.orderdetail, name='orderdetail'),
     url(r'^catalog/$', views.catalog, name='catalog'),
     url(r'^catalog-(?P<product_brand>[A-z ]*)/$',views.catalog, name='catalog'),
     url(r'^catalog-(?P<product_gender>[A-z ]*)/$',views.catalog, name='catalog')
