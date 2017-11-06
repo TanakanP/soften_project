@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import EditForm, ImageUploadForm
-from .models import Product, Prod4, Prod360, Supplier
+from .models import Product, Prod4, Prod360, OrderBy, OrderList, Supplier
 from django.contrib.auth.models import User
 from register.models import Profile
 from django.http import HttpResponseRedirect
@@ -53,26 +53,47 @@ def productnull(request):
 
 
 def catalog(request, gender="", product_brand=""):
+    brandcheck = []
+    gendercheck = []
+    brandcheck = request.POST.getlist("radio-set-2")
+    gendercheck = request.POST.getlist("radio-set-1")
+    tick = request.POST.getlist("radio-set-3")
     catalog = Product.objects.all()
     product = Product.objects.all()
     pic_type_4 = Prod4.objects.all()
     pic_type_360 = Prod360.objects.all()
 
     brandlist = []
-    brandlist_Object = [] 
+    brandlist_Object = []
 
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
             brandlist_Object.append(i)
+    trueCatalog = {}
+    if not brandcheck and not gendercheck:
+        tick = 'all'
+    else:
+        tick = []
+    if not brandcheck or tick:
+        brandcheck = brandlist
 
-    if product_brand != "":
-        catalog = catalog.filter(brand=product_brand)
-    context = {"catalog": catalog,
+    if not gendercheck or tick:
+        gendercheck = ["M","F"]
+
+    if brandcheck != brandlist or gendercheck != ["M","F"]:
+        tick = []
+
+    trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck))
+
+    context = {"catalog": trueCatalog,
                "product": product,
                "brandlist": brandlist_Object,
                "path4": pic_type_4,
-               "path360": pic_type_360}
+               "path360": pic_type_360,
+               "brandcheck": brandcheck,
+               "gendercheck" : gendercheck,
+               "tick" : tick}
 
     return render(request, 'catalog.html', context)
 
@@ -87,6 +108,7 @@ def contact(request):
 
 def account(request, username):
     legit = False
+    order = OrderBy.objects.filter(user_ID = request.user.profile)
     print(username)
     try:
         u = User.objects.get(username=username)
@@ -112,7 +134,7 @@ def account(request, username):
         else:
             form = EditForm(instance=u)
         context = {'form': form,
-                   "legit": legit, "users": p}
+                   "legit": legit, "users": p, 'order': order, }
         return render(request, 'account.html', context)
     except:
         next = request.POST.get('next', '/home')
@@ -133,3 +155,16 @@ def upload_pic(request):
             u.save()
             return HttpResponse('image upload success')
     return render(request, 'uploadpic.html', {})
+
+def history(request):
+    order = OrderBy.objects.filter(user_ID = request.user.profile)
+
+    context = { 'order': order}
+    return render(request, 'history.html', context)
+
+def orderdetail(request, order_id):
+    order = OrderList.objects.filter(order_ID = order_id)
+    orderd = OrderBy.objects.get(order_ID = order_id)
+    context = { 'order': order,
+    'orderd': orderd, }
+    return render(request, 'orderdetail.html', context)
