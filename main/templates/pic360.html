@@ -43,17 +43,54 @@
 div#fucking.container{
       width: 100%;  
 }
+
+.responsive-container {
+    position: relative;
+    width: 100%;
+
+}
+
+.dummy {
+    padding-top: 100%; /* forces 1:1 aspect ratio */
+}
+
+.slidecontainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    text-align:center; /* Align center inline elements */
+    font: 0/0 a;
+}
+
+.slidecontainer .centerer {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.slidecontainer img {
+    vertical-align: middle;
+    display: inline-block;
+    max-height: 100%;  /* <-- Set maximum height to 100% of its parent */
+    max-width: 100%;   /* <-- Set maximum width to 100% of its parent */
+}
+
 </style>
 
+<div class="responsive-container" style="margin-top:50px;" id="fucking">
+    <div class="dummy"></div>
 
-<div class="container" style="margin-top:50px;" id="fucking">
-    <div id="slidecontainer">
-            <img id="myImg2" src="../../../static/assets/img{{p.pic1}}" width="100%" height="477">
-            <input type="range" min="1" max="26" value="1" class="slider" id="myRange">
-        
-
+    <div class="slidecontainer">
+        <div class="centerer"></div>
+        <img id="myImg2" src="../../../static/assets/img{{p.pic1}}" width="100%">
+		<input type="range" min="1" max="26" value="1" class="slider" id="myRange">
     </div>
 </div>
+
+
 
 <script>
 var slider = document.getElementById("myRange");
