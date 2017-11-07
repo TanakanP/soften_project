@@ -22,6 +22,7 @@
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/revealer.css" />
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/pater.css" />
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/home.css" />
+		<link rel="stylesheet" href="../static/assets/fonts/font-awesome.min.css">
 		<script>document.documentElement.className = 'js';</script>
 		<script src="../../static/assets/js/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
@@ -539,7 +540,15 @@
 							<a href="../../underconstruction" class="btn btn-default">NEWS</a>
 							<a href="../../catalog" class="btn btn-default">BLOG</a>
 							<a href="../../contact" class="btn btn-default">CONTACT US</a>
-							<button data-target="#myModal2"  data-toggle="modal" class="btn btn-default">LOGIN</button>
+							{% if request.user.is_authenticated %}
+								<input type="hidden" name="next" value="{{ request.path }}">
+								<a class="btn btn-default " role="button" href="../../account/{{ user }}" id="member"><i class="fa fa-user"></i> {{user}} </a>
+								<a class="btn btn-default " href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
+								
+							{% else %}
+								<button data-target="#myModal2"  data-toggle="modal" class="btn btn-default">LOGIN</button>
+							{% endif %}
+							
 						</nav>
 						<section class="main" >
 						
