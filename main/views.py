@@ -65,7 +65,7 @@ def catalog(request, gender="", product_brand=""):
     brandlist = []
     brandlist_Object = []
 
-    
+
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
@@ -117,6 +117,7 @@ def account(request, username):
             legit = True
         if request.method == 'POST':
             form = EditForm(data=request.POST, instance=u)
+            #formpic = ImageUploadForm(request.POST, request.FILES)
             print('yes')
             print(form.data['first_name'])
 
@@ -131,8 +132,16 @@ def account(request, username):
                 return HttpResponseRedirect(next)
             else:
                 print("KUY")
+            #if formpic.is_valid():
+                #u = request.user
+                #u.profile.pic = form.cleaned_data['image']
+                #u.save()
+                #return HttpResponse('image upload success')
+            #else:
+                #print("KUY")
         else:
             form = EditForm(instance=u)
+            #formpic = ImageUploadForm(request.POST, request.FILES)
         context = {'form': form,
                    "legit": legit, "users": p, 'order': order, }
         return render(request, 'account.html', context)
@@ -153,7 +162,7 @@ def upload_pic(request):
             u = request.user
             u.profile.pic = form.cleaned_data['image']
             u.save()
-            return HttpResponse('image upload success')
+            return HttpResponseRedirect('/home')
     return render(request, 'uploadpic.html', {})
 
 def history(request):

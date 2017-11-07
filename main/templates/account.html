@@ -33,6 +33,15 @@
 <div class="container" style="padding-top:80px;">
 
 	<div class="row editcontainer">
+    <form action="{% url 'upload_pic' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+      <div class="form-group">
+           <div class="input-group">
+             <input type="file" class="custom-file-input" name="image" id="image" aria-describedby="fileHelp">
+             <span class="custom-file-control form-control-file"></span>
+           </div>
+         </div>
+        <input type="submit" value="Submit" />
+    </form>
 		<form method="post"> {% csrf_token %}
 			<div id="effect-6" class="effects clearfix col-md-7 col-md-offset-0 col-sm-offset-0">
 					<div class="imgProfile">
