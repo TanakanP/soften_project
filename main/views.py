@@ -65,26 +65,40 @@ def catalog(request, gender="", product_brand=""):
     brandlist = []
     brandlist_Object = []
 
-
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
             brandlist_Object.append(i)
     trueCatalog = {}
-    if not brandcheck and not gendercheck:
+    if ((not brandcheck and not gendercheck) or (brandcheck == brandlist and gendercheck == ["M","F"])) and not product_brand:
         tick = 'all'
     else:
         tick = []
+
+    genderout = gendercheck
+    brandout = brandcheck
+
     if not brandcheck or tick:
-        brandcheck = brandlist
+        brandout = brandlist
 
     if not gendercheck or tick:
-        gendercheck = ["M","F"]
+        genderout = ["M","F"]
 
-    if brandcheck != brandlist or gendercheck != ["M","F"]:
+    if brandout != brandlist or genderout != ["M","F"]:
         tick = []
 
-    trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck))
+    if product_brand:
+        brandcheck = product_brand
+        brandout = []
+        brandout.append(product_brand)
+
+    trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout))
+
+    if tick:
+        brandcheck = []
+        gendercheck = []
+
+
 
     context = {"catalog": trueCatalog,
                "product": product,
@@ -157,7 +171,8 @@ def upload_pic(request):
             u = request.user
             u.profile.pic = form.cleaned_data['image']
             u.save()
-            return HttpResponse('image upload success')
+            next = request.POST.get('next', '/home')
+            return HttpResponseRedirect(next)
     return render(request, 'uploadpic.html', {})
 
 def history(request):

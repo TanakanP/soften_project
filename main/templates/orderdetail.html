@@ -2,16 +2,36 @@
 <html>{% load crispy_forms_tags %}
 
 <body>
-  {% for i in order %}
-    {{i.product_ID.product_Name}}
-    {{i.product_ID.unit_Price}}
-    {{i.size}}
-    {{i.unit}}
-    <br>
-  {% endfor %}
+    <table id="myTable" style="overflow-y:-webkit-paged-y;">
+        <tr class="header">
+            <th style="width:50%; text-align: center;">Picture</th>
+            <th style="width:20%; text-align: center;">Name</th>
+            <th style="width:10%;">Size</th>
+            <th style="width:10%;">unit</th>
+            <th style="width:10%;">price</th>
+        </tr>
+        {% for i in order %}
+        <tr>
+            <td style=" text-align: center;"><img class="img-responsive " src="../../static/assets/img{{i.product_ID.thumbnail}}" alt="" style="height: 100px"></td>
+            <td style=" text-align: center;">{{i.product_ID.product_Name}}</td>
+            <td style=" text-align: center;">{{i.size}}</td>
+            <td style=" text-align: center;">{{i.unit}}</td>
+            <td style=" text-align: center;">{{i.product_ID.unit_Price}}</td>
+        </tr>
+        {% endfor %}
+        Order Date: {{orderd.order_Date}}
+        <br>Address to send: {{orderd.address_to_send}}
+        <!-- <tr>
+        <td>Paris specialites</td>
+        <td>France</td>
+        </tr> -->
+        <!-- {% for i in order %}
+            <img src="../../static/assets/img{{i.product_ID.thumbnail}}"> {{i.product_ID.product_Name}}
+            <br> {{i.product_ID.unit_Price}}
+            <br> {{i.size}} {{i.unit}}
+            <br> {% endfor %} {{orderd.order_Date}}
 
-  {{orderd.order_Date}}<br>
-  {{orderd.address_to_send}}
+            <br> {{orderd.address_to_send}} -->
 
 </body>
 

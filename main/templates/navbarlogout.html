@@ -107,7 +107,7 @@
 								<li>Password</li>
 								<li><input type="password" placeholder="Password" id="id_password" name="password" class="form-control" onfocus="checkNullProf();"></li>
 								<input type="hidden" name="next" value="{{ request.path }}">
-								<li><br/><button type="submit" onclick="userLogin();" id="logBtn" class="btn btn-default">Submit</button></li>
+								<li><br/><button type="submit" onclick="LoginFail();" id="logBtn" class="btn btn-default">Submit</button></li>
 								<div style="display:none;" id="loginFail" class="sign">
 									<li>
 										<font color="red"> Username or password is incorrect.</font>
@@ -188,6 +188,18 @@
 </div>
 </div>
 </div>
+<script>
+
+
+
+
+function LoginFail()
+{
+				window.setTimeout(function() {alert("Username or password is incorrect."); }, 3000);
+}
+
+
+</script>
 
 <style>
 	* {

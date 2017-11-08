@@ -48,13 +48,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="../../underconstruction"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i></a>
             <ul class="dropdown-menu dropdown-cart" role="menu" style="right:auto; left: auto;">
+              {% for item in cart %}
               <li>
                 <span class="item">
 								<span class="item-left">
-									<img src="http://lorempixel.com/50/50/" alt="" />
+									<img src="../static/assets/img{{item.pic}}" alt="" />
 									<span class="item-info">
-										<span>Item name</span>
-                <span>23$</span>
+										<span>{{item.name}}</span>
+                <span>{{item.price}}$</span>
                 </span>
                 </span>
                 <span class="item-right">
@@ -62,48 +63,7 @@
 								</span>
                 </span>
               </li>
-              <li>
-                <span class="item">
-								<span class="item-left">
-									<img src="http://lorempixel.com/50/50/" alt="" />
-									<span class="item-info">
-										<span>Item name</span>
-                <span>23$</span>
-                </span>
-                </span>
-                <span class="item-right">
-									<button class="btn btn-xs btn-danger pull-right">x</button>
-								</span>
-                </span>
-              </li>
-              <li>
-                <span class="item">
-								<span class="item-left">
-									<img src="http://lorempixel.com/50/50/" alt="" />
-									<span class="item-info">
-										<span>Item name</span>
-                <span>23$</span>
-                </span>
-                </span>
-                <span class="item-right">
-									<button class="btn btn-xs btn-danger pull-right">x</button>
-								</span>
-                </span>
-              </li>
-              <li>
-                <span class="item">
-								<span class="item-left">
-									<img src="http://lorempixel.com/50/50/" alt="" />
-									<span class="item-info">
-										<span>Item name</span>
-                <span>23$</span>
-                </span>
-                </span>
-                <span class="item-right">
-									<button class="btn btn-xs btn-danger pull-right">x</button>
-								</span>
-                </span>
-              </li>
+              {% endfor %}
               <li class="divider"></li>
               <li><a class="text-center" href="../../cart">Checkout</a></li>
             </ul>
