@@ -28,6 +28,7 @@
   {% endif %}
 <!-- line 54 ตั้งแต่ Quantity คือตรงบวกลบ อิอิควย -->
     <div class="container carthead" id="checkout" style="margin-top:100px;">
+
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
@@ -51,14 +52,14 @@
                                             <p style="font-size:110%">{{item.description}}</p>
                                           </div>
                                           <div class="col-md-3">
-                                            <p style="font-size:150%">Quantity  {{item.quantity}}</p>
+                                            <p style="font-size:150%">Quantity</p>
                                             <form action="./sub/{{item.pk}}" method="post" style="display:none">
-                                                <span style="display:none">
+
                                                   {{item.update_quantity_form.quantity}}
                                                   {{item.update_quantity_form.update}}
                                                   {{item.update_quantity_form.size}}
                                                   {{ cart_product_form }}
-                                                </span>
+
                                                 <!--Minus Button-->
                                                 <input type='submit' id="{{item.p}}-" value='-' style="background-color: #ff6181; border: none;width: 40px; height:40px;font-size:130%;" />
                                                 <!--Quantity Number-->
@@ -66,12 +67,12 @@
                                                 {% csrf_token %}
                                             </form>
                                             <form action="./add/{{item.pk}}" method="post" style="display:none">
-                                              <span style="display:none">
+
                                                 {{item.update_quantity_form.quantity}}
                                                 {{item.update_quantity_form.update}}
                                                 {{item.update_quantity_form.size}}
                                                 {{ cart_product_form }}
-                                              </span>
+
                                               {% csrf_token %}
                                               <input type='submit' id="{{item.p}}+" value='+' style="background-color: #77dd91; border: none; width: 40px; height:40px;font-size:130%;"/>
                                             </form>
@@ -114,10 +115,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-2 col-md-offset-8">
-                        <a role="button" class="btn" href="../../catalog" style="background-color: #303F9F; border: none; padding:14px 32px; border-radius:3px;">Continue Shopping</a>
+                        <a role="button" class="btn" href="../../catalog" style="padding:14px 32px; border-radius:3px;">Continue Shopping</a>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="checkout" value="1" style="background-color: #64DD17; border: none; padding:14px 54px; border-radius:3px;">Checkout</button>
+                        <button type="button" class="btn checkout" value="1" style="background-color: #64DD17; padding:14px 54px; border-radius:3px;">Checkout</a>
                       </div>
                       <p><br/><br class="scrollshow"/><br/></p>
                     </div>
@@ -166,24 +167,24 @@
                                 <div class="row form-group" >
                                   <div class="col-md-6" style="padding-left:0px;" id="div_id_first_name">
                                     <h3>FIRSTNAME</h3>
-                                    <input type="text" name="first_name" id="id_first_name" class="form-control" value="{{ users.user.first_name }}" disabled>
+                                    <input type="text" name="first_name" id="id_first_name" class="form-control" value="{{ user.first_name }}" disabled>
                                   </div>
                                   <div class="col-md-6" style="padding-right:0px;" id="div_id_last_name">
                                     <h3>LASTNAME</h3>
-                                    <input type="text" name="last_name" id="id_last_name" class="form-control" value="{{ users.user.last_name }}" disabled>
+                                    <input type="text" name="last_name" id="id_last_name" class="form-control" value="{{ user.last_name }}" disabled>
                                   </div>
                                 </div>
                                 <div class="row form-group" id="div_id_address">
                                   <h3>ADDRESS</h3>
-                                  <textarea rows="4" cols="50" type="text" name="address" id="id_address" class="form-control" value="{{ users.address }}" disabled></textarea>
+                                  <textarea rows="4" cols="50" type="text" name="address" id="id_address" class="form-control" disabled>{{user.profile.address}}</textarea>
                                 </div>
                                 <div class="row form-group" id="div_id_email">
                                   <h3>EMAIL</h3>
-                                  <input type="text" name="email" id="id_email" class="form-control" value="{{ users.user.email }}" disabled>
+                                  <input type="text" name="email" id="id_email" class="form-control" value="{{ user.email }}" disabled>
                                 </div>
                                 <div class="row form-group" >
                                   <h3>PHONE</h3>
-                                  <input type="text" name="phone" id="id_phone" class="form-control" value="{{users.user.phone}}" disabled>
+                                  <input type="text" name="phone" id="id_phone" class="form-control" value="{{ user.profile.phone }}" disabled>
                                 </div>
                               </div>
                             </div>
@@ -199,12 +200,70 @@
             </div>
         </div>
     </div>
+    <div class="container" id="loader" style="display:none">
+    </div>
+
     <script src="../../static/assets/js/jquery.min.js"></script>
     <script src="../../static/assets/bootstrap/js/bootstrap.min.js"></script>
     {% include 'footer.html' %}
     {% block footer %}
     {% endblock %}
 </body>
+
+<style>
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid black;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+</style>
+
 <script>
 //test function (leave this be like this)
 //function myPlus(){
@@ -246,6 +305,10 @@ jQuery(document).ready(function(){
             // Otherwise put a 0 there
             $('input[name='+fieldName+']').val$(0);
         }
+        $("#checkout").addClass("disabledbutton");
+        $("#loader").fadeIn();
+        $("#loader").fadeOut().delay(100);
+        window.setTimeout(function(){$("#checkout").removeClass("disabledbutton");}, 800);
     });
     // This button will decrement the value till 0
     $(".qtyminus").click(function(e) {
@@ -263,6 +326,10 @@ jQuery(document).ready(function(){
             // Otherwise put a 0 there
             $('input[name='+fieldName+']').val(1);
         }
+        $("#checkout").addClass("disabledbutton");
+        $("#loader").fadeIn();
+        $("#loader").fadeOut().delay(100);
+        window.setTimeout(function(){$("#checkout").removeClass("disabledbutton");}, 800);
     });
 
     $(".priceminus").click(function(e) {
@@ -295,12 +362,16 @@ jQuery(document).ready(function(){
       var currentVal = parseInt($('input[name='+fieldName+']').val());
       var TotalVal = parseInt($('input[id=totalprice]').val());
       $('input[id=totalprice]').val(TotalVal-currentVal);
+      $("#checkout").addClass("disabledbutton");
+      $("#loader").fadeIn();
+      $("#loader").fadeOut().delay(100);
+      window.setTimeout(function(){$("#checkout").removeClass("disabledbutton");}, 800);
     });
 
     $(".checkout").click(function()
     {
-      if($(this).val() ==1){
-        $("#cartbody :input").attr("disabled",true);
+      if($(this).val()==1){
+        $("#cartbody").addClass("disabledbutton");
         $("#shippingaddress").fadeIn("5000");
         $("#shipping").fadeIn("5000");
         $("#cardpaypal").fadeIn("5000");
@@ -309,7 +380,7 @@ jQuery(document).ready(function(){
           scrollTop: $(".scrollshow").offset().top
         },'slow');
       } else {
-        $("#cartbody :input").attr("disabled",false);
+        $("#cartbody").removeClass("disabledbutton");
         $("#shippingaddress").fadeOut(500);
         $("#shipping").fadeOut(500);
         $("#cardpaypal").fadeOut(500);

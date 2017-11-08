@@ -65,7 +65,7 @@ def catalog(request, gender="", product_brand=""):
     brandlist = []
     brandlist_Object = []
 
-    
+
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
@@ -104,6 +104,10 @@ def underconstruction(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def news(request):
+    return render(request, 'news.html')
+
 
 
 def account(request, username):
