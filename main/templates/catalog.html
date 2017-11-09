@@ -122,8 +122,8 @@
             <div class="col-md-10" style="min-height:700px; " >
                 	<div class="row category-child" style="margin-top:20px">
 							{% for i in catalog %}
-              <div class="col-lg-3 col-md-3 col-xs-6">
-									<a class="{{i.product_ID}} thumbnail animated bounceInUp" href="../product/{{i.pk}}">
+              <div class="col-lg-3 col-md-3 col-xs-6 {{i.brand}} {{i.gender}}">
+									<a class="{{i.product_ID}} {{i.pk}} thumbnail module " href="../product/{{i.pk}}">
                     <img class="img-responsive " src="../static/assets/img{{i.thumbnail}}" alt="">
                       <div class="wrapper">
 											<div class="caption post-content">
@@ -146,147 +146,216 @@
 
 </body>
 
+<script>
+(function($) {
+
+  /**
+   * Copyright 2012, Digital Fusion
+   * Licensed under the MIT license.
+   * http://teamdf.com/jquery-plugins/license/
+   *
+   * @author Sam Sehnert
+   * @desc A small plugin that checks whether elements are within
+   *     the user visible viewport of a web browser.
+   *     only accounts for vertical position, not horizontal.
+   */
+
+  $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+  };
+
+})(jQuery);
+
+var win = $(window);
+
+var allMods = $(".module");
+
+allMods.each(function(i, el) {
+  var el = $(el);
+  if (el.visible(true)) {
+    el.addClass("already-visible");
+  }
+});
+
+win.scroll(function(event) {
+
+  allMods.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("come-in");
+    }
+  });
+
+});
+</script>
 <style>
 
-{% for i in catalog %}
-
-    {% if i.pk == 1 or i.pk == 2 or i.pk == 3 or i.pk == 4%}
-    .{{i.product_ID}} { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s;}
-
-    {% elif i.pk == 5 or i.pk == 6 or i.pk == 7 or i.pk == 8%}
-    .{{i.product_ID}} { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s;}
-
-    {% elif i.pk == 9 or i.pk == 10 or i.pk == 11 or i.pk == 12%}
-    .{{i.product_ID}} { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s;}
-
-    {% elif i.pk == 13 or i.pk == 14 or i.pk == 15 or i.pk == 16%}
-    .{{i.product_ID}} { animation-delay:0.4s; -moz-animation-delay:0.4s; -webkit-animation-delay:0.4s;}
-
-    {% elif i.pk == 17 or i.pk == 18 or i.pk == 19 or i.pk == 20%}
-    .{{i.product_ID}} { animation-delay:0.5s; -moz-animation-delay:0.5s; -webkit-animation-delay:0.5s;}
-
-    {% elif i.pk == 21 or i.pk == 22 or i.pk == 23 or i.pk == 24%}
-    .{{i.product_ID}} { animation-delay:0.6s; -moz-animation-delay:0.6s; -webkit-animation-delay:0.6s;}
-
-    {% elif i.pk == 25 or i.pk == 26 or i.pk == 27 or i.pk == 28%}
-    .{{i.product_ID}} { animation-delay:0.7s; -moz-animation-delay:0.7s; -webkit-animation-delay:0.7s;}
-
-    {% elif i.pk == 29 or i.pk == 30 or i.pk == 31 or i.pk == 32%}
-    .{{i.product_ID}} { animation-delay:0.8s; -moz-animation-delay:0.8s; -webkit-animation-delay:0.8s;}
-
-    {% else %}
-    .{{i.product_ID}} { animation-delay:0.9s; -moz-animation-delay:0.9s; -webkit-animation-delay:0.9s;}
-    {% endif %}
-
-{% endfor %}
-
-.filterDiv {
-     display: none; /* Hidden by default */
+.come-in {
+  transform: translateY(200px);
+  animation: come-in 0.8s ease forwards;
 }
-
-.show {
-    display: block;
+.come-in:nth-child(odd) {
+  animation-duration: 0.6s; /* So they look staggered */
 }
-
-@mixin range-slider($width, $height, $input-top, $input-bg-color, $input-thumb-color, $float:none, $input-height:20px, $input-border-radius:14px) {
-  position: relative;
-  width: $width;
-  height: $height;
-  float: $float;
-  text-align: center;
-
-  input[type="range"] {
-    pointer-events: none;
-    position: absolute;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    border: none;
-    border-radius: $input-border-radius;
-    background: $input-bg-color;
-    box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
-    -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
-    overflow: hidden;
-    left: 0;
-    top: $input-top;
-    width: $width;
-    outline: none;
-    height: $input-height;
-    margin: 0;
-    padding: 0;
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 1;
-    outline: 0;
-    -webkit-appearance: none;
-    width: $input-height;
-    height: $input-height;
-    border: none;
-    border-radius: $input-border-radius;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($input-thumb-color,60%)), color-stop(100%, $input-thumb-color)); /* android <= 2.2 */
-    background-image: -webkit-linear-gradient(top , lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* older mobile safari and android > 2.2 */;
-    background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 10;
-    -moz-appearance: none;
-    width: $input-height;
-    height: $input-height;
-    border: none;
-    border-radius: $input-border-radius;
-    background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
-  }
-
-  input[type="range"]::-ms-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 10;
-    -ms-appearance: none;
-    width: $input-height;
-    height: $input-height;
-    border-radius: $input-border-radius;
-    border: 0;
-    background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
-  }
-
-  input[type=range]::-moz-range-track {
-    position: relative;
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 1);
-    border: 0;
-  }
-
-  input[type=range]:last-of-type::-moz-range-track {
-    -moz-appearance: none;
-    background: none transparent;
-    border: 0;
-  }
-
-  input[type=range]::-moz-focus-outer {
-    border: 0;
-  }
+.already-visible {
+  transform: translateY(0);
+  animation: none;
 }
-
-section.range-slider {
-  @include range-slider(300px, 300px, 50px, #F1EFEF, #413F41, left);
+@keyframes come-in {
+  to { transform: translateY(0); }
 }
 
 
+    {% for i in catalog %}
 
-div.col-md-10 {
-	border-left: 1px solid #bfbfbf;
+        {% if i.pk == JOR_001 or i.pk == 2 or i.pk == 3 or i.pk == 4%}
+        .{{i.product_ID}} { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s;}
 
-}
+        {% elif i.pk == 5 or i.pk == 6 or i.pk == 7 or i.pk == 8%}
+        .{{i.product_ID}} { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s;}
 
-.affix {
-    position: fixed;
-    width: 10%;
-}
+        {% elif i.pk == 9 or i.pk == 10 or i.pk == 11 or i.pk == 12%}
+        .{{i.product_ID}} { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s;}
+
+        {% elif i.pk == 13 or i.pk == 14 or i.pk == 15 or i.pk == 16%}
+        .{{i.product_ID}} { animation-delay:0.4s; -moz-animation-delay:0.4s; -webkit-animation-delay:0.4s;}
+
+        {% elif i.pk == 17 or i.pk == 18 or i.pk == 19 or i.pk == 20%}
+        .{{i.product_ID}} { animation-delay:0.5s; -moz-animation-delay:0.5s; -webkit-animation-delay:0.5s;}
+
+        {% elif i.pk == 21 or i.pk == 22 or i.pk == 23 or i.pk == 24%}
+        .{{i.product_ID}} { animation-delay:0.6s; -moz-animation-delay:0.6s; -webkit-animation-delay:0.6s;}
+
+        {% elif i.pk == 25 or i.pk == 26 or i.pk == 27 or i.pk == 28%}
+        .{{i.product_ID}} { animation-delay:0.7s; -moz-animation-delay:0.7s; -webkit-animation-delay:0.7s;}
+
+        {% elif i.pk == 29 or i.pk == 30 or i.pk == 31 or i.pk == 32%}
+        .{{i.product_ID}} { animation-delay:0.8s; -moz-animation-delay:0.8s; -webkit-animation-delay:0.8s;}
+
+        {% else %}
+        .{{i.product_ID}} { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s;}
+        {% endif %}
+
+    {% endfor %}
+
+    .filterDiv {
+         display: none; /* Hidden by default */
+    }
+
+    .show {
+        display: block;
+    }
+
+    @mixin range-slider($width, $height, $input-top, $input-bg-color, $input-thumb-color, $float:none, $input-height:20px, $input-border-radius:14px) {
+      position: relative;
+      width: $width;
+      height: $height;
+      float: $float;
+      text-align: center;
+
+      input[type="range"] {
+        pointer-events: none;
+        position: absolute;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        border: none;
+        border-radius: $input-border-radius;
+        background: $input-bg-color;
+        box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+        -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+        overflow: hidden;
+        left: 0;
+        top: $input-top;
+        width: $width;
+        outline: none;
+        height: $input-height;
+        margin: 0;
+        padding: 0;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        pointer-events: all;
+        position: relative;
+        z-index: 1;
+        outline: 0;
+        -webkit-appearance: none;
+        width: $input-height;
+        height: $input-height;
+        border: none;
+        border-radius: $input-border-radius;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($input-thumb-color,60%)), color-stop(100%, $input-thumb-color)); /* android <= 2.2 */
+        background-image: -webkit-linear-gradient(top , lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* older mobile safari and android > 2.2 */;
+        background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        pointer-events: all;
+        position: relative;
+        z-index: 10;
+        -moz-appearance: none;
+        width: $input-height;
+        height: $input-height;
+        border: none;
+        border-radius: $input-border-radius;
+        background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+      }
+
+      input[type="range"]::-ms-thumb {
+        pointer-events: all;
+        position: relative;
+        z-index: 10;
+        -ms-appearance: none;
+        width: $input-height;
+        height: $input-height;
+        border-radius: $input-border-radius;
+        border: 0;
+        background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+      }
+
+      input[type=range]::-moz-range-track {
+        position: relative;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 1);
+        border: 0;
+      }
+
+      input[type=range]:last-of-type::-moz-range-track {
+        -moz-appearance: none;
+        background: none transparent;
+        border: 0;
+      }
+
+      input[type=range]::-moz-focus-outer {
+        border: 0;
+      }
+    }
+
+    section.range-slider {
+      @include range-slider(300px, 300px, 50px, #F1EFEF, #413F41, left);
+    }
+
+
+
+    div.col-md-10 {
+    	border-left: 1px solid #bfbfbf;
+
+    }
+
+    .affix {
+        position: fixed;
+        width: 10%;
+    }
 
 
 </style>
@@ -411,5 +480,6 @@ window.onload = function(){
 <script type="text/javascript">
 $('input').popup();
 </script>
+
 
 </html>

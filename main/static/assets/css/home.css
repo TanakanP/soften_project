@@ -1,7 +1,11 @@
-btn-home{
-	
+a {
+    color: white;
+    text-decoration: none
 }
-
+a:hover, a:focus {
+    color: white;
+    text-decoration: none;
+}
 
 
 * {
@@ -125,7 +129,7 @@ btn-home{
 	.forgot {
 		display: none;
 	}
-	
+
 	.modal-open {
     overflow: hidden
 }

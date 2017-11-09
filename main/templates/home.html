@@ -20,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/style5.css" />
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/common.css" />
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/revealer.css" />
-		<link rel="stylesheet" type="text/css" href="../static/assets/css/pater.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="../static/assets/css/pater.css" /> -->
 		<link rel="stylesheet" type="text/css" href="../static/assets/css/home.css" />
 		<link rel="stylesheet" href="../static/assets/fonts/font-awesome.min.css">
 		<script>document.documentElement.className = 'js';</script>
@@ -543,7 +543,7 @@
 							<a href="{% url 'contact' %}" class="btn btn-default">CONTACT US</a>
 							{% if request.user.is_authenticated %}
 								<input type="hidden" name="next" value="{{ request.path }}">
-								<a class="btn btn-default " role="button" href="../../account/{{ user }}" id="member"><i class="fa fa-user"></i> {{user}} </a>
+								<a class="btn btn-default " role="button" href="{% url 'account' user %}" id="member"><i class="fa fa-user"></i> {{user}} </a>
 								<a class="btn btn-default " href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
 
 							{% else %}

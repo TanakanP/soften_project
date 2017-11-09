@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^checkout/', include('payment.urls')),
     url(r'^cart/', include('cart.urls' , namespace ='cart')),
     url(r'^paypal/', include('paypal.standard.ipn.urls')),
+    
 ]
