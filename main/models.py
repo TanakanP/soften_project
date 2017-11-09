@@ -28,6 +28,9 @@ class Product(models.Model):
     def get_brand(self):
         return str(self.brand)
 
+    def get_path(self):
+        return str(self.thumbnail)
+
 
 class ProdSize(models.Model):
     product_ID = models.ForeignKey('Product')

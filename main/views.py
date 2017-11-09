@@ -10,7 +10,8 @@ from register.models import Profile
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from cart.forms import CartAddProductForm
-
+from django.views.decorators.http import require_POST
+from cart.cart import Cart
 
 import random
 # Create your views here.
@@ -24,6 +25,7 @@ def home(request):
 
 
 def product(request, product_id):
+    cart = Cart(request)
     product = Product.objects.all()
     number = Product.objects.get(pk=product_id)
     cart_product_form = CartAddProductForm()
@@ -42,7 +44,8 @@ def product(request, product_id):
                "pic_format": pic_format,
                "cart_product_form":cart_product_form,
                "logo_path": logo_path,
-               "logo": logo,}
+               "logo": logo,
+               "cart": cart,}
     return render(request, 'product.html', context)
 
 
@@ -52,6 +55,8 @@ def productnull(request):
 
 
 def catalog(request, gender="", product_brand=""):
+    cart = Cart(request)
+    print(cart)
     brandcheck = []
     gendercheck = []
     brandcheck = request.POST.getlist("radio-set-2")
@@ -107,7 +112,8 @@ def catalog(request, gender="", product_brand=""):
                "path360": pic_type_360,
                "brandcheck": brandcheck,
                "gendercheck" : gendercheck,
-               "tick" : tick}
+               "tick" : tick,
+               "cart": cart}
 
     return render(request, 'catalog.html', context)
 
@@ -125,9 +131,9 @@ def news(request):
 
 
 def account(request, username):
+    cart = Cart(request)
     legit = False
     order = OrderBy.objects.filter(user_ID = request.user.profile)
-    print(username)
     try:
         u = User.objects.get(username=username)
         p = Profile.objects.get(pk=u.pk)
@@ -151,8 +157,11 @@ def account(request, username):
                 print("KUY")
         else:
             form = EditForm(instance=u)
-        context = {'form': form,
-                   "legit": legit, "users": p, 'order': order, }
+        context = {"form": form,
+                   "legit": legit, 
+                   "users": p, 
+                   "order": order,
+                   "cart": cart, }
         return render(request, 'account.html', context)
     except:
         next = request.POST.get('next', '/home')

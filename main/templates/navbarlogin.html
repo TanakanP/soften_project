@@ -12,7 +12,7 @@
           <li role="presentation"><a href="../../underconstruction">Sales </a></li>
           <li role="presentation"><a href="../../underconstruction">News </a></li>
           <li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
-		  <li role="presentation"><a href="../../contact">Contact </a></li>
+      <li role="presentation"><a href="../../contact">Contact </a></li>
 
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
             <ul role="menu" class="dropdown-menu">
@@ -27,15 +27,15 @@
                   </tr>
                   {% for p in product %}
                   <tr onclick="window.document.location='../../product/{{p.pk}}';">
-                    <td><img class="img-responsive " src="../../static/assets/img{{p.pic1}}" alt="" style="height: 100px"></td>
+                    <td><img class="img-responsive " src="../../static/assets/img{{p.thumbnail}}" alt="" style="height: 100px"></td>
                     <td>{{p.product_Name}}</td>
                     <td>{{p.brand}}</td>
                   </tr>
                   {% endfor %}
                   <!-- <tr>
-											<td>Paris specialites</td>
-											<td>France</td>
-										  </tr> -->
+                      <td>Paris specialites</td>
+                      <td>France</td>
+                      </tr> -->
                 </table>
               </div>
             </ul>
@@ -43,7 +43,7 @@
         </ul>
         <input type="hidden" name="next" value="{{ request.path }}">
         <a class="btn btn-default navbar-btn navbar-right" href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
-        <a class="btn btn-link active navbar-btn navbar-right" role="button" href="../../account/{{ user }}" id="member"><i class="fa fa-user"></i> {{user}} </a>
+        <a class="btn btn-link active navbar-btn navbar-right" role="button" href="{% url 'account' user %}" id="member"><i class="fa fa-user"></i> {{user}} </a>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="../../underconstruction"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i></a>
@@ -51,16 +51,18 @@
               {% for item in cart %}
               <li>
                 <span class="item">
-								<span class="item-left">
-									<img src="../static/assets/img{{item.pic}}" alt="" />
-									<span class="item-info">
-										<span>{{item.name}}</span>
+                <span class="item-left">
+                  <!-- edit size of pic!!!! -->
+                  <h1>{{item.pk}}</h1>
+                  <img src="../../static/assets/img{{item.thumbnail}}" alt="" />
+                  <span class="item-info">
+                    <span>{{item.name}}</span>
                 <span>{{item.price}}$</span>
                 </span>
                 </span>
                 <span class="item-right">
-									<button class="btn btn-xs btn-danger pull-right">x</button>
-								</span>
+                  <button class="btn btn-xs btn-danger pull-right">x</button>
+                </span>
                 </span>
               </li>
               {% endfor %}
