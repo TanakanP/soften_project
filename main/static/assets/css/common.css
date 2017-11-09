@@ -25,3 +25,29 @@
 	display: inline-block;
 	margin: 20px;
 }
+
+.headText {
+	margin-top: 20px;
+}
+
+@media screen and (max-height: 620px) {
+	.headText {
+		margin-top: 0;
+		font-size: 4em;
+	}
+	.ch-grid li {
+		width: 180px;
+		height: 180px;
+		display: inline-block;
+
+	}
+
+	/*.ch-info{
+		width: 150px;
+		height: 150px;
+	}*/
+	.ch-info-wrap {
+     top: 0px;
+     left: 0px;
+}
+}
