@@ -538,7 +538,7 @@
 						<nav class="codrops-demos">
 							<a class="current-demo btn btn-default" href="{% url 'home' %}">HOME</a>
 							<a href="{% url 'catalog' %}" class="btn btn-default">CATALOG</a>
-							<a href="{% url 'underconstruction' %}" class="btn btn-default">NEWS</a>
+							<a href="{% url 'news' %}" class="btn btn-default">NEWS</a>
 							<a href="{% url 'underconstruction' %}" class="btn btn-default">BLOG</a>
 							<a href="{% url 'contact' %}" class="btn btn-default">CONTACT US</a>
 							{% if request.user.is_authenticated %}
@@ -839,7 +839,7 @@
 
 
 
-
+<script>
 
 
 function LoginFail()
@@ -849,6 +849,8 @@ function LoginFail()
 
 
 </script>
+
+
 
 
 		<script src="../static/assets/js/classie.js"></script>

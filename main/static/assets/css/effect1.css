@@ -323,3 +323,13 @@
 		margin-top: 200px;
 }
 }
+
+@media screen and (max-height: 550px) {
+	.ip-main {
+		margin-top: 150px;
+		width: 60%;
+}
+	.ip-main h2 {
+	padding: 0;
+}
+}
