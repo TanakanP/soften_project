@@ -19,9 +19,19 @@ import random
 app_name = 'main'
 
 
+# def edit_sale():
+#     product = Product.objects.all()
+#     for i in product:
+#         i.saved()
+#     return 0
+
 def home(request):
     product = Product.objects.all()
+    # t = edit_sale()
+    # for i in product:
+    #     print(i.product_ID,"  " ,i.unit_Price_Sale)
     return render(request, 'home.html', {"product": product})
+
 
 
 def product(request, product_id):
@@ -161,8 +171,8 @@ def account(request, username):
         else:
             form = EditForm(instance=u)
         context = {"form": form,
-                   "legit": legit, 
-                   "users": p, 
+                   "legit": legit,
+                   "users": p,
                    "order": order,
                    "cart": cart, }
         return render(request, 'account.html', context)

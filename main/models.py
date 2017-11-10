@@ -19,6 +19,14 @@ class Product(models.Model):
     promotion = models.IntegerField(default=0)
     pic_Format = models.CharField(max_length=3, default='')
     thumbnail = models.FileField(null=True, blank=True)
+    unit_Price_Sale = models.IntegerField(editable=False,default=0)
+
+    def saved(self, *args, **kwargs):
+        self.unit_Price_Sale = self.unit_Price * (100 - self.promotion) / 100
+        print(self.unit_Price_Sale , "   " , self.unit_Price , " " , self.promotion)
+        super(Product, self).save(*args, **kwargs)
+
+
     def __str__(self):
         return str(self.product_ID)
 
@@ -28,9 +36,14 @@ class Product(models.Model):
     def get_brand(self):
         return str(self.brand)
 
-    def get_path(self):
-        return str(self.thumbnail)
+class Product_Comment(models.Model):
+    product_ID = models.ForeignKey('Product')
+    writer = models.CharField(max_length=45,default='')
+    comment = models.CharField(max_length=200,default='')
+    date = models.DateTimeField()
 
+    def __str__(self):
+        return str(self.product_ID)
 
 class ProdSize(models.Model):
     product_ID = models.ForeignKey('Product')
@@ -92,6 +105,7 @@ class OrderBy(models.Model):
     order_Date = models.DateTimeField('date ordered')
     address_to_send = models.CharField(max_length=200)
     date_send = models.DateTimeField('date delivered',default='',null=True,blank=True)
+    post_id = models.CharField(max_length=20,default='')
 
     def __str__(self):
         return str(self.order_ID)
@@ -124,6 +138,15 @@ class NewS(models.Model):
     description = models.CharField(max_length=2000, default='')
     pic = models.FileField(null=True, blank=True)
     source = models.CharField(max_length=500, default='')
+
+    def __str__(self):
+        return str(self.news_ID)
+
+class NewS_Comment(models.Model):
+    news_ID = models.ForeignKey('NewS')
+    writer = models.CharField(max_length=45,default='')
+    comment = models.CharField(max_length=200,default='')
+    date = models.DateTimeField()
 
     def __str__(self):
         return str(self.news_ID)
