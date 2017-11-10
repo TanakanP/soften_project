@@ -17,7 +17,6 @@ class Cart(object):
         p = product__id+strsize
         t = Product.objects.get(pk=product)
         thumbnail = Product.get_path(t)
-        # ppp = "%s-%s"%(product__id,strsize)
         if p not in self.cart:
             self.cart[p] = {'quantity': 0,
                             'name' : product.product_Name,
@@ -26,7 +25,6 @@ class Cart(object):
                             'pk' : product__id,
                             'p' : p,
                             'thumbnail': thumbnail,
-#                            'pic' : str(product.pic1),
                             'description': str(product.product_Description),}
         self.cart[p]['quantity'] += 1
         self.save()
@@ -37,7 +35,6 @@ class Cart(object):
         p = product__id+strsize
         t = Product.objects.get(pk=product)
         thumbnail = Product.get_path(t)
-        # ppp = "%s-%s"%(product__id,strsize)
         if p not in self.cart:
             self.cart[p] = {'quantity': 0,
                             'name' : product.product_Name,
@@ -46,7 +43,6 @@ class Cart(object):
                             'pk' : product__id,
                             'p' : p,
                             'thumbnail': thumbnail,
-#                            'pic' : str(product.pic1),
                             'description': str(product.product_Description),}
         if self.cart[p]['quantity'] > 1:
             self.cart[p]['quantity'] -= 1
