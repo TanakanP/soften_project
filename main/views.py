@@ -25,11 +25,19 @@ def edit_sale():
         i.saved()
     return 0
 
-def home(request):
+def update(request):
     product = Product.objects.all()
     t = edit_sale()
     for i in product:
         print(i.product_ID,"  " ,i.unit_Price_Sale)
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
+
+def home(request):
+    product = Product.objects.all()
+    # t = edit_sale()
+    # for i in product:
+    #     print(i.product_ID,"  " ,i.unit_Price_Sale)
     return render(request, 'home.html', {"product": product})
 
 

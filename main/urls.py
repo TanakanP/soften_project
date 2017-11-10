@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^news/', views.news, name='news'),
     url(r'^article/(?P<news_id>[-\w]+)/$', views.article, name='article'),
     url(r'^article/', views.article, name='article'),
+    url(r'^update/', views.update, name='update'),
 
     url(r'^catalog-(?P<product_brand>[A-z ]*)/$',views.catalog, name='catalog'),
     url(r'^catalog-(?P<product_gender>[A-z ]*)/$',views.catalog, name='catalog')
