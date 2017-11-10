@@ -132,7 +132,7 @@ class Supplier(models.Model):
 
 
 class NewS(models.Model):
-    news_ID = models.CharField(max_length=45, default='')
+    news_ID = models.CharField(max_length=45, default='', primary_key=True)
     date = models.DateTimeField()
     topic = models.CharField(max_length=200, default='')
     description = models.CharField(max_length=2000, default='')

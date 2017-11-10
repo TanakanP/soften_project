@@ -18,7 +18,9 @@ urlpatterns = [
     url(r'^history/(?P<order_id>[-\w]+)/$', views.orderdetail, name='orderdetail'),
     url(r'^catalog/$', views.catalog, name='catalog'),
     url(r'^news/', views.news, name='news'),
+    url(r'^article/(?P<news_id>[-\w]+)/$', views.article, name='article'),
     url(r'^article/', views.article, name='article'),
+
     url(r'^catalog-(?P<product_brand>[A-z ]*)/$',views.catalog, name='catalog'),
     url(r'^catalog-(?P<product_gender>[A-z ]*)/$',views.catalog, name='catalog')
 ]

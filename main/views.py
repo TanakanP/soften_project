@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import EditForm, ImageUploadForm
-from .models import Product, Prod4, Prod360, OrderBy, OrderList, Supplier
+from .models import Product, Prod4, Prod360, OrderBy, OrderList, Supplier,NewS
 from django.contrib.auth.models import User
 from register.models import Profile
 from django.http import HttpResponseRedirect
@@ -19,17 +19,17 @@ import random
 app_name = 'main'
 
 
-# def edit_sale():
-#     product = Product.objects.all()
-#     for i in product:
-#         i.saved()
-#     return 0
+def edit_sale():
+    product = Product.objects.all()
+    for i in product:
+        i.saved()
+    return 0
 
 def home(request):
     product = Product.objects.all()
-    # t = edit_sale()
-    # for i in product:
-    #     print(i.product_ID,"  " ,i.unit_Price_Sale)
+    t = edit_sale()
+    for i in product:
+        print(i.product_ID,"  " ,i.unit_Price_Sale)
     return render(request, 'home.html', {"product": product})
 
 
@@ -136,7 +136,11 @@ def contact(request):
     return render(request, 'contact.html')
 
 def news(request):
-    return render(request, 'news.html')
+    story = NewS.objects.all()
+    context = {
+        "story" : story
+    }
+    return render(request, 'news.html', context)
 
 def article(request):
     return render(request, 'article.html')
