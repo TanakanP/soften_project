@@ -14,6 +14,10 @@
 	<link rel="stylesheet" href="../static/assets/css/styles.css">
 	<script type='text/javascript' src='../../static/assets/js/jqueryasd.js'></script>
 
+  <link rel="stylesheet" type="text/css" href="../../static/assets/css/hover.css" />
+  <link rel="stylesheet" type="text/css" href="../../static/assets/css/component.css" />
+  <script src="../../static/assets/js/hover.js"></script>
+
 </head>
 
 <body>
@@ -119,23 +123,42 @@
 
             </ul>
 			</div>
-            <div class="col-md-10" style="min-height:700px; " >
-                	<div class="row category-child" style="margin-top:20px">
-							{% for i in catalog %}
-              <div class="col-lg-3 col-md-3 col-xs-6 {{i.brand}} {{i.gender}}">
-									<a class="{{i.product_ID}} {{i.pk}} thumbnail module " href="../product/{{i.pk}}">
-                    <img class="img-responsive " src="../static/assets/img{{i.thumbnail}}" alt="">
-                      <div class="wrapper">
-											<div class="caption post-content">
-												<span>{{i.product_Name}}</span>
-											</div>
-										</div>
-									</a>
-							</div>
-							{% endfor %}
+          <div class="col-md-10" style="min-height:700px; ">
+              <div class="row category-child" style="margin-top:20px">
+                  {% for i in catalog %}
+                  <div class="col-lg-3 col-md-3 col-xs-6 {{i.brand}} {{i.gender}} grid cs-style-3">
+                    <li>
+            					<figure>
+                        <a class="{{i.product_ID}} {{i.pk}} thumbnail module " href="../product/{{i.pk}}">
+                            <img class="img-responsive " src="../static/assets/img{{i.thumbnail}}" alt="">
+                            <div class="wrapper">
+                                <div class="caption post-content">
+                                    <span>{{i.product_Name}}</span>
+                                </div>
+                            </div>
+                            {% if i.promotion == 0 %}
+                              <!-- <b class="saleTag">SALE -{{  i.promotion }}%</b> -->
+                            <figcaption>
+                							<h3>{{i.product_Name}}</h3>
+                							<span class="price" style="text-align:center;">Price:  {{  i.unit_Price}}$</span>
+                						</figcaption>
+                            {% else %}
+                              <b class="saleTag">SALE -{{  i.promotion }}%</b>
+                            <figcaption>
+                              <h3>{{i.product_Name}}</h3>
+                              <span>Price:   </span><span class="priceSale">{{  i.unit_Price}}$</span><br><b>{{   i.unit_Price_Sale   }}$</b>
 
-					</div>
-            </div>
+                            </figcaption>
+                            {% endif %}
+
+                        </a>
+                    </figure>
+                  </li>
+                  </div>
+                  {% endfor %}
+
+              </div>
+          </div>
         </div>
     </div>
     {% include 'footer.html' %}
