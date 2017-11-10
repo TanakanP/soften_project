@@ -21,6 +21,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
 <link rel="stylesheet" href="../static/assets/css/styles.css">
 <link rel="stylesheet" href="../../static/assets/css/untitled.css">   <!-- max weight -->
+<link rel="stylesheet" href="../../static/assets/css/news.css">
 <script src="js/jquery.min.js"></script>
 <!---- start-smoth-scrolling---->
 <script type="text/javascript" src="../static/assets/js/move-top.js"></script>
@@ -116,9 +117,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							{% for i in story %}
 								<div class="col-md-6 abt-left">
 									<a href="{% url 'article' i.news_ID %}"><img src="../static/assets/img{{i.pic}}" alt="" /></a>
-									<h6>Find The Most</h6>
-									<h3><a href="{% url 'article' i.news_ID %}">{{ i.topic }}</a></h3>
-									<p>{{ i.description }}</p>
+									<div class="topicNew"><h3 ><a href="{% url 'article' i.news_ID %}">{{ i.topic }}</a></h3></div>
+									<div class="descriptionNew"><p>{{ i.description }}</p></div>
 									<label>Nov 10, 2017</label>
 								</div>
 							{% endfor %}
@@ -126,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<div class="col-md-4 about-right heading">
-					<div class="abt-1">
+					<!-- <div class="abt-1">
 						<h3>ABOUT US</h3>
 						<div class="abt-one">
 							<img src="../static/assets/img/news/c-2.jpg" alt="" />
@@ -135,36 +135,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<a href="{% url 'article' %}">Read More</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="abt-2">
 						<h3>YOU MIGHT ALSO LIKE</h3>
 							<div class="might-grid">
 								<div class="grid-might">
-									<a href="{% url 'article' %}"><img src="../static/assets/img/news/c-12.jpg" class="img-responsive" alt=""> </a>
+									<a href="{% url 'article' 'NEWS_002' %}"><img src="../static/assets/img/NEWS/02.jpg" class="img-responsive" alt=""> </a>
 								</div>
 								<div class="might-top">
-									<h4><a href="{% url 'article' %}">Duis consectetur gravida</a></h4>
-									<p>Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p>
+									<h4><a href="{% url 'article' 'NEWS_002' %}">THE PHARRELL X ADIDAS NMD HU..</a></h4>
+									<p>After a strong showing at Complex Con that included one of the hottest drops of the entire</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="might-grid">
 								<div class="grid-might">
-									<a href="{% url 'article' %}"><img src="../static/assets/img/news/c-10.jpg" class="img-responsive" alt=""> </a>
+									<a href="{% url 'article' 'NEWS_006' %}"><img src="../static/assets/img/NEWS/06.jpg" class="img-responsive" alt=""> </a>
 								</div>
 								<div class="might-top">
-									<h4><a href="{% url 'article' %}">Duis consectetur gravida</a></h4>
-									<p> Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p>
+									<h4><a href="{% url 'article' 'NEWS_006' %}">AIR JORDAN 6 “UNC” RELEASES ON..</a></h4>
+									<p> Earlier this month, Jordan Brand began its celebration of Michael Jordan’s success with the</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="might-grid">
 								<div class="grid-might">
-									<a href="{% url 'article' %}"><img src="../static/assets/img/news/c-11.jpg" class="img-responsive" alt=""> </a>
+									<a href="{% url 'article' 'NEWS_010' %}"><img src="../static/assets/img/NEWS/10.jpg" class="img-responsive" alt=""> </a>
 								</div>
 								<div class="might-top">
-									<h4><a href="{% url 'article' %}">Duis consectetur gravida</a></h4>
-									<p> Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p>
+									<h4><a href="{% url 'article' 'NEWS_010' %}">UP CLOSE WITH THE ADIDAS YEEZY..</a></h4>
+									<p>The adidas Yeezy Boost 350 v2 “Beluga 2.0” is just a few weeks away as a confirmed release date</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -172,13 +172,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="abt-2">
 						<h3>ARCHIVES</h3>
 						<ul>
-							<li><a href="{% url 'article' %}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </a></li>
-							<li><a href="{% url 'article' %}">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</a></li>
-							<li><a href="{% url 'article' %}">When an unknown printer took a galley of type and scrambled it to make a type specimen book. </a> </li>
-							<li><a href="{% url 'article' %}">It has survived not only five centuries, but also the leap into electronic typesetting</a> </li>
-							<li><a href="{% url 'article' %}">Remaining essentially unchanged. It was popularised in the 1960s with the release of </a> </li>
-							<li><a href="{% url 'article' %}">Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing </a> </li>
-							<li><a href="{% url 'article' %}">Software like Aldus PageMaker including versionsof Lorem Ipsum.</a> </li>
+							<li><a href="{% url 'article' 'NEWS_008' %}">ADIDAS RUNS 24-HOUR INSTAGRAM STORIES POLL GIVEAWAY OF CUSTOM </a></li>
+							<li><a href="{% url 'article' 'NEWS_001' %}">THE N*E*R*D* X ADIDAS NMD HU TRAIL IS AVAILABLE AT STADIUM GOODS</a></li>
+							<li><a href="{% url 'article' 'NEWS_004' %}">AN UNRELEASED AIR JORDAN 32 LIFESTYLE SAMPLE SURFACES</a> </li>
+							<li><a href="{% url 'article' 'NEWS_011' %}">THE GYAKUSOU X NIKELAB WINTER BOOT COLLECTION IS PRETTY INSANE</a> </li>
+							<li><a href="{% url 'article' 'NEWS_006' %}">AIR JORDAN 6 “UNC” RELEASES ON DECEMBER 2ND</a> </li>
+							<li><a href="{% url 'article' 'NEWS_010' %}">UP CLOSE WITH THE ADIDAS YEEZY BOOST 350 V2 “BELUGA 2.0”</a> </li>
+							<li><a href="{% url 'article' 'NEWS_005' %}">THE NIKE AIR MAX 95 DROPS IN THE ON-TREND BLACK AND GOLD</a> </li>
 						</ul>
 					</div>
 					<div class="abt-2">
@@ -196,53 +196,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--about-end-->
+
+
+
 	<!--slide-starts-->
 	<div class="slide">
 		<div class="container">
 			<div class="fle-xsel">
 			<ul id="flexiselDemo3">
+				{% for i in story %}
 				<li>
-					<a href="#">
+					<a href="{% url 'article' i.news_ID %}">
 						<div class="banner-1">
-							<img src="../static/assets/img/news/s-1.jpg" class="img-responsive" alt="">
+							<img src="../static/assets/img{{i.pic}}" class="img-responsive" alt="">
 						</div>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<div class="banner-1">
-							<img src="../static/assets/img/news/s-2.jpg" class="img-responsive" alt="">
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="banner-1">
-							<img src="../static/assets/img/news/s-3.jpg" class="img-responsive" alt="">
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="banner-1">
-							<img src="../static/assets/img/news/s-4.jpg" class="img-responsive" alt="">
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="banner-1">
-							<img src="../static/assets/img/news/s-5.jpg" class="img-responsive" alt="">
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="banner-1">
-							<img src="../static/assets/img/news/s-6.jpg" class="img-responsive" alt="">
-						</div>
-					</a>
-				</li>
+				{% endfor %}
 			</ul>
 
 							 <script type="text/javascript">
