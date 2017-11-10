@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^underconstruction/', views.underconstruction, name='underconstruction'),
     url(r'^contact/', views.contact, name='contact'),
-    url(r'^home/', views.home, name='home'),
+
     url(r'^product/(?P<product_id>[-\w]+)/$', views.product, name='product'),
     url(r'^product/$', views.productnull, name='productnull'),
     url(r'^account/upload/$',views.upload_pic , name='upload_pic'),
@@ -18,6 +18,7 @@ urlpatterns = [
      url(r'^history/(?P<order_id>[-\w]+)/$', views.orderdetail, name='orderdetail'),
     url(r'^catalog/$', views.catalog, name='catalog'),
     url(r'^news/', views.news, name='news'),
+    url(r'^article/', views.article, name='article'),
     url(r'^catalog-(?P<product_brand>[A-z ]*)/$',views.catalog, name='catalog'),
     url(r'^catalog-(?P<product_gender>[A-z ]*)/$',views.catalog, name='catalog')
 ]

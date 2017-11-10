@@ -165,6 +165,16 @@
 </html>
 
 <style>
+
+div.infoMem{
+  background-color: #bdbdbd;
+  width: 100px;
+  float: right;
+  height: 300px;
+  transition-duration: 0.5s;
+  overflow: hidden;
+}
+
 div#Head{
   height:80px;
 }
@@ -172,8 +182,9 @@ div#Head{
 h1{
   width:100%;
   height:100%;
-  color:white;
+  color:black;
 }
+
 div#col1:hover #name1{
   width:130px;
   overflow: visible;
@@ -265,16 +276,14 @@ div#name10{
   width: 0px;
   overflow: hidden;
 }
-div#Head{
-  background-color:rgb(85,85,85);
-}
 
 body{
-  background-color:black;
+  background-color:white;
 }
 
 h4.member{
-  color:inherit;
+  color:black;
+  overflow: hidden;
 }
 
 img{
@@ -284,13 +293,6 @@ img{
 img#profile{
   width: 100px;
   height:300px;
-  opacity: 0.5;
-  transition-duration: 1s;
-}
-
-img#profile:hover{
-  opacity: 1;
-  transition-duration: 1s;
 }
 
 img#facIcon{
@@ -306,36 +308,31 @@ img#githIcon{
 div.socDiv{
   width:100%;
 
+
 }
 h1#MainMess{
-  text-align:left;
-  padding-left: 3%;
-  padding-top: 2%;
+  text-align:center;
 }
 
-div.infoMem{
-  background-color: inherit;
-  width: 100px;
-  float: right;
-  height: 300px;
-  transition-duration: 0.5s;
-}
 div.infoMem:hover{
-  background-color: #817F7F;
   transition-duration: 0.5s;
 }
 
 div.row{
-  background-color:rgb(50,49,49);
   margin:auto;
 }
 div.col-md-2.col-xs-2:hover h4{
-  color:white;
+  color:black;
   overflow: hidden;
   transition-duration: 1.5s;
 }
 div.col-md-2.col-xs-2{
   width:auto;
+  height: 300px;
+  opacity: 0.5;
+}
+div.col-md-2.col-xs-2:hover{
+  opacity: 1;
 }
 
 div#row1.row{

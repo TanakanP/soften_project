@@ -122,6 +122,9 @@ def contact(request):
 def news(request):
     return render(request, 'news.html')
 
+def article(request):
+    return render(request, 'article.html')
+
 
 
 def account(request, username):

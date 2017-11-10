@@ -1,0 +1,19 @@
+.comment form input[type="submit"] {
+	background: #190608;
+	font-family: 'Raleway-Regular';
+	padding: 8px 1em;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 400;
+	display: block;
+
+	border: none;
+	margin-top: 3%;
+	width: 33%;
+	float: left;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+}

@@ -3,16 +3,16 @@
   <div class="container">
     <img src="../../static/assets/img/logo.png" style="height: 40px; margin-top: 10px; float: left;">
     <div class="container-fluid" style="margin-top:5px">
-      <div class="navbar-header"><a class="navbar-brand navbar-link" href="/home">SSS Store</a>
+      <div class="navbar-header"><a class="navbar-brand navbar-link" href="{% url 'home' %}">SSS Store</a>
         <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
       </div>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav">
-          <li role="presentation"><a href="../../catalog">Catalog </a></li>
+          <li role="presentation"><a href="{% url 'catalog' %}">Catalog </a></li>
           <li role="presentation"><a href="../../underconstruction">Sales </a></li>
-          <li role="presentation"><a href="../../underconstruction">News </a></li>
+          <li role="presentation"><a href="{% url 'news' %}">News </a></li>
           <li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
-		  <li role="presentation"><a href="../../contact">Contact </a></li>
+		  <li role="presentation"><a href="{% url 'contact' %}">Contact </a></li>
 
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
             <ul role="menu" class="dropdown-menu">
@@ -77,6 +77,9 @@
 
 
 <style>
+  #member:hover{
+    color: black;
+  }
   * {
     box-sizing: border-box;
   }

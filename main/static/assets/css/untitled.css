@@ -15,9 +15,9 @@ div#topsell{
   text-align:center;
 }
 
-div.col-md-4{
+/*div.col-md-4{
   text-align:left;
-}
+}*/
 
 button#filter_dropdown.btn.btn-default.dropdown-toggle{
   width:100%;
@@ -41,4 +41,3 @@ button#logoutbtt.btn.btn-default.active.navbar-btn.navbar-right{
 span#cartbadge.badge{
   margin-left:5px;
 }
-
