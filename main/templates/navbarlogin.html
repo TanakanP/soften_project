@@ -45,6 +45,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;"></span></i></a>
             <ul class="dropdown-menu dropdown-cart " role="menu" style="right:auto; left: auto;" id="dropdown-cart">
+
               {% for item in cart %}
               <li>
                 <div class="item">
@@ -57,6 +58,7 @@
                       <span class="namecartnav">{{item.name}}</span>
                       <span class="quantitycartnav">Size : {{item.size}}</span>
                       <span class="quantitycartnav">Quantity : {{item.quantity}}</span>
+                      <input type="text" name="qty" id="qty" style="display:none" value="{{item.quantity}}"/>
 
 
                     </span>
@@ -69,6 +71,7 @@
                 </div>
               </li>
               {% endfor %}
+
               <li class="divider"></li>
               <li><a class="text-center" href="../../cart">Checkout</a></li>
             </ul>
@@ -133,25 +136,14 @@
 
 <script>
 
-  function addcartnav() {
-    var ul = document.getElementById("dropdown-cart");
-    var li = document.createElement("li");
-    li.appendChild(document.createTextNode("{{number.product_Name}} {{number.price}}"));
-
-    ul.insertBefore(li, ul.childNodes[0]);
-
-    var listItems = $("#dropdown-cart").children();
-    var count = $('#dropdown-cart').children().size();  ;
-    count -= 2;
-    $('#cartbadge').text(count);
-
-  }
-
   function countcart() {
-    var listItems = $("#dropdown-cart").children();
-    var count = $('#dropdown-cart').children().size();  ;
-    count -= 2;
-    $('#cartbadge').text(count);
+    var arr = document.getElementsByName('qty');
+    var tot=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            tot += parseInt(arr[i].value);
+    }
+    $('#cartbadge').text(tot);
   }
 
 

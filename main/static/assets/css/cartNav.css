@@ -33,10 +33,7 @@
     margin-left: 5px;
 }
 
-.cartall{
-  max-height: 530px;
-  overflow: scroll;
-}
+
 
 ul.dropdown-cart li .item {
   display: block;
