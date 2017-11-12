@@ -72,13 +72,14 @@ def productnull(request):
     return HttpResponseRedirect(next)
 
 
-def catalog(request, gender="", product_brand=""):
+def catalog(request, gender="", product_brand="",key_sort="name"):
     cart = Cart(request)
     brandcheck = []
     gendercheck = []
     brandcheck = request.POST.getlist("radio-set-2")
     gendercheck = request.POST.getlist("radio-set-1")
     tick = request.POST.getlist("radio-set-3")
+    key = request.POST.getlist("key")
     catalog = Product.objects.all()
     product = Product.objects.all()
     pic_type_4 = Prod4.objects.all()
@@ -114,7 +115,12 @@ def catalog(request, gender="", product_brand=""):
         brandout = []
         brandout.append(product_brand)
 
-    trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout))
+    if key_sort == 'promotion':
+        trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout)).order_by('-promotion')
+    elif key_sort == 'name':
+        trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout)).order_by('-product_Name')
+    elif key_sort == 'price':
+        trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout)).order_by('-unit_Price_Sale')
 
     if tick:
         brandcheck = []

@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^underconstruction/', views.underconstruction, name='underconstruction'),
     url(r'^contact/', views.contact, name='contact'),
+    url(r'^sale/$', views.catalog, {'key_sort':'promotion'},name='sale'),
 
     url(r'^product/(?P<product_id>[-\w]+)/$', views.product, name='product'),
     url(r'^product/$', views.productnull, name='productnull'),
