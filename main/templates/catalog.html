@@ -20,7 +20,7 @@
 
 </head>
 
-<body onload="countcart();">
+<body >
 {% if request.user.is_authenticated %}
     {% include 'navbarlogin.html' %}
     {% block navbarlogin %}
@@ -169,14 +169,16 @@
 
 </body>
 
+<!-- <script>
+//
+// window.onload = function() {
+//  countcart();
+// }
+// </script> -->
+
 <script>
-
-window.onload = function() {
- countcart();
-}
-
 (function($) {
-
+  countcart();
   /**
    * Copyright 2012, Digital Fusion
    * Licensed under the MIT license.
