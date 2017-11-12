@@ -1,5 +1,6 @@
 {% block navbarlogin %}
-<nav class="navbar navbar-default navbar-fixed-top">
+<link rel="stylesheet" href="../../static/assets/css/cartNav.css">
+<nav class="navbar navbar-default navbar-fixed-top" onload="countcart()">
   <div class="container">
     <img src="../../static/assets/img/logo.png" style="height: 40px; margin-top: 10px; float: left;">
     <div class="container-fluid" style="margin-top:5px">
@@ -13,7 +14,6 @@
           <li role="presentation"><a href="{% url 'news' %}">News </a></li>
           <li role="presentation"><a href="https://a6364.wordpress.com/">Blog </a></li>
            <li role="presentation"><a href="{% url 'contact' %}">Contact </a></li>
-
 
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle"><strong>Search </strong><i class="glyphicon glyphicon-search"></i></a>
             <ul role="menu" class="dropdown-menu">
@@ -33,10 +33,6 @@
                     <td>{{p.brand}}</td>
                   </tr>
                   {% endfor %}
-                  <!-- <tr>
-                      <td>Paris specialites</td>
-                      <td>France</td>
-                      </tr> -->
                 </table>
               </div>
             </ul>
@@ -47,24 +43,30 @@
         <a class="btn btn-link active navbar-btn navbar-right" role="button" href="{% url 'account' user %}" id="member"><i class="fa fa-user"></i> {{user}} </a>
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="../../underconstruction"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;">0</span></i></a>
-            <ul class="dropdown-menu dropdown-cart" role="menu" style="right:auto; left: auto;">
+          <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;"></span></i></a>
+            <ul class="dropdown-menu dropdown-cart " role="menu" style="right:auto; left: auto;" id="dropdown-cart">
               {% for item in cart %}
               <li>
-                <span class="item">
-                <span class="item-left">
-                  <!-- edit size of pic!!!! -->
-                  <h1>{{item.pk}}</h1>
-                  <img src="../../static/assets/img{{item.thumbnail}}" alt="" />
-                  <span class="item-info">
-                    <span>{{item.name}}</span>
-                <span>{{item.price}}$</span>
+                <div class="item">
+                  <span class="item-left">
+                    <img src="../../static/assets/img{{item.thumbnail}}" alt="" class="imgcartnav" />
+                    <!-- edit size of pic!!!! -->
+                    <!-- <h1>{{item.pk}}</h1> -->
+
+                    <span class="item-info">
+                      <span class="namecartnav">{{item.name}}</span>
+                      <span class="quantitycartnav">Size : {{item.size}}</span>
+                      <span class="quantitycartnav">Quantity : {{item.quantity}}</span>
+
+
+                    </span>
+                  </span>
+                  <span class="item-right">
+                    <span class="pricecartnav">{{item.total_price}}$</span>
+                    <a><span class="delete-btn" ></span></a>
+                  </span>
                 </span>
-                </span>
-                <span class="item-right">
-                  <button class="btn btn-xs btn-danger pull-right">x</button>
-                </span>
-                </span>
+                </div>
               </li>
               {% endfor %}
               <li class="divider"></li>
@@ -121,59 +123,38 @@
     background-color: #f1f1f1;
   }
 
-  <<<<<<< HEAD=======ul.dropdown-cart {
-    min-width: 300px;
-  }
 
-  ul.dropdown-cart li .item {
-    display: block;
-    padding: 3px 10px;
-    margin: 3px 0;
-  }
 
-  ul.dropdown-cart li .item:hover {
-    background-color: #f3f3f3;
-  }
 
-  ul.dropdown-cart li .item:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-  }
-
-  ul.dropdown-cart li .item-left {
-    float: left;
-  }
-
-  ul.dropdown-cart li .item-left img,
-  ul.dropdown-cart li .item-left span.item-info {
-    float: left;
-  }
-
-  ul.dropdown-cart li .item-left span.item-info {
-    margin-left: 10px;
-  }
-
-  ul.dropdown-cart li .item-left span.item-info span {
-    display: block;
-  }
-
-  ul.dropdown-cart li .item-right {
-    float: right;
-  }
-
-  ul.dropdown-cart li .item-right button {
-    margin-top: 14px;
-  }
 
 </style>
 
 
 
 <script>
+
+  function addcartnav() {
+    var ul = document.getElementById("dropdown-cart");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode("{{number.product_Name}} {{number.price}}"));
+
+    ul.insertBefore(li, ul.childNodes[0]);
+
+    var listItems = $("#dropdown-cart").children();
+    var count = $('#dropdown-cart').children().size();  ;
+    count -= 2;
+    $('#cartbadge').text(count);
+
+  }
+
+  function countcart() {
+    var listItems = $("#dropdown-cart").children();
+    var count = $('#dropdown-cart').children().size();  ;
+    count -= 2;
+    $('#cartbadge').text(count);
+  }
+
+
   function myFunction() {
     var input, filter, table, tr, td, i;
     input = document.getElementById("myInput");

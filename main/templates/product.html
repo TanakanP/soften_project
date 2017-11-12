@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
 </head>
 
-<body>
+<body onload="countcart()">
 {% if request.user.is_authenticated %}
     {% include 'navbarlogin.html' %}
     {% block navbarlogin %}
@@ -70,7 +70,7 @@
                     {% endfor %}
                     <div class="col-md-8">
                         <h2>{{number.product_Name}}</h2>
-    
+
                     </div>
                 </div>
             <div class="row">
@@ -210,7 +210,7 @@ jQuery(document).ready(function(){
         $("#productpage").addClass("disabledbutton");
         $("#loader").fadeIn();
         $("#loader").fadeOut().delay(100);
-        window.setTimeout(function(){$("#productpage").removeClass("disabledbutton");}, 800);
+        window.setTimeout(function(){location.reload();}, 800);
     });
 });
 

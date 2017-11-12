@@ -74,7 +74,6 @@ def productnull(request):
 
 def catalog(request, gender="", product_brand=""):
     cart = Cart(request)
-    print(cart)
     brandcheck = []
     gendercheck = []
     brandcheck = request.POST.getlist("radio-set-2")

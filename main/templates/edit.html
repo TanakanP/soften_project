@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../static/assets/css/styles.css">
     <link rel="stylesheet" href="../../static/assets/css/Pretty-Registration-Form.css">
 </head>
-<body>
+<body onload="countcart()">
   {% if request.user.is_authenticated %}
   {% if legit %}
 	<div class="row register-form">

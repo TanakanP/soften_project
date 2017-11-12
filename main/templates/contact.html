@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="../../static/assets/css/contact.css">
 </head>
 
-<body>
+<body onload="countcart()">
 {% if request.user.is_authenticated %}
     {% include 'navbarlogin.html' %}
     {% block navbarlogin %}

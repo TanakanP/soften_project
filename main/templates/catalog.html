@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body onload="countcart();">
 {% if request.user.is_authenticated %}
     {% include 'navbarlogin.html' %}
     {% block navbarlogin %}
@@ -170,6 +170,11 @@
 </body>
 
 <script>
+
+window.onload = function() {
+ countcart();
+}
+
 (function($) {
 
   /**

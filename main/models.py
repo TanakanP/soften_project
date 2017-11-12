@@ -36,6 +36,9 @@ class Product(models.Model):
     def get_brand(self):
         return str(self.brand)
 
+    def get_path(self):
+        return str(self.thumbnail)
+
 class Product_Comment(models.Model):
     product_ID = models.ForeignKey('Product')
     writer = models.CharField(max_length=45,default='')

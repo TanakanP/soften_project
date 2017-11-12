@@ -1,0 +1,83 @@
+.dropdown-cart{
+  width: 350px;
+}
+
+.imgcartnav {
+  width: 100px;
+}
+.namecartnav{
+  font-size: 20px;
+  white-space: nowrap;
+  width: 141px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.pricecartnav{
+  font-size: 18px;
+}
+
+.quantitycartnav{
+  color: #8e8d8d;
+}
+
+.delete-btn {
+    display: inline-block;
+    cursor: pointer;
+    width: 18px;
+    height: 17px;
+    background: url(https://designmodo.com/demo/shopping-cart/delete-icn.svg) no-repeat center;
+    margin-right: 5px;
+    margin-top: 40px;
+    margin-left: 5px;
+}
+
+.cartall{
+  max-height: 530px;
+  overflow: scroll;
+}
+
+ul.dropdown-cart li .item {
+  display: block;
+  padding: 3px 10px;
+  margin: 3px 0;
+}
+
+ul.dropdown-cart li .item:hover {
+  background-color: #f3f3f3;
+}
+
+ul.dropdown-cart li .item:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+ul.dropdown-cart li .item-left {
+  float: left;
+}
+
+ul.dropdown-cart li .item-left img,
+ul.dropdown-cart li .item-left span.item-info {
+  float: left;
+}
+
+ul.dropdown-cart li .item-left span.item-info {
+  margin-left: 10px;
+}
+
+ul.dropdown-cart li .item-left span.item-info span {
+  display: block;
+}
+
+ul.dropdown-cart li .item-right {
+  float: right;
+}
+
+ul.dropdown-cart li .item-right button {
+  margin-top: 14px;
+}
