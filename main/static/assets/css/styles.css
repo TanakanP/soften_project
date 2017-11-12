@@ -121,7 +121,11 @@ div#row1.row{
 }
 
 button#addcart{
-
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
   width:100%;
 }
 
@@ -343,6 +347,3 @@ div.col-lg-offset-0.col-md-12{
   opacity: 1;
   right: 0;
 }
-
-
-

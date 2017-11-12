@@ -49,9 +49,9 @@
                                           <div class="col-md-8">
                                             <p style="font-size:150%">{{item.name}}</p>
                                             <p>Size {{item.size}}</p>
-                                            <p style="font-size:110%">{{item.description}}</p>
+                                            <p class="productdes">{{item.description}}</p>
                                           </div>
-                                          <div class="col-md-3">
+                                          <div class="col-md-2">
                                             <p style="font-size:150%">Quantity</p>
                                             <form action="./sub/{{item.pk}}" method="post" style="display:none">
 
@@ -77,12 +77,15 @@
                                               <input type='submit' id="{{item.p}}+" value='+' style="background-color: #77dd91; border: none; width: 40px; height:40px;font-size:130%;"/>
                                             </form>
                                             <input type='button' id='{{item.p}}pricedwn' class='priceminus' field='{{item.p}}price' style="display:none" onclick="document.getElementById('{{item.p}}-').click()"/>
-                                            <input type='button' class='qtyminus' field='{{item.p}}' value='-' style="background-color: #ff6181; border: none;width: 40px; height:40px;font-size:130%;" onclick="document.getElementById('{{item.p}}pricedwn').click()"/>
+                                            <input type='button' class='qtyminus' field='{{item.p}}' value='-'  onclick="document.getElementById('{{item.p}}pricedwn').click()"/>
                                             <input type='text' name='{{item.p}}' value='{{item.quantity}}' class='qty text-center' style='width: 40px; height:40px;font-size:130%;' readonly />
-                                            <input type='button' class='qtyplus' field='{{item.p}}' value='+' style="background-color: #77dd91; border: none; width: 40px; height:40px;font-size:130%;" onclick="document.getElementById('{{item.p}}priceup').click()"/>
+                                            <input type='button' class='qtyplus' field='{{item.p}}' value='+'  onclick="document.getElementById('{{item.p}}priceup').click()"/>
                                             <input type='button' id='{{item.p}}priceup' class='priceplus' field='{{item.p}}price' style="display:none" onclick="document.getElementById('{{item.p}}+').click()"/>
                                             <!-- test value from database -->
-                                            <p style="font-size:130%"><strong>Cost</strong>
+
+                                          </div>
+                                          <div class="col-md-1">
+                                            <p class="costdiv">
                                                 <input type='text' id='{{item.p}}price' value='{{item.price}}' style="display:none"></a>
                                                 <input type='text' name='{{item.p}}price' value='{{item.total_price}}' class='text-left' style='outline: 0; border: none; background: transparent; width:43px;' readonly />$
                                             </p>
@@ -90,19 +93,16 @@
                                           <div class="col-md-1">
                                             <a role="button" id="{{item.pk}}remove" style="display:none" href="remove/{{item.p}}"></a>
                                             <a role="button" class="removeP" field='{{item.p}}price' style="outline: 0; border: none; color: transparent; background: transparent;" onclick="document.getElementById('{{item.pk}}remove').click()">
-                                              <img class="img-circle" id="Xbutton" src="../../static/assets/img/buttoncancel.png" style="width:32px;height:32px; display:block">
+                                              <span class="delete-btn deleteoncart" ></span>
                                             </a>
                                           </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4 col-md-offset-8" style="font-size:120%">
 
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         {% endfor %}
                         <div class="row">
                             <div class="col-md-1 col-md-offset-9" style="font-size:250%">
@@ -211,6 +211,42 @@
 </body>
 
 <style>
+
+.deleteoncart{
+  margin-top: 60px;
+}
+
+.costdiv{
+  font-size:130%;
+  padding-top: 50px;
+
+}
+
+.productdes{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  max-height: 85px;
+  color: #8e8d8d;
+}
+
+.qtyplus, .qtyminus{
+  width: 40px;
+  height: 40px;
+  background-color: #E1E8EE;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size:130%;
+}
+
+.qty{
+  border: none;
+}
+
+
 #loader {
   position: absolute;
   left: 50%;
