@@ -98,16 +98,16 @@
 			<div class="modal-body">
 				<div class="col-md-6 col-sm-6 no-padng">
 					<div class="model-l">
-						<form method="post" id="logFrm" class="log-frm" name="logFrm" action="{% url 'login' %}">
+						<form method="post" id="logFrm" class="log-frm" name="logFrm" action="{% url 'login' %}" onsubmit="LoginFail();">
 
 							{% csrf_token %}
 							<ul>
 								<li>Username</li>
-								<li> <input type="text" placeholder="User ID" id="id_username" name="username" class="form-control" > </li>
+								<li> <input type="text" placeholder="User ID" id="id_username" name="username" class="form-control" pattern=".{3,}" required> </li>
 								<li>Password</li>
-								<li><input type="password" placeholder="Password" id="id_password" name="password" class="form-control" ></li>
+								<li><input type="password" placeholder="Password" id="id_password" name="password" class="form-control" required></li>
 								<input type="hidden" name="next" value="{{ request.path }}">
-								<li><br/><button type="submit" onclick="LoginFail();" id="logBtn" class="btn btn-default">Submit</button></li>
+								<li><br/><button  type="submit" id="logBtn" class="btn btn-default">Submit</button></li>
 								<div style="display:none;" id="loginFail" class="sign">
 									<li>
 										<font color="red"> Username or password is incorrect.</font>
@@ -140,22 +140,22 @@
 						<div class="o-r">
 							<span>OR</span>
 						</div>
-						<form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm" action="{% url 'signup' %}"> {% csrf_token %}
+						<form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm" action="{% url 'signup' %}" onsubmit="SignUpFail();"> {% csrf_token %}
 							<ul>
 								<li>Username</li>
-								<li><input type="text" placeholder="Username" name="username" class="form-control" id="id_username"></li>
+								<li><input type="text" placeholder="Username" name="username" class="form-control" id="id_username" pattern=".{5,}" required></li>
 								<li>First Name</li>
-								<li><input type="text" placeholder="First Name" name="first_name" class="form-control" id="id_first_name"></li>
+								<li><input type="text" placeholder="First Name" name="first_name" class="form-control" id="id_first_name" pattern="[A-z]{3,}"required></li>
 								<li>Last Name</li>
-								<li><input type="text" placeholder="Last Name" name="last_name" class="form-control" id="id_last_name"></li>
+								<li><input type="text" placeholder="Last Name" name="last_name" class="form-control" id="id_last_name" pattern="[A-z]{3,}"required></li>
 								<li>Address</li>
-								<li><input type="text" placeholder="Last Name" name="address" class="form-control" id="id_address"></li>
+								<li><input type="text" placeholder="Address" name="address" class="form-control" id="id_address" pattern=".{10,}" required></li>
 								<li>Email</li>
-								<li><input type="text" placeholder="Last Name" name="email" class="form-control" id="id_email"></li>
+								<li><input type="email" placeholder="E-mail" name="email" class="form-control" id="id_email" pattern="\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b" required></li>
 								<li>Password</li>
-								<li><input type="password" placeholder="Password" name="password1" class="form-control" id="id_password1"></li>
+								<li><input type="password" placeholder="Password" name="password1" class="form-control" id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></li>
 								<li>Confirm Password</li>
-								<li><input type="password" placeholder="Confirm Password" name="password2" class="form-control" id="id_password2"></li>
+								<li><input type="password" placeholder="Confirm Password" name="password2" class="form-control" id="id_password2" pattern=".{8,}" required></li>
 								<input type="hidden" name="next" value="{{ request.path }}">
 								<br>
 								<li><button type="submit" name="userRegBtn" class="btn btn-default">Signup Now</button></li>
@@ -188,18 +188,75 @@
 </div>
 </div>
 </div>
-<script>
 
 
+		<script>
 
+			var email = document.getElementById("id_email");
+			email.addEventListener("input", function (event) {
+				if (email.validity.patternMismatch) {
+					email.setCustomValidity("Please enter a valid Email Address");
+				} else {
+					email.setCustomValidity("");
+				}
+			});
 
-function LoginFail()
-{
-				window.setTimeout(function() {alert("Username or password is incorrect."); }, 3000);
-}
+			var username = document.getElementById("id_username");
+			username.addEventListener("input", function (event) {
+				if (username.value.length < 5) {
+					username.setCustomValidity("Please enter 5-20 characters");
+				} else {
+					username.setCustomValidity("");
+				}
+			});
 
+			var firstname = document.getElementById("id_first_name");
+			firstname.addEventListener("input", function (event) {
+				if ((firstname.value.length < 3) || (firstname.validity.patternMismatch)) {
+					firstname.setCustomValidity("Please enter 3-20 characters (letters only)");
+				} else {
+					firstname.setCustomValidity("");
+				}
+			});
 
-</script>
+			var lastname = document.getElementById("id_last_name");
+			lastname.addEventListener("input", function (event) {
+				if (lastname.value.length < 3 || (lastname.validity.patternMismatch)) {
+					lastname.setCustomValidity("Please enter 3-20 characters (letters only)");
+				} else {
+					lastname.setCustomValidity("");
+				}
+			});
+
+			var address = document.getElementById("id_address");
+			address.addEventListener("input", function (event) {
+				if (address.value.length < 10) {
+					address.setCustomValidity("Please enter 10-200 characters ");
+				} else {
+					address.setCustomValidity("");
+				}
+			});
+
+			var pw1 = document.getElementById("id_password1");
+			pw1.addEventListener("input", function (event) {
+				if (pw1.validity.patternMismatch) {
+					pw1.setCustomValidity("Must contain at least one number and \n one uppercase and lowercase letter, and \nat least 8 or more characters");
+				} else {
+					pw1.setCustomValidity("");
+				}
+			});
+
+			function SignUpFail()
+			{
+				window.setTimeout(function() {alert("Password and Confirm Password is not match"); }, 2000);
+			}
+
+			function LoginFail()
+			{
+				window.setTimeout(function() {alert("Username or password is incorrect."); }, 2000);
+			}
+
+		</script>
 
 <style>
 	* {
