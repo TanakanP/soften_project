@@ -65,7 +65,7 @@
                   </span>
                   <span class="item-right">
                     <span class="pricecartnav">{{item.total_price}}$</span>
-                    <a><span class="delete-btn" ></span></a>
+                    <a href="../../cart/remove/{{item.p}}" onclick="refreshPage()" id="removecartnav"><span class="delete-btn" ></span></a>
                   </span>
                 </span>
                 </div>
@@ -81,7 +81,11 @@
     </div>
   </div>
 </nav>
-
+<script>
+function refreshPage(){
+    window.setTimeout(function(){location.reload();}, 300);
+}
+</script>
 
 
 <style>
