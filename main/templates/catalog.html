@@ -39,16 +39,16 @@
 				<style scoped>
 					@import "../../static/assets/css/Divistyle.css";
 				</style>
-                <form action = "../../catalog/" method = "post">
+                <form action = "../../catalog/" id="form"method = "post">
                 <div class="row menu">
                     <div class="col-md-12">
                         <h1>Filter </h1>
                         <div class="checkbox">
                             <label>
-                              {% if "all" in tick %}
-                                <input name="radio-set-3" type="checkbox" onclick="this.form.submit();" value = "all" checked>All
+                              {% if "All" in allcheck %}
+                                <input name="radio-set-3" type="checkbox" id="all" onclick="this.form.submit();" value = "All" checked>All
                               {% else %}
-                                  <input name="radio-set-3" type="checkbox" onclick="this.form.submit();" value = "all" >All
+                                <input name="radio-set-3" type="checkbox" id="all" onclick="this.form.submit();" value = "All" >All
                               {% endif %}
 
                             </label>
@@ -57,25 +57,33 @@
                 </div>
                 <div class="row menu">
 					<div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
-						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
+						<div class="et_pb_module et_pb_toggle et_pb_toggle_open toggle_custom_3  et_pb_toggle_item">
 							<h5 class="et_pb_toggle_title">Gender</h5>
 							<div class="et_pb_toggle_content clearfix">
 
                 {% csrf_token %}
                 <div class="checkbox">
+                  <label>
+                    {% if "All" in gendercheck %}
+                      <input  name="radio-set-1" type="checkbox" value="All" id="all_gender" onclick="this.form.submit();" checked="" />All
+                    {% else %}
+                      <input  name="radio-set-1" type="checkbox" value="All" id="all_gender" onclick="this.form.submit();" />All
+                    {% endif %}
+                </div>
+                <div class="checkbox">
 									<label>
                     {% if "M" in gendercheck %}
-                      <input  name="radio-set-1" type="checkbox" value="M" onclick="this.form.submit();" checked="" />Male
+                      <input  name="radio-set-1" type="checkbox" value="M" onclick="uncheck_gender();" checked="" />Male
                     {% else %}
-                      <input  name="radio-set-1" type="checkbox" value="M" onclick="this.form.submit();" />Male
+                      <input  name="radio-set-1" type="checkbox" value="M" onclick="uncheck_gender();" />Male
                     {% endif %}
 								</div>
 								<div class="checkbox">
 									<label>
                     {% if "F" in gendercheck %}
-                      <input  name="radio-set-1" type="checkbox" value="F" onclick="this.form.submit();" checked="" />Female
+                      <input  name="radio-set-1" type="checkbox" value="F" onclick="uncheck_gender();" checked="" />Female
                     {% else %}
-                      <input  name="radio-set-1" type="checkbox" value="F" onclick="this.form.submit();" />Female
+                      <input  name="radio-set-1" type="checkbox" value="F" onclick="uncheck_gender();" />Female
                     {% endif %}
 								</div>
 							</div> <!-- .et_pb_toggle_content -->
@@ -84,16 +92,25 @@
                 </div>
                 <div class="row menu">
 					<div class="et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns1">
-						<div class="et_pb_module et_pb_toggle et_pb_toggle_close toggle_custom_3  et_pb_toggle_item">
+						<div class="et_pb_module et_pb_toggle et_pb_toggle_open toggle_custom_3  et_pb_toggle_item">
 							<h5 class="et_pb_toggle_title">Brands</h5>
 							<div class="et_pb_toggle_content clearfix">
+                <div class="checkbox">
+                  <label>
+                    {% if "All" in brandcheck %}
+                      <input  name="radio-set-2" type="checkbox" value="All" id="all_brand" onclick="this.form.submit();" checked="" />All
+                    {% else %}
+                      <input  name="radio-set-2" type="checkbox" value="All" id="all_brand" onclick="this.form.submit();" />All
+                    {% endif %}
+                  </label>
+                </div>
 								{% for i in brandlist %}
 									<div class="checkbox">
 										<label>
-                      {% if i.brand in brandcheck %}
-                        <input  name="radio-set-2" type="checkbox" value="{{i.brand}}" onclick="this.form.submit();" checked="" />{{i.brand}}
+                      {% if i in brandcheck %}
+                        <input  name="radio-set-2" type="checkbox" value="{{i}}" onclick="uncheck_brand();" checked="" />{{i}}
                       {% else %}
-                        <input  name="radio-set-2" type="checkbox" value="{{i.brand}}" onclick="this.form.submit();" />{{i.brand}}
+                        <input  name="radio-set-2" type="checkbox" value="{{i}}" onclick="uncheck_brand();" />{{i}}
                       {% endif %}
                     </label>
 
@@ -169,44 +186,22 @@
 
 </body>
 
-<!-- <script>
-//
-// window.onload = function() {
-//  countcart();
-// }
-// </script> -->
+<script>
+function uncheck_brand() {
+    document.getElementById("all").checked = false;
+    document.getElementById("all_brand").checked = false;
+    this.form.submit();
+}
+function uncheck_gender() {
+    document.getElementById("all").checked = false;
+    document.getElementById("all_gender").checked = false;
+    this.form.submit();
+}
+</script>
+
+
 
 <script>
-(function($) {
-  countcart();
-  /**
-   * Copyright 2012, Digital Fusion
-   * Licensed under the MIT license.
-   * http://teamdf.com/jquery-plugins/license/
-   *
-   * @author Sam Sehnert
-   * @desc A small plugin that checks whether elements are within
-   *     the user visible viewport of a web browser.
-   *     only accounts for vertical position, not horizontal.
-   */
-
-  $.fn.visible = function(partial) {
-
-      var $t            = $(this),
-          $w            = $(window),
-          viewTop       = $w.scrollTop(),
-          viewBottom    = viewTop + $w.height(),
-          _top          = $t.offset().top,
-          _bottom       = _top + $t.height(),
-          compareTop    = partial === true ? _bottom : _top,
-          compareBottom = partial === true ? _top : _bottom;
-
-    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
-
-  };
-
-})(jQuery);
-
 var win = $(window);
 
 var allMods = $(".module");
@@ -226,7 +221,6 @@ win.scroll(function(event) {
       el.addClass("come-in");
     }
   });
-
 });
 </script>
 <style>
