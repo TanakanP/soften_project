@@ -106,7 +106,11 @@
       <p>Posted  on 10 Nov, 2017 </p>
       <p>Phasellus fringilla enim nibh, ac pharetra nulla vestibulum ac. Donec tempor fermentum felis, non placerat sem ultrices ut. Nam molestie nunc nec felis hendrerit, in pulvinar arcu mollis. Quisque eget purus nec velit venenatis tincidunt vitae ac massa. Proin vel ornare tellus. Duis consectetur gravida tellus ut varius. Aenean tellus massa, laoreet ut euismod et, pretium id ex. Mauris hendrerit suscipit hendrerit.</p>
       <p>Quisque ultrices ligula a nisl porttitor, vitae porta tortor eleifend. Nulla nec imperdiet ipsum, ut cursus mauris. Proin ut sodales sem, quis vestibulum libero. Proin tempor venenatis congue. Phasellus mollis massa sit amet pharetra consequat. Aliquam quis lacus at sapien tempor semper. Sed ultrices et metus et elementum. Nunc sed justo at erat consequat mollis et eu lectus.</p>
-
+      {% for c in comment %}
+        <p>Posted  on {{c.date}}</p>
+        <p>{{c.writer}}</p>
+        <p>{{c.comment}}</p>
+      {% endfor %}
       <ul>
         <li><p>Share : </p></li>
         <li><a href="http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com/news"><span class="fb"> </span></a></li>
@@ -138,6 +142,11 @@
   </div>
   <div class="container" id="loader" style="display:none">
   </div>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+  </form>
     {% include 'footer.html' %}
     {% block footer %}
     {% endblock %}

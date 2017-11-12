@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from .forms import EditForm, ImageUploadForm
-from .models import Product, Prod4, Prod360, OrderBy, OrderList, Supplier,NewS
+from .forms import EditForm, ImageUploadForm, ReviewForm, CommentForm
+from .models import Product, Prod4, Prod360, OrderBy, OrderList, Supplier, NewS, Product_Comment, NewS_Comment
 from django.contrib.auth.models import User
 from register.models import Profile
 from django.http import HttpResponseRedirect
@@ -14,6 +14,7 @@ from django.views.decorators.http import require_POST
 from cart.cart import Cart
 
 import random
+import datetime
 # Create your views here.
 
 app_name = 'main'
@@ -51,11 +52,22 @@ def product(request, product_id=""):
         pic_format = Product.format(number)
         logo = Product.get_brand(number)
         logo_path = Supplier.objects.all()
+        comment = Product_Comment.objects.filter(product_ID = product_id)
 
         if pic_format == 4:
             path = Prod4.objects.all()
         else :
             path = Prod360.objects.all()
+
+        if request.method == 'POST':
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                Product_Comment.objects.create(product_ID = number, writer = form.cleaned_data.get('writer'), comment = form.cleaned_data.get('comment'), date = datetime.datetime.now())
+                return HttpResponseRedirect('/catalog')
+            else:
+                print("KUY")
+        else:
+            form = ReviewForm(request.POST)
 
         context = {"product": product,
                    "number": number,
@@ -64,7 +76,9 @@ def product(request, product_id=""):
                    "cart_product_form":cart_product_form,
                    "logo_path": logo_path,
                    "logo": logo,
-                   "cart": cart,}
+                   "cart": cart,
+                   "form": form,
+                   "comment": comment,}
         return render(request, 'product.html', context)
     except Exception as e:
         next = request.POST.get('next', '/catalog')
@@ -143,8 +157,24 @@ def news(request):
     }
     return render(request, 'news.html', context)
 
-def article(request):
-    return render(request, 'article.html')
+def article(request, news_id = ""):
+    new = NewS.objects.get(news_ID = news_id)
+    comment = NewS_Comment.objects.filter(news_ID = news_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            NewS_Comment.objects.create(news_ID = new, writer = form.cleaned_data.get('writer'), comment = form.cleaned_data.get('comment'), date = datetime.datetime.now())
+            return HttpResponseRedirect('/news')
+        else:
+            print("KUY")
+    else:
+        form = CommentForm(request.POST)
+    context = {
+        "new": new,
+        "form": form,
+        "comment": comment,
+    }
+    return render(request, 'article.html', context)
 
 def account(request, username=""):
     cart = Cart(request)
