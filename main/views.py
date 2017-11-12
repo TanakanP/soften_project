@@ -42,100 +42,88 @@ def home(request):
 
 
 
-def product(request, product_id):
+def product(request, product_id=""):
     cart = Cart(request)
     product = Product.objects.all()
-    number = Product.objects.get(pk=product_id)
-    cart_product_form = CartAddProductForm()
-    pic_format = Product.format(number)
-    logo = Product.get_brand(number)
-    logo_path = Supplier.objects.all()
+    try:
+        number = Product.objects.get(pk=product_id)
+        cart_product_form = CartAddProductForm()
+        pic_format = Product.format(number)
+        logo = Product.get_brand(number)
+        logo_path = Supplier.objects.all()
 
-    if pic_format == 4:
-        path = Prod4.objects.all()
-    else :
-        path = Prod360.objects.all()
+        if pic_format == 4:
+            path = Prod4.objects.all()
+        else :
+            path = Prod360.objects.all()
 
-    context = {"product": product,
-               "number": number,
-               "path": path,
-               "pic_format": pic_format,
-               "cart_product_form":cart_product_form,
-               "logo_path": logo_path,
-               "logo": logo,
-               "cart": cart,}
-    return render(request, 'product.html', context)
-
-
-def productnull(request):
-    next = request.POST.get('next', '/catalog')
-    return HttpResponseRedirect(next)
+        context = {"product": product,
+                   "number": number,
+                   "path": path,
+                   "pic_format": pic_format,
+                   "cart_product_form":cart_product_form,
+                   "logo_path": logo_path,
+                   "logo": logo,
+                   "cart": cart,}
+        return render(request, 'product.html', context)
+    except Exception as e:
+        next = request.POST.get('next', '/catalog')
+        return HttpResponseRedirect(next)
 
 
-def catalog(request, gender="", product_brand="",key_sort="name"):
+def catalog(request, product_brand="",key_sort="name"):
     cart = Cart(request)
     brandcheck = []
     gendercheck = []
     brandcheck = request.POST.getlist("radio-set-2")
     gendercheck = request.POST.getlist("radio-set-1")
-    tick = request.POST.getlist("radio-set-3")
-    key = request.POST.getlist("key")
+    allcheck = request.POST.getlist("radio-set-3")
+    keycheck = request.POST.getlist("key")
     catalog = Product.objects.all()
     product = Product.objects.all()
     pic_type_4 = Prod4.objects.all()
     pic_type_360 = Prod360.objects.all()
 
     brandlist = []
-    brandlist_Object = []
 
     for i in catalog:
         if not(i.brand in brandlist):
             brandlist.append(i.brand)
-            brandlist_Object.append(i)
-    trueCatalog = {}
-    if ((not brandcheck and not gendercheck) or (brandcheck == brandlist and gendercheck == ["M","F"])) and not product_brand:
-        tick = 'all'
-    else:
-        tick = []
 
-    genderout = gendercheck
-    brandout = brandcheck
+    if "All" in brandcheck or allcheck == "All" or not brandcheck:
+        brandcheck = brandlist
 
-    if not brandcheck or tick:
-        brandout = brandlist
+    if "All" in gendercheck or allcheck == "All" or not gendercheck:
+        gendercheck = ["M","F"]
 
-    if not gendercheck or tick:
-        genderout = ["M","F"]
+    if product_brand in brandlist:
+        brandcheck = [product_brand]
 
-    if brandout != brandlist or genderout != ["M","F"]:
-        tick = []
-
-    if product_brand:
-        brandcheck = product_brand
-        brandout = []
-        brandout.append(product_brand)
 
     if key_sort == 'promotion':
-        trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout)).order_by('-promotion')
+        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
     elif key_sort == 'name':
-        trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout)).order_by('-product_Name')
+        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
     elif key_sort == 'price':
-        trueCatalog = catalog.filter(Q(brand__in = brandout) & Q(gender__in = genderout)).order_by('-unit_Price_Sale')
+        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-unit_Price_Sale')
 
-    if tick:
-        brandcheck = []
-        gendercheck = []
+    if brandcheck == brandlist:
+        brandcheck = ["All"]
 
+    if gendercheck == ["M","F"]:
+        gendercheck = ["All"]
 
+    if brandcheck == ["All"] and gendercheck == ["All"] :
+        allcheck = 'All'
 
     context = {"catalog": trueCatalog,
                "product": product,
-               "brandlist": brandlist_Object,
+               "brandlist": brandlist,
                "path4": pic_type_4,
                "path360": pic_type_360,
                "brandcheck": brandcheck,
                "gendercheck" : gendercheck,
-               "tick" : tick,
+               "allcheck" : allcheck,
                "cart": cart}
 
     return render(request, 'catalog.html', context)
@@ -158,13 +146,11 @@ def news(request):
 def article(request):
     return render(request, 'article.html')
 
-
-
-def account(request, username):
+def account(request, username=""):
     cart = Cart(request)
     legit = False
-    order = OrderBy.objects.filter(user_ID = request.user.profile)
     try:
+        order = OrderBy.objects.filter(user_ID = request.user.profile)
         u = User.objects.get(username=username)
         p = Profile.objects.get(pk=u.pk)
         if(u.username == request.user.username):
@@ -196,11 +182,6 @@ def account(request, username):
     except:
         next = request.POST.get('next', '/home')
         return HttpResponseRedirect(next)
-
-
-def accountnull(request):
-    #        next = request.POST.get('next', '/home')
-    return HttpResponseRedirect('/home')
 
 
 def upload_pic(request):
