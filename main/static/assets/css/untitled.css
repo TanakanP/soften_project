@@ -33,7 +33,14 @@ div#catalog.container{
   margin-top:70px;
 }
 
+
+#logoutbtt:hover{
+  border-color: white;
+}
+
+
 button#logoutbtt.btn.btn-default.active.navbar-btn.navbar-right{
+
   background-color:white;
   color:black;
 }

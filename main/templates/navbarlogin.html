@@ -39,8 +39,8 @@
           </li>
         </ul>
         <input type="hidden" name="next" value="{{ request.path }}">
-        <a class="btn btn-default navbar-btn navbar-right" href="../../user/logout" type="button" id="logoutbtt"><strong>LOGOUT</strong></a>
-        <a class="btn btn-link active navbar-btn navbar-right" role="button" href="{% url 'account' user %}" id="member"><i class="fa fa-user"></i> {{user}} </a>
+        <a class="btn btn-default navbar-btn navbar-right" href="../../user/logout" type="button" id="logoutbtt" style="border-top-left-radius:0px; border-bottom-left-radius:0px;"><strong>LOGOUT</strong></a>
+        <a class="btn btn-link active navbar-btn navbar-right" role="button" href="{% url 'account' user %}" id="member" style="border-top-right-radius:0px; border-bottom-right-radius:0px;"><i class="fa fa-user"></i> {{user}} </a>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#"><i class="fa fa-shopping-cart" class="dropdown-toggle"><span class="badge" id="cartbadge" style="color:white; background-color:red;"></span></i></a>

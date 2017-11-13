@@ -52,7 +52,7 @@ def product(request, product_id=""):
         pic_format = Product.format(number)
         logo = Product.get_brand(number)
         logo_path = Supplier.objects.all()
-        comment = Product_Comment.objects.filter(product_ID = product_id)
+        comment = Product_Comment.objects.filter(product_ID = product_id).order_by('-date')
 
         if pic_format == 4:
             path = Prod4.objects.all()
@@ -63,7 +63,8 @@ def product(request, product_id=""):
             form = ReviewForm(request.POST)
             if form.is_valid():
                 Product_Comment.objects.create(product_ID = number, writer = form.cleaned_data.get('writer'), comment = form.cleaned_data.get('comment'), date = datetime.datetime.now())
-                return HttpResponseRedirect('/catalog')
+                next = request.POST.get('next', '/catalog')
+                return HttpResponseRedirect(next)
             else:
                 print("KUY")
         else:
@@ -85,7 +86,7 @@ def product(request, product_id=""):
         return HttpResponseRedirect(next)
 
 
-def catalog(request, product_brand="",key_sort="name"):
+def catalog(request, product_brand="",key_sort=""):
     cart = Cart(request)
     brandcheck = []
     gendercheck = []
@@ -114,12 +115,14 @@ def catalog(request, product_brand="",key_sort="name"):
         brandcheck = [product_brand]
 
 
-    if key_sort == 'promotion':
+    if key_sort == 'promotion' or keycheck == 'promotion':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
-    elif key_sort == 'name':
+    elif keycheck == 'name':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
-    elif key_sort == 'price':
+    elif keycheck == 'price':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-unit_Price_Sale')
+    else:
+        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
 
     if brandcheck == brandlist:
         brandcheck = ["All"]
@@ -138,6 +141,7 @@ def catalog(request, product_brand="",key_sort="name"):
                "brandcheck": brandcheck,
                "gendercheck" : gendercheck,
                "allcheck" : allcheck,
+               "keycheck" : keycheck,
                "cart": cart}
 
     return render(request, 'catalog.html', context)

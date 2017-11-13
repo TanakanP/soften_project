@@ -117,9 +117,9 @@
         <div class="about-two">
           <ul>
             <li><p>Share : </p></li>
-              <li><a href="http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}" target="popup" onclick="window.open('http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}','popup','width=100%,height=100%'); return false;"><span class="fb"> </span></a></li>
+              <li><a href="http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}" target="popup" onclick="replace();"><span class="fb rotating"> </span></a></li>
               <li>
-              <a id="tweet"  href="https://twitter.com/intent/tweet?original_referer=https://sassneakershoes.pythonanywhere.com{{request.path}}&ref_src=twsrc%5Etfw&text={{number.product_Name}}%20-%20Sas%20Sneakers%20Shoes&amp;hashtags=sss&tw_p=tweetbutton&url=https://sassneakershoes.pythonanywhere.com{{request.path}}"><span class="twit"> </span></a>
+              <a id="tweet"  href="https://twitter.com/intent/tweet?original_referer=https://sassneakershoes.pythonanywhere.com{{request.path}}&ref_src=twsrc%5Etfw&text={{number.product_Name}}%20-%20Sas%20Sneakers%20Shoes&amp;hashtags=sss&tw_p=tweetbutton&url=https://sassneakershoes.pythonanywhere.com{{request.path}}"><span class="twit rotating"> </span></a>
             </li>
 
           </ul>
@@ -130,11 +130,28 @@
               <div class="card my-4">
                 <h5 class="card-header">Leave a Comment:</h5>
                 <div class="card-body comment">
-                  <form>
+                  <form action="" method="post">{% csrf_token %}
                     <div class="form-group">
-                      <textarea class="form-control" rows="3"></textarea>
+                      <input id="id_writer" name="writer" type="text" required="" style="display:none;" value="{{user}}">
+                      <input type="hidden" name="next" value="{{ request.path }}">
+                      <textarea class="form-control" rows="3" id="id_comment" name="comment" type="text" required></textarea>
                     </div>
                     <input type="submit" value="Comment">
+                  </form>
+                </div>
+              </div>
+              <br>
+          {% else %}
+              <div class="card my-4">
+                <h5 class="card-header">Leave a Comment:</h5>
+                <div class="card-body comment">
+                  <form action="" method="post">{% csrf_token %}
+                    <div class="form-group">
+                      <input id="id_writer"  name="writer" type="text" required="" style="display:none;" >
+                      <input type="hidden" name="next" value="{{ request.path }}">
+                      <textarea class="form-control" rows="3" id="id_comment"  name="comment" type="text"disabled="true" placeholder="Login require!"></textarea>
+                    </div>
+                    <input type="submit" data-toggle="modal" data-target="#myModal3" value="Comment">
                   </form>
                 </div>
               </div>
@@ -168,7 +185,7 @@
         </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -182,19 +199,39 @@
           <p>Please login before purchase item.</p>
         </div>
         <div class="modal-footer">
+
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
 
     </div>
   </div>
+  <div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal2">&times;</button>
+        <h2 class="modal-title" style="text-align: center;">Login require!</h2>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <p>Please login before comment.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
   <div class="container" id="loader" style="display:none">
   </div>
-  <form action="" method="post">
+  <!-- <form action="" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
-  </form>
+  </form> -->
     {% include 'footer.html' %}
     {% block footer %}
     {% endblock %}
@@ -202,9 +239,15 @@
 
 </body>
 
-
-
-
+<script>
+function replace() {
+    var str = 'http://sassneakershoes.pythonanywhere.com/static/assets/img{{number.thumbnail}}';
+    var res = str.replace(" ", "%20");
+    window.open(res,'popup','width=100%,height=100%');
+    $('meta[name=og:image]').remove();
+    $('head').append( '<meta name="og:image" content=res>' );
+}
+</script>
 
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],

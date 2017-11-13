@@ -215,6 +215,11 @@ div.col-lg-offset-0.col-md-12{
     background-color: #555555;
     color: white;
     border: 2px solid #555555;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
 }
 
 .btn_save {

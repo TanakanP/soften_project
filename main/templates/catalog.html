@@ -141,6 +141,36 @@
             </ul>
 			</div>
           <div class="col-md-10" style="min-height:700px; ">
+            <div class="col-md-12 col-xs-offset-8" style="padding-bottom: 20px;">
+              <div class="col-md-1" >
+              <h3 style="padding-top: 4px;">Sort by: </h3>
+              </div>
+              <div class="col-md-6" >
+              <form style="vertical-align: middle;">
+                <label class="radio-inline">
+                  {% if keycheck == 'name' %}
+                    <input type="radio" name="key" value="name" checked="">Name
+                  {% else %}
+                    <input type="radio" name="key" value="name" onclick="this.form.submit();">Name
+                  {% endif %}
+                </label>
+                <label class="radio-inline">
+                  {% if keycheck == 'price' %}
+                    <input type="radio" name="key" value="price" checked="">Price
+                  {% else %}
+                    <input type="radio" name="key" value="price" onclick="this.form.submit();">Price
+                  {% endif %}
+                </label>
+                <label class="radio-inline">
+                  {% if keycheck == 'sale' %}
+                    <input type="radio" name="key" value="sale" checked="">Sale
+                  {% else %}
+                    <input type="radio" name="key" value="sale" onclick="this.form.submit();">Sale
+                  {% endif %}
+                </label>
+              </form>
+              </div>
+            </div>
               <div class="row category-child" style="margin-top:20px">
                   {% for i in catalog %}
                   <div class="col-lg-3 col-md-3 col-xs-6 {{i.brand}} {{i.gender}} grid cs-style-3">
@@ -202,9 +232,29 @@ function uncheck_gender() {
 
 
 <script>
-{% if request.user.is_authenticated %}
-    countcart()
-{% endif %}
+// ห้ามลบฟังก์ชั่นนี้โว้ยยย kuy
+(function($) {
+  {% if request.user.is_authenticated %}
+      countcart()
+  {% endif %}
+
+$.fn.visible = function(partial) {
+
+     var $t            = $(this),
+         $w            = $(window),
+         viewTop       = $w.scrollTop(),
+         viewBottom    = viewTop + $w.height(),
+         _top          = $t.offset().top,
+         _bottom       = _top + $t.height(),
+         compareTop    = partial === true ? _bottom : _top,
+         compareBottom = partial === true ? _top : _bottom;
+
+   return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+ };
+
+})(jQuery);
+
 var win = $(window);
 
 var allMods = $(".module");

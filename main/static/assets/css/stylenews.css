@@ -485,7 +485,7 @@ ul.navig li a.active{
 	margin: 9% auto 0;
 }
 .abt-2 ul li {
-	list-style-image: url(../images/dot.png);
+	/*list-style-image: url(../images/dot.png);*/
 	margin: 12px 0px 5px 30px;
 	text-align: left;
 }
@@ -659,11 +659,11 @@ ul.navig li a.active{
 }
 .nbs-flexisel-nav-left {
 	left:-3em;
-	background: url(../images/left.png) no-repeat 1px 1px ;
+	/*background: url(../images/left.png) no-repeat 1px 1px ;*/
 }
 .nbs-flexisel-nav-right {
 	right:-3em;
-	background: url(../images/right.png) no-repeat 1px 1px ;
+	/*background: url(../images/right.png) no-repeat 1px 1px ;*/
 }
 .banner-1 {
 	margin: 0em 0.5em;
