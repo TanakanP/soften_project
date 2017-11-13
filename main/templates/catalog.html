@@ -202,6 +202,9 @@ function uncheck_gender() {
 
 
 <script>
+{% if request.user.is_authenticated %}
+    countcart()
+{% endif %}
 var win = $(window);
 
 var allMods = $(".module");
