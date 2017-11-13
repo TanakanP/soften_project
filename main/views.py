@@ -93,7 +93,7 @@ def catalog(request, product_brand="",key_sort=""):
     brandcheck = request.POST.getlist("radio-set-2")
     gendercheck = request.POST.getlist("radio-set-1")
     allcheck = request.POST.getlist("radio-set-3")
-    keycheck = request.POST.getlist("key")
+    keycheck = request.POST.get("key")
     catalog = Product.objects.all()
     product = Product.objects.all()
     pic_type_4 = Prod4.objects.all()
@@ -115,14 +115,16 @@ def catalog(request, product_brand="",key_sort=""):
         brandcheck = [product_brand]
 
 
-    if key_sort == 'promotion' or keycheck == 'promotion':
+    if key_sort == 'promotion' or keycheck == 'sale':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
+        keycheck = 'sale'
     elif keycheck == 'name':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
     elif keycheck == 'price':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-unit_Price_Sale')
     else:
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
+        keycheck = 'name'
 
     if brandcheck == brandlist:
         brandcheck = ["All"]
