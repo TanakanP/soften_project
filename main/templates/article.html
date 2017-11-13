@@ -85,10 +85,10 @@
             <hr>
 					</div>
 					<div class="about-two">
-						<a href="{% url 'article' %}"><img src="../../static/assets/img/NEWS/c-1.jpg" alt="" /></a>
+						<a href="{% url 'article' new.pk%}"><img src="../../static/assets/img{{new.pic}}" alt="" /></a>
 						<p>Posted  on {{new.date}} </p>
 						<p>{{new.description}}</p>
-						{{new.pic}}
+
 						<p>{{new.source}}</p>
 
 						<ul>
@@ -100,61 +100,78 @@
 						</ul>
 					</div>
           <hr>
+
+
           <!-- Comments Form -->
+
           {% if request.user.is_authenticated %}
-              <div class="card my-4">
-                <h5 class="card-header">Leave a Comment:</h5>
-                <div class="card-body comment">
-									<form action="" method="post">
-								    {% csrf_token %}
-								    {{ form }}
-								    <input type="submit" value="Submit" />
-								  </form>
-                </div>
-              </div>
-              <br>
-          {% endif %}
+	          <div class="card my-4">
+	            <h5 class="card-header">Leave a Comment:</h5>
+	            <div class="card-body comment">
+								<form action="" method="post" onsubmit="comment();">	 {% csrf_token %}
+									<div class="form-group">
+										<input type="text" name="writer" id="id_writer" class="form-control" style="display:none;" value="{{user}}" >
+										<input type="hidden" name="next" value="{{ request.path }}">
+										<textarea class="form-control" rows="3" id="id_comment" name="comment" maxlength="200" type="text" required></textarea>
+									</div>
+									<input type="submit" value="Comment">
+								</form>
+	            </div>
+	          </div>
+	          <br>
+						{% else %}
+						<div class="card my-4">
+							<h5 class="card-header">Leave a Comment:</h5>
+							<div class="card-body comment">
+								<form action="" method="post">{% csrf_token %}
+									<div class="form-group">
+										<input id="id_writer" maxlength="45" name="writer" type="text" required="" style="display:none;" >
+										<input type="hidden" name="next" value="{{ request.path }}">
+										<textarea class="form-control" rows="3" id="id_comment" maxlength="200" name="comment" type="text"disabled="true" placeholder="Login require!" ></textarea>
+									</div>
+									<input type="submit" data-toggle="modal" data-target="#myModal3" value="Comment">
+								</form>
+							</div>
+						</div>
+						<br>
+					{% endif %}
+
+					<div class="modal fade" id="myModal3" role="dialog">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal2">&times;</button>
+					        <h2 class="modal-title" style="text-align: center;">Login require!</h2>
+					      </div>
+					      <div class="modal-body" style="text-align: center;">
+					        <p>Please login before comment.</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 
           <br>
           <br>
           <!-- Single Comment -->
-          <div class="media mb-4">
-            <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
-
-          <!-- Comment with nested comments -->
-          <div class="media mb-4">
-            <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-              <div class="media mt-4">
-
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-
-              <div class="media mt-4">
-                <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-            </div>
-          </div>
 					{% for c in comment %}
-		        <p>Posted  on {{c.date}}</p>
+	          <div class="media mb-4">
+	            <div class="media-body">
+	              <h5 class="mt-0">{{c.writer}}</h5>
+	              {{c.comment}}
+	            </div>
+							<p>Posted  on {{c.date}}</p>
+	          </div>
+					{% endfor %}
+
+					<!-- {% for c in comment %}
 		        <p>{{c.writer}}</p>
 		        <p>{{c.comment}}</p>
-		      {% endfor %}
+		      {% endfor %} -->
 
 
 				</div>
@@ -171,47 +188,25 @@
 					</div> -->
 					<div class="abt-2">
 						<h3>YOU MIGHT ALSO LIKE</h3>
+							{% for i in sidenewwithpic %}
 							<div class="might-grid">
 								<div class="grid-might">
-									<a href="{% url 'article' 'NEWS_002' %}"><img src="../../static/assets/img/NEWS/02.jpg" class="img-responsive" alt=""> </a>
+									<a href="{% url 'article' i.pk %}"><img src="../../static/assets/img{{i.pic}}" class="img-responsive" alt=""> </a>
 								</div>
 								<div class="might-top">
-									<h4><a href="{% url 'article' 'NEWS_002' %}">THE PHARRELL X ADIDAS NMD HU..</a></h4>
-									<p>After a strong showing at Complex Con that included one of the hottest drops of the entire</p>
+									<h4><a href="{% url 'article' i.pk %}">{{i.topic}}</a></h4>
+									<p>{{i.description}}</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
-							<div class="might-grid">
-								<div class="grid-might">
-									<a href="{% url 'article' 'NEWS_006' %}"><img src="../../static/assets/img/NEWS/06.jpg" class="img-responsive" alt=""> </a>
-								</div>
-								<div class="might-top">
-									<h4><a href="{% url 'article' 'NEWS_006' %}">AIR JORDAN 6 “UNC” RELEASES ON..</a></h4>
-									<p> Earlier this month, Jordan Brand began its celebration of Michael Jordan’s success with the</p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="might-grid">
-								<div class="grid-might">
-									<a href="{% url 'article' 'NEWS_010' %}"><img src="../../static/assets/img/NEWS/10.jpg" class="img-responsive" alt=""> </a>
-								</div>
-								<div class="might-top">
-									<h4><a href="{% url 'article' 'NEWS_010' %}">UP CLOSE WITH THE ADIDAS YEEZY..</a></h4>
-									<p>The adidas Yeezy Boost 350 v2 “Beluga 2.0” is just a few weeks away as a confirmed release date</p>
-								</div>
-								<div class="clearfix"></div>
-							</div>
+							{% endfor %}
 					</div>
 					<div class="abt-2">
 						<h3>ARCHIVES</h3>
 						<ul>
-							<li><a href="{% url 'article' 'NEWS_008' %}">ADIDAS RUNS 24-HOUR INSTAGRAM STORIES POLL GIVEAWAY OF CUSTOM </a></li>
-							<li><a href="{% url 'article' 'NEWS_001' %}">THE N*E*R*D* X ADIDAS NMD HU TRAIL IS AVAILABLE AT STADIUM GOODS</a></li>
-							<li><a href="{% url 'article' 'NEWS_004' %}">AN UNRELEASED AIR JORDAN 32 LIFESTYLE SAMPLE SURFACES</a> </li>
-							<li><a href="{% url 'article' 'NEWS_011' %}">THE GYAKUSOU X NIKELAB WINTER BOOT COLLECTION IS PRETTY INSANE</a> </li>
-							<li><a href="{% url 'article' 'NEWS_006' %}">AIR JORDAN 6 “UNC” RELEASES ON DECEMBER 2ND</a> </li>
-							<li><a href="{% url 'article' 'NEWS_010' %}">UP CLOSE WITH THE ADIDAS YEEZY BOOST 350 V2 “BELUGA 2.0”</a> </li>
-							<li><a href="{% url 'article' 'NEWS_005' %}">THE NIKE AIR MAX 95 DROPS IN THE ON-TREND BLACK AND GOLD</a> </li>
+							{% for s in sidenew %}
+								<li><a href="{% url 'article' s.pk %}">{{s.topic}}</a></li>
+							{% endfor %}
 						</ul>
 					</div>
 					<div class="abt-2">
@@ -237,11 +232,11 @@
 		<div class="container">
 			<div class="fle-xsel">
 			<ul id="flexiselDemo3">
-				{% for i in story %}
+				{% for i in getnew %}
 				<li>
 					<a href="{% url 'article' i.news_ID %}">
 						<div class="banner-1">
-							<img src="../static/assets/img{{i.pic}}" class="img-responsive" alt="">
+							<img src="../../static/assets/img{{i.pic}}" class="img-responsive" alt="">
 						</div>
 					</a>
 				</li>
@@ -253,9 +248,9 @@
 
 									$("#flexiselDemo3").flexisel({
 										visibleItems: 5,
-										animationSpeed: 3000,
+										animationSpeed: 2000,
 										autoPlay: true,
-										autoPlaySpeed: 100,
+										autoPlaySpeed: 250,
 										pauseOnHover: true,
 										enableResponsiveBreakpoints: true,
 										responsiveBreakpoints: {
@@ -276,7 +271,7 @@
 
 								});
 								</script>
-								<script type="text/javascript" src="../static/assets/js/jquery.flexisel.js"></script>
+								<script type="text/javascript" src="../../static/assets/js/jquery.flexisel.js"></script>
 					<div class="clearfix"> </div>
 			</div>
 		</div>
@@ -286,6 +281,7 @@
   {% include 'footer.html' %}
   {% block footer %}
   {% endblock %}
+
 
 	<!--footer-end-->
 </body>

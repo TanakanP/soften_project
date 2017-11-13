@@ -151,27 +151,69 @@ def contact(request):
     return render(request, 'contact.html')
 
 def news(request):
-    story = NewS.objects.all()
+    cart = Cart(request)
+    product = Product.objects.all()
+    new = NewS.objects.all().order_by('-date')
+    randlist = random.sample(range(new.count()), 6)
+    sidenew = []
+    for i in randlist:
+        s = new[i]
+        sidenew.append(s)
+
+    randlist = random.sample(range(new.count()), 3)
+    sidenewwithpic = []
+    for i in randlist:
+        s = new[i]
+        sidenewwithpic.append(s)
+
+    story = new[1:]
+    firststory = new[:1].get()
+
     context = {
-        "story" : story
+        "new" : new,
+        "story" : story,
+        "firststory" : firststory,
+        "sidenew" : sidenew,
+        "sidenewwithpic" : sidenewwithpic,
+        "product": product,
+         "cart": cart
     }
     return render(request, 'news.html', context)
 
 def article(request, news_id = ""):
     new = NewS.objects.get(news_ID = news_id)
-    comment = NewS_Comment.objects.filter(news_ID = news_id)
+    comment = NewS_Comment.objects.filter(news_ID = news_id).order_by('-date')
+
+    getnew = NewS.objects.all().order_by('-date')
+    randlist = random.sample(range(getnew.count()), 6)
+    sidenew = []
+    for i in randlist:
+        s = getnew[i]
+        sidenew.append(s)
+
+    randlist = random.sample(range(getnew.count()), 3)
+    sidenewwithpic = []
+    for i in randlist:
+        s = getnew[i]
+        sidenewwithpic.append(s)
+
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             NewS_Comment.objects.create(news_ID = new, writer = form.cleaned_data.get('writer'), comment = form.cleaned_data.get('comment'), date = datetime.datetime.now())
-            return HttpResponseRedirect('/news')
+            next = request.POST.get('next', '/news')
+            return HttpResponseRedirect(next)
         else:
             print("KUY")
     else:
         form = CommentForm(request.POST)
     context = {
         "new": new,
+        "getnew" : getnew,
         "form": form,
+        "sidenew" : sidenew,
+        "sidenewwithpic" : sidenewwithpic,
         "comment": comment,
     }
     return render(request, 'article.html', context)
