@@ -85,7 +85,7 @@ def product(request, product_id=""):
         return HttpResponseRedirect(next)
 
 
-def catalog(request, product_brand="",key_sort="name"):
+def catalog(request, product_brand="",key_sort=""):
     cart = Cart(request)
     brandcheck = []
     gendercheck = []
@@ -114,12 +114,15 @@ def catalog(request, product_brand="",key_sort="name"):
         brandcheck = [product_brand]
 
 
-    if key_sort == 'promotion':
+    if key_sort == 'sale':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
-    elif key_sort == 'name':
+        keycheck = key_sort
+    elif keycheck == 'name':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
-    elif key_sort == 'price':
+    elif keycheck == 'price':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-unit_Price_Sale')
+    elif keycheck == 'sale':
+        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
 
     if brandcheck == brandlist:
         brandcheck = ["All"]
@@ -138,6 +141,7 @@ def catalog(request, product_brand="",key_sort="name"):
                "brandcheck": brandcheck,
                "gendercheck" : gendercheck,
                "allcheck" : allcheck,
+               "keycheck" : keycheck,
                "cart": cart}
 
     return render(request, 'catalog.html', context)

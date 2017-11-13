@@ -28,7 +28,7 @@ urlpatterns = [
 
     url(r'^catalog/$', views.catalog, name='catalog'),
     url(r'^catalog-(?P<product_brand>.+)/$',views.catalog, name='catalog'),
-    url(r'^sale/$', views.catalog, {'key_sort':'promotion'},name='sale'),
+    url(r'^sale/$', views.catalog, {'key_sort':'sale'},name='sale'),
 ]
 
 if settings.DEBUG:

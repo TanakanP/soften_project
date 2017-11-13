@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="about-two">
 						<a href="{% url 'article' firststory.pk %}"><img src="../static/assets/img{{firststory.pic}}" alt="" /></a>
 						<p>Posted on 10 Nov, 2017</p>
-						<p>{{firststory.description}}</p>
+						<p class="descriptionNewtop">{{firststory.description}}</p>
 						<div class="about-btn">
 							<a href="{% url 'article' firststory.pk %}">Read More</a>
 						</div>
@@ -143,8 +143,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a href="{% url 'article' i.pk %}"><img src="../static/assets/img{{i.pic}}" class="img-responsive" alt=""> </a>
 								</div>
 								<div class="might-top">
-									<h4><a href="{% url 'article' i.pk %}">{{i.topic}}</a></h4>
-									<p>{{i.description}}</p>
+									<h4 class="topicNew"><a href="{% url 'article' i.pk %}">{{i.topic}}</a></h4>
+									<p class="descriptionNew">{{i.description}}</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
