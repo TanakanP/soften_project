@@ -16,3 +16,13 @@
    word-wrap: break-word;
    max-height: 90px;
 }
+
+
+.descriptionNewtop {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   word-wrap: break-word;
+   max-height: 80px;
+}
