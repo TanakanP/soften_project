@@ -207,7 +207,7 @@ ul.navig li a.active{
     height: 16px;
     display: block;
 }
-.header-right ul li a span:hover,.about-two ul li a span:hover{
+/*.header-right ul li a span:hover,.about-two ul li a span:hover{
     transform: rotatey(360deg);
     -webkit-transform: rotatey(360deg);
     -moz-transform: rotatey(360deg);
@@ -218,7 +218,29 @@ ul.navig li a.active{
     -moz-transition: 0.5s all ease;
     -o-transition: 0.5s all ease;
     -ms-transition: 0.5s all ease;
+}*/
+@-webkit-keyframes rotating {
+    from{
+      transform: rotatey(0deg);
+      -webkit-transform: rotatey(0deg);
+      -moz-transform: rotatey(0deg);
+      -o-transform: rotatey(0deg);
+      -ms-transform: rotatey(0deg);
+    }
+    to{
+      transform: rotatey(360deg);
+      -webkit-transform: rotatey(360deg);
+      -moz-transform: rotatey(360deg);
+      -o-transform: rotatey(360deg);
+      -ms-transform: rotatey(360deg);
+
+    }
 }
+
+.rotating:hover {
+    -webkit-animation: rotating 1s linear infinite;
+}
+
 .header-right ul li a span.fb{
 	background-position:0px 0px;
 }

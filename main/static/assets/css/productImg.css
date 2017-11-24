@@ -99,7 +99,11 @@
 .rotating:hover {
     -webkit-animation: rotating 1s linear infinite;
 }
-
+.poston{
+	font-size: 14px;
+	color: #999;
+	text-align: right;
+}
 
 .header-right ul li a span.fb{
 	background-position:0px 0px;

@@ -10,6 +10,12 @@
 <meta name="twitter:description" content="I can fucking tweet from my fucking site">
 <meta name="twitter:image" content="http://sassneakershoes.pythonanywhere.com/static/assets/img/news/c-1.jpg">
 
+<meta property="og:url"                content="http://sassneakershoes.pythonanywhere.com{{ request.path }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{ number.product_Name }} - Sas Sneakers Shoes" />
+<meta property="og:image"              content="http://sassneakershoes.pythonanywhere.com/static/assets/img{{number.thumbnail}}" />
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -19,6 +25,7 @@
 <link rel="stylesheet" href="../../static/assets/fonts/font-awesome.min.css">
 <link rel="stylesheet" href="../../static/assets/css/styles.css">
 <link rel="stylesheet" href="../../static/assets/css/stylenews.css">
+<link rel="stylesheet" href="../../static/assets/css/news.css">
 <link rel="stylesheet" href="../../static/assets/css/article.css">
 <link rel="stylesheet" href="../../static/assets/css/untitled.css">   <!-- max weight -->
 <script src="js/jquery.min.js"></script>
@@ -65,11 +72,11 @@
 		<div class="container">
 			<div class="banner-top">
 				<div class="banner-text">
-					<h2>Aliquam erat</h2>
-					<h1>Suspendisse potenti</h1>
-					<div class="banner-btn">
+					<h2>welcome to</h2>
+					<h1>Sas Sneakers News</h1>
+					<!-- <div class="banner-btn">
 						<a href="{% url 'article' %}">Read More</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -89,13 +96,13 @@
 						<p>Posted  on {{new.date}} </p>
 						<p>{{new.description}}</p>
 
-						<p>{{new.source}}</p>
+						<p>source: <a href="{{new.source}}">{{new.source}}</a></p>
 
 						<ul>
 							<li><p>Share : </p></li>
-	              <li><a href="http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}" target="popup" onclick="window.open('http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}','popup','width=100%,height=100%'); return false;"><span class="fb"> </span></a></li>
+	              <li><a href="http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}" target="popup" onclick="window.open('http://www.facebook.com/sharer.php?u=https://sassneakershoes.pythonanywhere.com{{ request.path }}','popup','width=100%,height=100%'); return false;"><span class="fb rotating"> </span></a></li>
 	              <li>
-	              <a id="tweet"  href="https://twitter.com/intent/tweet?original_referer=https://sassneakershoes.pythonanywhere.com{{request.path}}&ref_src=twsrc%5Etfw&text={{number.product_Name}}%20-%20Sas%20Sneakers%20Shoes&amp;hashtags=sss&tw_p=tweetbutton&url=https://sassneakershoes.pythonanywhere.com{{request.path}}"><span class="twit"> </span></a>
+	              <a id="tweet"  href="https://twitter.com/intent/tweet?original_referer=https://sassneakershoes.pythonanywhere.com{{request.path}}&ref_src=twsrc%5Etfw&text={{number.product_Name}}%20-%20Sas%20Sneakers%20Shoes&amp;hashtags=sss&tw_p=tweetbutton&url=https://sassneakershoes.pythonanywhere.com{{request.path}}"><span class="twit rotating"> </span></a>
 	            </li>
 						</ul>
 					</div>
@@ -164,8 +171,8 @@
 	              <h5 class="mt-0">{{c.writer}}</h5>
 	              {{c.comment}}
 	            </div>
-							<p>Posted  on {{c.date}}</p>
-	          </div>
+							<p class="poston">Posted  on {{c.date}}</p>
+	          </div><hr>
 					{% endfor %}
 
 					<!-- {% for c in comment %}
@@ -194,8 +201,8 @@
 									<a href="{% url 'article' i.pk %}"><img src="../../static/assets/img{{i.pic}}" class="img-responsive" alt=""> </a>
 								</div>
 								<div class="might-top">
-									<h4><a href="{% url 'article' i.pk %}">{{i.topic}}</a></h4>
-									<p>{{i.description}}</p>
+									<h4 class="topicNew"><a href="{% url 'article' i.pk %}">{{i.topic}}</a></h4>
+									<p class="descriptionNew">{{i.description}}</p>
 								</div>
 								<div class="clearfix"></div>
 							</div>

@@ -17,3 +17,9 @@
 	-o-border-radius: 5px;
 	-ms-border-radius: 5px;
 }
+
+.poston{
+	font-size: 14px;
+	color: #999;
+	text-align: right;
+}
