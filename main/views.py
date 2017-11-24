@@ -88,6 +88,8 @@ def catalog(request, product_brand="",key_sort=""):
     cart = Cart(request)
     brandcheck = []
     gendercheck = []
+    allcheck = []
+    keycheck = []
     brandcheck = request.POST.getlist("radio-set-2")
     gendercheck = request.POST.getlist("radio-set-1")
     allcheck = request.POST.getlist("radio-set-3")
@@ -114,7 +116,7 @@ def catalog(request, product_brand="",key_sort=""):
 
 
 
-    if key_sort == 'sale':
+    if key_sort == 'sale' or keycheck == 'sale':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
         keycheck = key_sort
     elif keycheck == 'name':
@@ -122,7 +124,9 @@ def catalog(request, product_brand="",key_sort=""):
     elif keycheck == 'price':
         trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-unit_Price_Sale')
     else:
-        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-promotion')
+        trueCatalog = catalog.filter(Q(brand__in = brandcheck) & Q(gender__in = gendercheck)).order_by('-product_Name')
+        keycheck = 'name'
+
 
     if brandcheck == brandlist:
         brandcheck = ["All"]
@@ -185,6 +189,8 @@ def news(request):
     return render(request, 'news.html', context)
 
 def article(request, news_id = ""):
+    product = Product.objects.all()
+    cart = Cart(request)
     new = NewS.objects.get(news_ID = news_id)
     comment = NewS_Comment.objects.filter(news_ID = news_id).order_by('-date')
 
@@ -219,6 +225,8 @@ def article(request, news_id = ""):
         "sidenew" : sidenew,
         "sidenewwithpic" : sidenewwithpic,
         "comment": comment,
+        "product": product,
+        "cart": cart
     }
     return render(request, 'article.html', context)
 

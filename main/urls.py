@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^updatePrice/', views.update, name='update'),
 
     url(r'^catalog/$', views.catalog, name='catalog'),
-    url(r'^catalog-(?P<product_brand>.+)/$',views.catalog, name='catalog'),
+    url(r'^catalog-(?P<product_brand>.+)/$',views.catalog,{'key_sort':'name'}, name='catalog'),
     url(r'^sale/$', views.catalog, {'key_sort':'sale'},name='sale'),
 ]
 

@@ -18,7 +18,6 @@ html, body{
 }
 body {
 	font-size: 100%;
-	font-family: 'RobotoSlab-Regular';
 }
 body a{
 	transition: 0.5s all ease;
@@ -259,7 +258,7 @@ ul.navig li a.active{
 /*--Header-Ends--*/
 /*--banner-starts--*/
 .banner-top{
-	background:url(../img/news/banner.jpg) no-repeat;
+	background:url(../img/NEWS/banner.jpg) no-repeat;
 	min-height:600px;
 	background-size:cover;
 	-webkit-background-size:cover;
@@ -374,7 +373,7 @@ ul.navig li a.active{
 	font-size:17px;
 }
 .about-two ul li a span{
-	background:url(../img/news/social.png) no-repeat;
+	background:url(../img/NEWS/social.png) no-repeat;
 	width:16px;
 	height:16px;
 	display:block;
