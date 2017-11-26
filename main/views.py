@@ -177,6 +177,10 @@ def news(request):
     story = new[1:]
     firststory = new[:1].get()
 
+    date = []
+    for i in new:
+        date.append(i.date)
+
     context = {
         "new" : new,
         "story" : story,
@@ -184,7 +188,8 @@ def news(request):
         "sidenew" : sidenew,
         "sidenewwithpic" : sidenewwithpic,
         "product": product,
-         "cart": cart
+        "cart": cart,
+        "date": date,
     }
     return render(request, 'news.html', context)
 
