@@ -156,7 +156,13 @@ def underconstruction(request):
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    cart = Cart(request)
+    product = Product.objects.all()
+    context = {
+        "cart": cart,
+        "product": product,
+    }
+    return render(request, 'contact.html',context)
 
 def news(request):
     cart = Cart(request)

@@ -2,7 +2,7 @@
 <html>{% load crispy_forms_tags %}
 
 <body onload="countcart()">
-    <table id="myTable" style="overflow-y:-webkit-paged-y;">
+    <table id="myTable" style="overflow-y:-webkit-paged-y; width:100%;">
         <tr class="header">
             <th style="width:50%; text-align: center;">Picture</th>
             <th style="width:20%; text-align: center;">Name</th>
@@ -20,6 +20,7 @@
         </tr>
         {% endfor %}
         Order Date: {{orderd.order_Date}}
+        Send Date: {{orderd.date_send}}
         <br>Address to send: {{orderd.address_to_send}}
         <!-- <tr>
         <td>Paris specialites</td>
